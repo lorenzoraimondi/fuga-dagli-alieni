@@ -3,8 +3,8 @@ import java.util.*;
 
 public abstract class Mazzo {
 		protected int numCarte;
-		ArrayList<Carta> MazzoIniziale=new ArrayList<Carta>();
-		ArrayList<Carta> MazzoScarti=new ArrayList<Carta>();
+		List<Carta> MazzoIniziale=new ArrayList<Carta>();
+		List<Carta> MazzoScarti=new ArrayList<Carta>();
 		
 		public Mazzo(){
 			
@@ -20,11 +20,11 @@ public abstract class Mazzo {
 			return false;
 		}
 
-		public ArrayList<Carta> getMazzoIniziale() {
+		public List<Carta> getMazzoIniziale() {
 			return MazzoIniziale;
 		}
 
-		public ArrayList<Carta> getMazzoScarti() {
+		public List<Carta> getMazzoScarti() {
 			return MazzoScarti;
 		}
 }
