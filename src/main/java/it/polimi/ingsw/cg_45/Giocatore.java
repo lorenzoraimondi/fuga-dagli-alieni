@@ -2,18 +2,18 @@ package it.polimi.ingsw.cg_45;
 
 
 public abstract class Giocatore {
-			protected int ID;
+			protected int id;
 			protected int ordine;
 			protected int portata;
 			//protected Settore posizione;//
 			protected CartaOggetto[] oggetti= new CartaOggetto[3];
 			
 			public Giocatore(int id, int ordine){
-				this.ID=id;
+				this.id=id;
 				this.ordine=ordine;
 			}
 			public int getID() {
-				return ID;
+				return id;
 			}
 			
 			public int getOrdine() {

@@ -3,24 +3,24 @@ package it.polimi.ingsw.cg_45;
 import java.util.Collections;
 
 public class MazzoScialuppe extends Mazzo {
-		private final int num=6;
-		private final int numVerde=3;
+		private final static int NUM=6;
+		private final static int NUMVERDE=3;
 		
 		public MazzoScialuppe(){
-			numCarte=num;
-			for(int i=num;i>0;i--){
-				while(i>numVerde){
-					MazzoIniziale.add(new CartaScialuppa(TipoCartaScialuppa.VERDE));
-					i--;
+			numCarte=NUM;
+			for(int i=NUM;i>0;i--){
+				if(i>NUMVERDE){
+					mazzoIniziale.add(new CartaScialuppa(TipoCartaScialuppa.VERDE));
 				}
-				MazzoIniziale.add(new CartaScialuppa(TipoCartaScialuppa.ROSSA));
+				else
+					mazzoIniziale.add(new CartaScialuppa(TipoCartaScialuppa.ROSSA));
 			}
-			Collections.shuffle(MazzoIniziale);
+			Collections.shuffle(mazzoIniziale);
 		}
 
 		@Override
 		public String toString() {
-			return "MazzoScialuppe [MazzoIniziale=" + MazzoIniziale + "]\n";
+			return "MazzoScialuppe [MazzoIniziale=" + mazzoIniziale + "]\n";
 		}
 		
 		

@@ -3,39 +3,39 @@ package it.polimi.ingsw.cg_45;
 import java.util.Collections;
 
 public class MazzoOggetti extends Mazzo {
-	private final static int numAttacco=2;
-	private final static int numTeletrasporto=2;
-	private final static int numSedativi=3;
-	private final static int numLuci=2;
-	private final static int numDifesa=1;
-	private final static int numAdrenalina=2;
+	private final static int NUMATTACCO=2;
+	private final static int NUMTELETRASPORTO=2;
+	private final static int NUMSEDATIVI=3;
+	private final static int NUMLUCI=2;
+	private final static int NUMDIFESA=1;
+	private final static int NUMADRENALINA=2;
 	
 	public MazzoOggetti() {
-		for(int i=numAttacco;i>0;i--){
-			MazzoIniziale.add(new CartaOggetto(TipoCartaOggetto.ATTACCO));
+		numCarte=0;
+		for(int i=NUMATTACCO;i>0;i--,numCarte++){
+			mazzoIniziale.add(new CartaOggetto(TipoCartaOggetto.ATTACCO));
 		}
-		for(int i=numTeletrasporto;i>0;i--){
-			MazzoIniziale.add(new CartaOggetto(TipoCartaOggetto.TELETRASPORTO));
+		for(int i=NUMTELETRASPORTO;i>0;i--,numCarte++){
+			mazzoIniziale.add(new CartaOggetto(TipoCartaOggetto.TELETRASPORTO));
 		}
-		for(int i=numSedativi;i>0;i--){
-			MazzoIniziale.add(new CartaOggetto(TipoCartaOggetto.SEDATIVI));
+		for(int i=NUMSEDATIVI;i>0;i--,numCarte++){
+			mazzoIniziale.add(new CartaOggetto(TipoCartaOggetto.SEDATIVI));
 		}
-		for(int i=numLuci;i>0;i--){
-			MazzoIniziale.add(new CartaOggetto(TipoCartaOggetto.LUCI));
+		for(int i=NUMLUCI;i>0;i--,numCarte++){
+			mazzoIniziale.add(new CartaOggetto(TipoCartaOggetto.LUCI));
 		}
-		for(int i=numDifesa;i>0;i--){
-			MazzoIniziale.add(new CartaOggetto(TipoCartaOggetto.DIFESA));
+		for(int i=NUMDIFESA;i>0;i--,numCarte++){
+			mazzoIniziale.add(new CartaOggetto(TipoCartaOggetto.DIFESA));
 		}
-		for(int i=numAdrenalina;i>0;i--){
-			MazzoIniziale.add(new CartaOggetto(TipoCartaOggetto.ADRENALINA));
+		for(int i=NUMADRENALINA;i>0;i--,numCarte++){
+			mazzoIniziale.add(new CartaOggetto(TipoCartaOggetto.ADRENALINA));
 		}
-		Collections.shuffle(MazzoIniziale);
-		numCarte=12;
+		Collections.shuffle(mazzoIniziale);
 	}
 
 	@Override
 	public String toString() {
-		return "MazzoOggetti [MazzoIniziale=" + MazzoIniziale + "]\n";
+		return "MazzoOggetti [MazzoIniziale=" + mazzoIniziale + "]\n";
 	}
 	
 	

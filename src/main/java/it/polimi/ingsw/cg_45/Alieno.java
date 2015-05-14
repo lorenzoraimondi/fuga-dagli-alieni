@@ -14,7 +14,7 @@ public class Alieno extends Giocatore {
 			return haUcciso;
 		}
 
-		public void setHaUcciso(boolean Ucciso) {
-			this.haUcciso = Ucciso;
+		public void setHaUcciso(boolean ucciso) {
+			this.haUcciso = ucciso;
 		}
 }

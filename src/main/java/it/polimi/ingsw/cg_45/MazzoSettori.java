@@ -3,37 +3,37 @@ package it.polimi.ingsw.cg_45;
 import java.util.Collections;
 
 public class MazzoSettori extends Mazzo {
-		private final int numRumoreSettore=10;
-		private final int numRumoreQualunque=10;
-		private final int numSilenzio=5;
-		private final int numSettOgg=4;
-		private final int numQualOgg=4;
+		private final static int NUMRUMORESETTORE=10;
+		private final static int NUMRUMOREQUALUNQUE=10;
+		private final static int NUMSILENZIO=5;
+		private final static int NUMSETTOGG=4;
+		private final static int NUMQUALOGG=4;
 		
 		public MazzoSettori(){
-			for(int i=numRumoreSettore;i>0;i--){
-				while(i>numSettOgg){
-					MazzoIniziale.add(new CartaSettore(TipoCartaSettore.RUMORETUOSETTORE,true));
-					i--;
+			numCarte=0;
+			for(int i=NUMRUMORESETTORE;i>0;i--,numCarte++){
+				if(i<NUMSETTOGG){
+					mazzoIniziale.add(new CartaSettore(TipoCartaSettore.RUMORETUOSETTORE,true));
 				}
-				MazzoIniziale.add(new CartaSettore(TipoCartaSettore.RUMORETUOSETTORE,false));
+				else
+					mazzoIniziale.add(new CartaSettore(TipoCartaSettore.RUMORETUOSETTORE,false));
 			}
-			for(int i=numRumoreQualunque;i>0;i--){
-				while(i>numQualOgg){
-					MazzoIniziale.add(new CartaSettore(TipoCartaSettore.RUMOREQUALUNQUESETTORE,true));
-					i--;
+			for(int i=NUMRUMOREQUALUNQUE;i>0;i--,numCarte++){
+				if(i<NUMQUALOGG){
+					mazzoIniziale.add(new CartaSettore(TipoCartaSettore.RUMOREQUALUNQUESETTORE,true));
 				}
-				MazzoIniziale.add(new CartaSettore(TipoCartaSettore.RUMOREQUALUNQUESETTORE,false));
+				else
+					mazzoIniziale.add(new CartaSettore(TipoCartaSettore.RUMOREQUALUNQUESETTORE,false));
 			}
-			for(int i=numSilenzio;i>0;i--){
-					MazzoIniziale.add(new CartaSettore(TipoCartaSettore.SILENZIO,false));
+			for(int i=NUMSILENZIO;i>0;i--,numCarte++){
+					mazzoIniziale.add(new CartaSettore(TipoCartaSettore.SILENZIO,false));
 			}
-			Collections.shuffle(MazzoIniziale);
-			numCarte=numRumoreSettore+numRumoreQualunque+numSilenzio;
+			Collections.shuffle(mazzoIniziale);
 		}
 
 		@Override
 		public String toString() {
-			return "MazzoSettori [ MazzoIniziale=" + MazzoIniziale + "]\n";
+			return "MazzoSettori [ MazzoIniziale=" + mazzoIniziale + "]\n";
 		}
 		
 		
