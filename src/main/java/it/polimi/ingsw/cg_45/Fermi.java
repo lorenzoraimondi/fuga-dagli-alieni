@@ -1,6 +1,81 @@
 package it.polimi.ingsw.cg_45;
 
+import java.io.File;
+import java.util.Scanner;
+
 public class Fermi extends Mappa{
+	
+	private int[][] importaFile(String percorso){
+		Scanner scanner;
+		Scanner scannerb;
+		String a = new String();
+		int i=0;
+		try{
+			scanner = new Scanner(new File(percorso));
+			scannerb = new Scanner(new File(percorso));
+		} catch (Exception FileNotFoundException){
+			scanner=null;
+			scannerb=null;
+		}
+	    
+	    while (scanner.hasNextLine()) {
+	    	a=scanner.nextLine();
+	    	i++;
+	    }
+	    scanner.close();
+	    int righe=i;
+	    int colonne=a.length();
+	    
+	    int m[][]= new int[righe][colonne];
+	    int p=0;
+	    String r[] =new String[righe];
+	    
+	    while(scannerb.hasNextLine()){
+	    	r[p]=scannerb.nextLine();
+	    	p++;
+	    }
+	    scannerb.close();
+	    	for(int k=0;k<righe;k++){
+	    		for(int j=0;j<colonne;j++){
+	    	            m[k][j]=(int)(r[k].charAt(j)-48);
+	    	    }
+	    	}
+	    	
+	    return m;
+	    
+	}
+/*	
+	public Fermi(){
+		
+	    
+		int m[][]=importaFile("p.txt");		
+		
+		for(int i=0;i<3;i++){
+			for(int j=0;j<10;j++){
+				int y=-j/2-j+1;
+				int z=-j-y;
+				
+				switch(m[i][j]){
+					case 0:
+						mappa.put(new Coordinate(j,y,z), new SettoreVuoto(j,y,z));
+					case 1:
+						mappa.put(new Coordinate(j,y,z), new SettoreSicuro(j,y,z));
+					case 2:
+						mappa.put(new Coordinate(j,y,z), new SettorePericoloso(j,y,z));
+					case 3:
+						mappa.put(new Coordinate(j,y,z), new SettoreScialuppa(j,y,z));
+					case 4:
+						mappa.put(new Coordinate(j,y,z), new SettorePartenzaAlieni(j,y,z));
+					case 5:
+						mappa.put(new Coordinate(j,y,z), new SettorePartenzaUmani(j,y,z));
+					
+				}
+					
+			}
+			
+		}
+	}*/
+	
 	
 	public Fermi(){
 		mappa.put(new Coordinate(0,0,0), new SettoreSicuro(0,0,0));		
