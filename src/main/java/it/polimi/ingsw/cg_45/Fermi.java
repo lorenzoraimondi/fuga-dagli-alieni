@@ -53,7 +53,7 @@ public class Fermi extends Mappa{
 		    	
 		for(int i=0;i<12;i++){
 			for(int j=0;j<9;j++){
-				int y=-j/2-j+i;
+				int y=i-((j-(j%2))/2);
 				int z=-j-y;
 				
 				switch(m[i][j]){
