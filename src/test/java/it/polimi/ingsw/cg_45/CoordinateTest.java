@@ -16,7 +16,10 @@ public class CoordinateTest {
 		assertEquals(c1.getZ(),3);
 		assertTrue(c1.equals(c2));
 		assertFalse(c1.equals(c3));
-		
+		/*Coordinate c4= new Coordinate("H01");
+		assertEquals(c4.getX(),0);
+		assertEquals(c4.getY(),0);
+		assertEquals(c4.getZ(),0);*/
 		
 	}
 

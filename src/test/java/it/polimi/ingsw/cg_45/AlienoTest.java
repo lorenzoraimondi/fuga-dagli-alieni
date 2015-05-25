@@ -8,14 +8,18 @@ public class AlienoTest {
 
 	@Test
 	public void test() {
-		Alieno a=new Alieno(1,1);
-		assertEquals(a.id,1);
-		assertEquals(a.ordine,1);
-		assertEquals(a.portata,2);
-		assertEquals(a.isHaUcciso(),false);
+		Mappa mappa=new Fermi();
+		Alieno a=new Alieno(1,1,mappa);
+		assertEquals(1,a.id);
+		assertEquals(1,a.ordine);
+		assertEquals(2,a.portata);
+		assertFalse(a.isHaUcciso());	
 		
 		a.setHaUcciso(true);
-		assertEquals(a.isHaUcciso(),true);
+		assertTrue(a.isHaUcciso());
+		
+		assertEquals(a.getSituazione(),Situazione.ATTIVONASCOSTO);
+		assertEquals(a.getStato(),Stato.INIZIO);
 		
 	}
 

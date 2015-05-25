@@ -1,9 +1,14 @@
 package it.polimi.ingsw.cg_45;
 
-import java.io.File;
-import java.util.Scanner;
+//import java.io.File;
+//import java.util.Scanner;
 
 public class Galilei extends Mappa {
+	
+	public Galilei(){
+		super("galilei.txt");
+	}
+	/*
 	private int[][] importaFile(String percorso){
 		int righe=14;
 	    int colonne=23;
@@ -46,7 +51,7 @@ public class Galilei extends Mappa {
 	 *   che "riempiono lo spazio" tra i settori istanziati e i bordi della 
 	 *   matrice (vedi "fermi.txt" per esempio)
 	 */
-	public Galilei(){
+	/*public Galilei(){
 			    
 		int m[][]=importaFile("galilei.txt");		
 		    	
@@ -86,5 +91,5 @@ public class Galilei extends Mappa {
 		for(Settore s : mappa.values()){
 			calcolaAdiacenze(s);
 		}
-	}
+	}*/
 }

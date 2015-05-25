@@ -1,11 +1,11 @@
 package it.polimi.ingsw.cg_45;
 
-import java.io.File;
-import java.util.Scanner;
+//import java.io.File;
+//import java.util.Scanner;
 
 public class Fermi extends Mappa{
 
-	private int[][] importaFile(String percorso){
+	/*private int[][] importaFile(String percorso){
 		int righe=12;
 	    int colonne=9;
 	    int m[][]= new int[righe][colonne];
@@ -34,7 +34,7 @@ public class Fermi extends Mappa{
 	  
 	    return m;
 	    
-	}
+	}*/
 	
 	/*
 	 * 0 SettoreVuoto
@@ -47,9 +47,11 @@ public class Fermi extends Mappa{
 	 *   che "riempiono lo spazio" tra i settori istanziati e i bordi della 
 	 *   matrice (vedi "fermi.txt" per esempio)
 	 */
+	
 	public Fermi(){
-			    
-		int m[][]=importaFile("fermi.txt");		
+		
+		super("fermi.txt");
+		/*int m[][]=importaFile("fermi.txt",12,9);		
 		    	
 		for(int i=0;i<12;i++){
 			for(int j=0;j<9;j++){
@@ -86,7 +88,12 @@ public class Fermi extends Mappa{
 			
 		for(Settore s : mappa.values()){
 			calcolaAdiacenze(s);
-		}
+		}*/
+	}
+
+	/*public Fermi(String percorso, int row, int col) {
+		super(percorso, row, col);
+		// TODO Auto-generated constructor stub
 	}
 	
 	/*

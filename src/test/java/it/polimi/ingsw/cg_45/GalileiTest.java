@@ -10,8 +10,22 @@ public class GalileiTest {
 	public void test() {
 	Mappa mappa= new Galilei();
 	
-	assertEquals(mappa.mossaValida(mappa.mappa.get(new Coordinate(0,1,-1)), mappa.mappa.get(new Coordinate(0,2,-2)), 2),true);
-	assertEquals(mappa.mossaValida(mappa.mappa.get(new Coordinate(0,1,-1)), mappa.mappa.get(new Coordinate(0,5,-5)), 2),false);
+	assertTrue(mappa.mappa.get(new Coordinate("L08")) instanceof SettorePartenzaUmani);
+	assertTrue(mappa.mappa.get(new Coordinate("L06")) instanceof SettorePartenzaAlieni);
+	
+	assertTrue(mappa.mappa.get(new Coordinate("B02")) instanceof SettoreScialuppa);
+	assertTrue(mappa.mappa.get(new Coordinate("V02")) instanceof SettoreScialuppa);
+	assertTrue(mappa.mappa.get(new Coordinate("B13")) instanceof SettoreScialuppa);
+	assertTrue(mappa.mappa.get(new Coordinate("V13")) instanceof SettoreScialuppa);
+	
+	assertTrue(mappa.mappa.get(new Coordinate("S10")) instanceof SettoreVuoto);
+	assertTrue(mappa.mappa.get(new Coordinate("F04")) instanceof SettorePericoloso);
+	assertTrue(mappa.mappa.get(new Coordinate("N03")) instanceof SettoreSicuro);
+	
+	assertTrue(mappa.mossaValida(mappa.mappa.get(new Coordinate("G05")), mappa.mappa.get(new Coordinate("J06")), 4));
+	assertFalse(mappa.mossaValida(mappa.mappa.get(new Coordinate("G05")), mappa.mappa.get(new Coordinate("J06")), 3));
+
+	assertFalse(mappa.mossaValida(mappa.mappa.get(new Coordinate("A03")), mappa.mappa.get(new Coordinate("A03")), 5));
 	}
 
 }

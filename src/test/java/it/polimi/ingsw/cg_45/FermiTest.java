@@ -10,11 +10,28 @@ public class FermiTest {
 	public void test() {
 		Mappa mappa=new Fermi();
 
-		assertEquals(mappa.mossaValida(mappa.mappa.get(new Coordinate(6,1,-7)), mappa.mappa.get(new Coordinate(4,3,-7)), 2),false);
-		assertEquals(mappa.mossaValida(mappa.mappa.get(new Coordinate(8,5,-13)), mappa.mappa.get(new Coordinate(6,7,-13)), 3),true);
-		assertEquals(mappa.mossaValida(mappa.mappa.get(new Coordinate(4,3,-7)), mappa.mappa.get(new Coordinate(2,5,-7)), 2),false);
-		assertEquals(mappa.mossaValida(mappa.mappa.get(new Coordinate(6,4,-10)), mappa.mappa.get(new Coordinate(7,3,-10)), 14),false);
-		assertEquals(mappa.mossaValida(mappa.mappa.get(new Coordinate(4,6,-10)), mappa.mappa.get(new Coordinate(4,7,-11)), 2),false);
+		
+		
+		assertTrue(mappa.mappa.get(new Coordinate("L10")) instanceof SettorePartenzaUmani);
+		assertTrue(mappa.mappa.get(new Coordinate("L09")) instanceof SettorePartenzaAlieni);
+		
+		assertTrue(mappa.mappa.get(new Coordinate("N01")) instanceof SettoreScialuppa);
+		assertTrue(mappa.mappa.get(new Coordinate("J01")) instanceof SettoreScialuppa);
+		assertTrue(mappa.mappa.get(new Coordinate("N05")) instanceof SettoreScialuppa);
+		assertTrue(mappa.mappa.get(new Coordinate("J05")) instanceof SettoreScialuppa);
+		
+		assertTrue(mappa.mappa.get(new Coordinate("K11")) instanceof SettoreSicuro);
+		assertTrue(mappa.mappa.get(new Coordinate("N06")) instanceof SettoreVuoto);
+		
+		assertTrue(mappa.mossaValida(mappa.mappa.get(new Coordinate("H10")), mappa.mappa.get(new Coordinate("K11")), 3));
+		assertFalse(mappa.mossaValida(mappa.mappa.get(new Coordinate("H10")),mappa.mappa.get(new Coordinate("K10")), 3));
+		assertFalse(mappa.mossaValida(mappa.mappa.get(new Coordinate("H10")),mappa.mappa.get(new Coordinate("L10")), 10));
+		assertFalse(mappa.mossaValida(mappa.mappa.get(new Coordinate("H10")),mappa.mappa.get(new Coordinate("H10")), 3));
+		
+		assertTrue(mappa.mossaValida(mappa.mappa.get(new Coordinate("L06")), mappa.mappa.get(new Coordinate("N05")), 5));
+		
+
+		
 	}
 
 }

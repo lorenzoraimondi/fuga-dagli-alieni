@@ -11,6 +11,14 @@ public class Coordinate {
 			this.z = z;
 	}
 
+	public Coordinate(String coord){
+		char[] nome= coord.toCharArray();
+		x=nome[0]-65;
+		int somma=(nome[1]-48)*10+(nome[2]-48);
+	    y=somma+((-x/2)-1);
+		z=-x-y;
+	}
+	 
 	public int getX() {
 		return x;
 	}
