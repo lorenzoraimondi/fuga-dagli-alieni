@@ -3,7 +3,7 @@ package it.polimi.ingsw.cg_45;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StatoDiGioco {
+public class StatoDiGioco{
 	private int currentPlayer;
 	private int turno;
 	private List<Giocatore> giocatori;

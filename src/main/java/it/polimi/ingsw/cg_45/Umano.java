@@ -6,12 +6,17 @@ public class Umano extends Giocatore {
 	
 	public Umano(int id, int ordine){
 		super(id,ordine);
+		this.setPortata(1);
+		this.setPosizioneIniziale();
+		this.setSituazione(Situazione.ATTIVONASCOSTO);
 	}
 	
 	public Umano(int id, int ordine,Mappa mappa) {
 		super(id, ordine, mappa);
 		this.portata=1;
 		this.setPosizioneIniziale();
+		this.setStato(Stato.INIZIO);
+		this.setSituazione(Situazione.ATTIVONASCOSTO);
 	}
 
 	@Override

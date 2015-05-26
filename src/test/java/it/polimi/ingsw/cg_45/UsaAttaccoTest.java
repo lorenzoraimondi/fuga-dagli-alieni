@@ -9,8 +9,8 @@ public class UsaAttaccoTest {
 	@Test
 	public void test() {
 		
-		assertEquals(1,1);
-		/*Alieno a=new Alieno(1,1);
+		
+		Alieno a=new Alieno(1,1);
 		Umano u1=new Umano(2,2);
 		Umano u2=new Umano(2,2);
 		SettorePericoloso s=new SettorePericoloso(1,1,1);
@@ -49,8 +49,8 @@ public class UsaAttaccoTest {
 			System.out.println(c.toString());
 		}
 		
-		assertEquals(Situazione.MORTO,a.getStato());
-		assertEquals(Situazione.INATTIVO,u2.getStato());*/
+		assertEquals(Situazione.MORTO,a.getSituazione());
+		assertEquals(Situazione.INATTIVO,u2.getSituazione());
 		
 		
 		

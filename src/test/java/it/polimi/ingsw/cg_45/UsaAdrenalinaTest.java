@@ -3,9 +3,6 @@ package it.polimi.ingsw.cg_45;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 
 
@@ -13,8 +10,9 @@ public class UsaAdrenalinaTest {
 	
 	@Test
 	public void test(){
-		assertEquals(1,1);
-		/*Umano p1=new Umano(1,1);
+
+
+		Umano p1=new Umano(1,1);
 		Umano p2=new Umano(2,2);
 		Umano p3=new Umano(3,3);
 		p1.setCarta(new CartaOggetto(TipoCartaOggetto.ADRENALINA));
@@ -61,7 +59,7 @@ public class UsaAdrenalinaTest {
 		
 		assertEquals(2,p1.getPortata());
 		assertEquals(1,p2.getPortata());
-		assertEquals(1,p3.getPortata());*/
+		assertEquals(1,p3.getPortata());
 		
 		
 	}

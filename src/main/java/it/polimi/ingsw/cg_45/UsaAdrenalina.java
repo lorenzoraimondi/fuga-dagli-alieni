@@ -11,7 +11,9 @@ public class UsaAdrenalina extends Azione {
 	}
 	
 	public void esegui(){
+		System.out.println("1");
 		if(controlli()){
+			System.out.println("2");
 			giocatore.setPortata(2);
 			carta=giocatore.getCarta(TipoCartaOggetto.ADRENALINA);
 			giocatore.getCarte().remove(carta);

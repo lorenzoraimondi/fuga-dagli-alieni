@@ -9,10 +9,8 @@ public class UsaSedativiTest {
 
 	@Test
 	public void test() {
-		
-		assertEquals(1,1);
-		
-		/*Umano p1=new Umano(1,1);
+				
+		Umano p1=new Umano(1,1);
 		Umano p2=new Umano(2,2);
 		Umano p3=new Umano(3,3);
 		p1.setCarta(new CartaOggetto(TipoCartaOggetto.SEDATIVI));
@@ -59,7 +57,7 @@ public class UsaSedativiTest {
 		
 		assertEquals(true,p1.isSedato());
 		assertEquals(false,p2.isSedato());
-		assertEquals(false,p3.isSedato());*/
+		assertEquals(false,p3.isSedato());
 		
 		
 
