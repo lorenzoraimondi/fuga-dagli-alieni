@@ -8,7 +8,9 @@ public class MazzoOggettiTest {
 
 	@Test
 	public void test() {
-		assertEquals(1,1);
+		MazzoOggetti m=new MazzoOggetti();
+		System.out.println(m);
+	}
 		/*MazzoOggetti m=new MazzoOggetti();
 		int at=0,t=0,ad=0,s=0,l=0,d=0;
 		
@@ -44,9 +46,9 @@ public class MazzoOggettiTest {
 		assertEquals(ad,2);
 		assertEquals(s,3);
 		assertEquals(l,2);
-		assertEquals(d,1);*/
+		assertEquals(d,1);
 		
 		
-	}
+	}*/
 
 }

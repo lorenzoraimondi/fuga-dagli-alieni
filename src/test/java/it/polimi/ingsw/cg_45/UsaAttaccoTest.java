@@ -14,6 +14,7 @@ public class UsaAttaccoTest {
 		Alieno a=new Alieno(1,1);
 		Umano u1=new Umano(2,2);
 		Umano u2=new Umano(2,2);
+		Umano u3=new Umano(3,3);
 		SettorePericoloso s=new SettorePericoloso(1,1,1);
 		StatoDiGioco partita=new StatoDiGioco();
 		
@@ -27,6 +28,7 @@ public class UsaAttaccoTest {
 		u2.setPosizione(s);
 		u2.setSituazione(Situazione.INATTIVO);
 		u2.setCarta(new CartaOggetto(TipoCartaOggetto.DIFESA));
+
 		
 		
 		partita.getGiocatori().add(u1);
@@ -53,7 +55,15 @@ public class UsaAttaccoTest {
 		assertEquals(Situazione.MORTO,a.getSituazione());
 		assertEquals(Situazione.INATTIVO,u2.getSituazione());
 		
+		u3.setPosizione(s);
+		u3.setSituazione(Situazione.ATTIVONASCOSTO);
+		u3.setCarta(new CartaOggetto(TipoCartaOggetto.DIFESA));
 		
+		UsaAttacco attacco2=new UsaAttacco(partita,u3,s);
+		attacco2.esegui();
+		
+		assertEquals(Situazione.ATTIVONASCOSTO, u1.getSituazione());
+		assertEquals(Situazione.INATTIVO, u2.getSituazione());
 		
 	}
 }
