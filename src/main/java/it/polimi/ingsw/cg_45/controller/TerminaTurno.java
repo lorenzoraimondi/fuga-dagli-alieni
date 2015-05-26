@@ -14,6 +14,7 @@ public class TerminaTurno extends Azione {
 	public void esegui() {
 		if(this.controlli()){
 			giocatore.setStato(Stato.INIZIO);
+			
 			model.incrementCurrentPlayer();
 			if(giocatore.getID()==model.getGiocatori().size())
 				model.incrementTurno();

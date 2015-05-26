@@ -7,20 +7,20 @@ public class Umano extends Giocatore {
 	public Umano(int id, int ordine){
 		super(id,ordine);
 		this.setPortata(1);
-		this.setPosizioneIniziale();
+		//this.setPosizioneIniziale(mappa);
 		this.setSituazione(Situazione.ATTIVONASCOSTO);
 	}
 	
 	public Umano(int id, int ordine,Mappa mappa) {
 		super(id, ordine, mappa);
 		this.portata=1;
-		this.setPosizioneIniziale();
+		this.setPosizioneIniziale(mappa);
 		this.setStato(Stato.INIZIO);
 		this.setSituazione(Situazione.ATTIVONASCOSTO);
 	}
 
 	@Override
-	protected void setPosizioneIniziale() {
+	protected void setPosizioneIniziale(Mappa mappa) {
 		if(mappa instanceof Fermi)
 			posizione=mappa.mappa.get(new Coordinate("L10"));
 		else if(mappa instanceof Galilei)

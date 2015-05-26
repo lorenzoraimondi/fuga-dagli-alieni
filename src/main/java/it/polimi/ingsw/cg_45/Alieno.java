@@ -6,14 +6,14 @@ public class Alieno extends Giocatore {
 		
 		public Alieno(int id, int ordine){
 			super(id,ordine);
-			this.setPosizioneIniziale();
+			//this.setPosizioneIniziale(mappa);
 			
 		}
 		public Alieno(int id, int ordine, Mappa mappa) {
 			super(id, ordine, mappa);
 			this.portata=2;
 			this.haUcciso=false;
-			this.setPosizioneIniziale();
+			this.setPosizioneIniziale(mappa);
 		}
 
 		public boolean isHaUcciso() {
@@ -25,7 +25,7 @@ public class Alieno extends Giocatore {
 		}
 
 		@Override
-		protected void setPosizioneIniziale() {
+		protected void setPosizioneIniziale(Mappa mappa) {
 			if(mappa instanceof Fermi)	
 				posizione=mappa.mappa.get(new Coordinate("L09"));
 			else if(mappa instanceof Galilei)

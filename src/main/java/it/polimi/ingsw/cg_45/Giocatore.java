@@ -15,7 +15,7 @@ public abstract class Giocatore {
 			protected List<CartaOggetto> carte = new ArrayList<CartaOggetto>();
 			//protected CartaOggetto[] oggetti= new CartaOggetto[3];
 			
-			protected abstract void setPosizioneIniziale();
+			protected abstract void setPosizioneIniziale(Mappa mappa);
 			
 			public Giocatore(int id, int ordine){
 				this.id=id;
