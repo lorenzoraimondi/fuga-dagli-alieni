@@ -1,4 +1,9 @@
-package it.polimi.ingsw.cg_45;
+package it.polimi.ingsw.cg_45.controller;
+
+import it.polimi.ingsw.cg_45.CartaOggetto;
+import it.polimi.ingsw.cg_45.Giocatore;
+import it.polimi.ingsw.cg_45.StatoDiGioco;
+import it.polimi.ingsw.cg_45.TipoCartaOggetto;
 
 public class UsaDifesa extends Azione{
 	
@@ -12,7 +17,7 @@ public class UsaDifesa extends Azione{
 	public void esegui(){
 		carta=giocatore.getCarta(TipoCartaOggetto.DIFESA);
 		giocatore.getCarte().remove(carta);
-		model.getMazzoOggetti().mazzoScarti.add(carta);
+		model.getMazzoOggetti().getMazzoScarti().add(carta);
 	}
 
 	

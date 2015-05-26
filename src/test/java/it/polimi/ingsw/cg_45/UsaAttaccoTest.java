@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg_45;
 
 import static org.junit.Assert.*;
+import it.polimi.ingsw.cg_45.controller.UsaAttacco;
 
 import org.junit.Test;
 

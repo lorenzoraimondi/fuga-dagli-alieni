@@ -1,6 +1,10 @@
-package it.polimi.ingsw.cg_45;
+package it.polimi.ingsw.cg_45.controller;
 
-import java.util.Collections;
+import it.polimi.ingsw.cg_45.CartaSettore;
+import it.polimi.ingsw.cg_45.Giocatore;
+import it.polimi.ingsw.cg_45.Stato;
+import it.polimi.ingsw.cg_45.StatoDiGioco;
+import it.polimi.ingsw.cg_45.TipoCartaSettore;
 
 public class PescaSettore extends Azione{
 
@@ -13,8 +17,7 @@ public class PescaSettore extends Azione{
 	
 	public void esegui(){
 		if(this.controlli()){
-			carta=(CartaSettore) model.getMazzoSettori().mazzoIniziale.get(0);
-			model.getMazzoSettori().mazzoScarti.add(model.getMazzoSettori().mazzoIniziale.remove(0));
+			carta=(CartaSettore) model.getMazzoSettori().pescaCarta();
 			if(carta.getTipo()==TipoCartaSettore.RUMOREQUALUNQUESETTORE){
 				if(!carta.isOggetto())
 					giocatore.setStato(Stato.CARTABLUFF);
@@ -33,15 +36,9 @@ public class PescaSettore extends Azione{
 	}
 
 	protected boolean controlli() {
-		if(stato==Stato.PERICOLO){
-			if(model.getMazzoSettori().mazzoIniziale.isEmpty()){
-			model.getMazzoSettori().mazzoIniziale.addAll(model.getMazzoSettori().mazzoScarti);
-			Collections.shuffle(model.getMazzoSettori().mazzoIniziale);
-			model.getMazzoSettori().mazzoScarti.removeAll(model.getMazzoSettori().mazzoScarti);
-			}
-		}
-		return true;
-		
+		if(stato==Stato.PERICOLO)
+			return true;
+		return false;
 		
 	}
 }

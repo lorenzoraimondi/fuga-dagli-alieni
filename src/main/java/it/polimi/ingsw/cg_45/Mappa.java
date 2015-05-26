@@ -122,4 +122,10 @@ public abstract class Mappa {
 		}
 		return false;
 	}
+
+	public Map<Coordinate, Settore> getMappa() {
+		return mappa;
+	}
+	
+	
 }

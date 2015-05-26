@@ -1,4 +1,8 @@
-package it.polimi.ingsw.cg_45;
+package it.polimi.ingsw.cg_45.controller;
+
+import it.polimi.ingsw.cg_45.Giocatore;
+import it.polimi.ingsw.cg_45.Stato;
+import it.polimi.ingsw.cg_45.StatoDiGioco;
 
 public abstract class Azione {
 

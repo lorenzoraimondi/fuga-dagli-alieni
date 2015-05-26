@@ -28,4 +28,15 @@ public abstract class Mazzo {
 		public List<Carta> getMazzoScarti() {
 			return mazzoScarti;
 		}
+		
+		public Carta pescaCarta(){
+			if(mazzoIniziale.isEmpty()){
+				if(!mazzoScarti.isEmpty()){
+					this.getMazzoIniziale().addAll(this.getMazzoScarti());
+					Collections.shuffle(this.getMazzoIniziale());
+					this.getMazzoScarti().removeAll(this.getMazzoScarti());
+				}
+			}
+			return this.getMazzoIniziale().remove(0);
+		}
 }

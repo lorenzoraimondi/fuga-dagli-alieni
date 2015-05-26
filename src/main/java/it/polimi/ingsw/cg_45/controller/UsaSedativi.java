@@ -1,4 +1,11 @@
-package it.polimi.ingsw.cg_45;
+package it.polimi.ingsw.cg_45.controller;
+
+import it.polimi.ingsw.cg_45.CartaOggetto;
+import it.polimi.ingsw.cg_45.Giocatore;
+import it.polimi.ingsw.cg_45.MazzoOggetti;
+import it.polimi.ingsw.cg_45.StatoDiGioco;
+import it.polimi.ingsw.cg_45.TipoCartaOggetto;
+import it.polimi.ingsw.cg_45.Umano;
 
 public class UsaSedativi extends Azione{
 
@@ -16,7 +23,7 @@ public class UsaSedativi extends Azione{
 			g.setSedato(true);
 			carta=giocatore.getCarta(TipoCartaOggetto.SEDATIVI);
 			giocatore.getCarte().remove(carta);
-			mazzo.mazzoScarti.add(carta);
+			mazzo.getMazzoScarti().add(carta);
 		}
 	}
 	
