@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg_45;
 
+import java.io.File;
+
 //import java.io.File;
 //import java.util.Scanner;
 
@@ -50,7 +52,7 @@ public class Fermi extends Mappa{
 	
 	public Fermi(){
 		
-		super("fermi.txt");
+		super("rsc"+File.separatorChar+"fermi.txt");
 		/*int m[][]=importaFile("fermi.txt",12,9);		
 		    	
 		for(int i=0;i<12;i++){

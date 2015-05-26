@@ -1,12 +1,14 @@
 package it.polimi.ingsw.cg_45;
 
+import java.io.File;
+
 //import java.io.File;
 //import java.util.Scanner;
 
 public class Galilei extends Mappa {
 	
 	public Galilei(){
-		super("galilei.txt");
+		super("rsc"+File.separatorChar+"galilei.txt");
 	}
 	/*
 	private int[][] importaFile(String percorso){
