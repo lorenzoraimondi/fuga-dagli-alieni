@@ -1,10 +1,11 @@
 package it.polimi.ingsw.cg_45;
 
+import static org.junit.Assert.*;
 import it.polimi.ingsw.cg_45.Carta;
 import it.polimi.ingsw.cg_45.CartaOggetto;
-
 import it.polimi.ingsw.cg_45.Mazzo;
 import it.polimi.ingsw.cg_45.MazzoOggetti;
+
 
 
 
@@ -18,6 +19,10 @@ public class MazzoTest {
 		for(Carta c: mazzo.getMazzoIniziale()){
 			System.out.println(c);
 		}
+		
+		CartaOggetto carta1=(CartaOggetto) mazzo.pescaCarta();
+		System.out.println("cartapescata"+carta1);
+		
 		System.out.println("tolgo tutto");
 		mazzo.getMazzoScarti().addAll(mazzo.getMazzoIniziale());
 		mazzo.getMazzoIniziale().removeAll(mazzo.getMazzoIniziale());
@@ -37,6 +42,7 @@ public class MazzoTest {
 		}
 		
 		System.out.println("carta pescata"+carta);
+		assertEquals(12,mazzo.numCarte);
 	}
 
 }
