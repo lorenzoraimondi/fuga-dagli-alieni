@@ -63,22 +63,21 @@ public class Attacco extends Azione{
 		if(giocatore.getPosizione().getCoordinate().equals(settore.getCoordinate())){
 			if(giocatore instanceof Alieno){
 				if(stato==Stato.PERICOLO || stato==Stato.SICURO){
-					System.out.println("1");
 					return true;
 				}
-				System.out.println("2");
+				
 				return false;
 			}
 			else {
 				if(stato!=Stato.INIZIO && stato!=Stato.SCIALUPPA && stato!=Stato.CARTASCIALUPPA){
-					System.out.println("3");
+					
 					return true;
 				}
-				System.out.println("4");					
+									
 				return false;
 			}	
 		}
-		System.out.println("5");
+		
 		return false;
 			
 		
