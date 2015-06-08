@@ -14,12 +14,6 @@ public abstract class Mazzo {
 		public int getNumCarte() {
 			return numCarte;
 		}
-		
-		public boolean isEmpty(){
-			if(numCarte==0)
-				return true;
-			return false;
-		}
 
 		public List<Carta> getMazzoIniziale() {
 			return mazzoIniziale;
