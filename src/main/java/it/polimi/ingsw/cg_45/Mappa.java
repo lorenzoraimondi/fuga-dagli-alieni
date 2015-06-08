@@ -98,9 +98,12 @@ public abstract class Mappa {
 	
 	
 	public boolean mossaValida(Settore partenza, Settore arrivo, int portata){
-		if(arrivo instanceof SettorePartenzaAlieni || arrivo instanceof SettorePartenzaUmani || partenza.equals(arrivo))
-			return false;
 		
+		if(arrivo instanceof SettorePartenzaAlieni || arrivo instanceof SettorePartenzaUmani || partenza.equals(arrivo)){
+			System.out.println("1");
+			return false;
+		}
+				
 		final Map<Integer,ArrayList<Settore>> m = new HashMap<Integer,ArrayList<Settore>>();
 		m.put(0,new ArrayList<Settore>());
 		m.get(0).add(partenza);
@@ -120,6 +123,7 @@ public abstract class Mappa {
 				}
 			}
 		}
+		System.out.println("2");
 		return false;
 	}
 

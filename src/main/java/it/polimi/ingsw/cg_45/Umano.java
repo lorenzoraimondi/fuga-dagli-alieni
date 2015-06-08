@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg_45;
 
+import it.polimi.ingsw.cg_45.CartaOggetto;
+
 public class Umano extends Giocatore {
 
 	private boolean sedato;
@@ -12,15 +14,15 @@ public class Umano extends Giocatore {
 	}
 	
 	public Umano(int id, int ordine,Mappa mappa) {
-		super(id, ordine, mappa);
+		super(id, ordine, mappa); 
 		this.portata=1;
 		this.setPosizioneIniziale(mappa);
-		this.setStato(Stato.INIZIO);
-		this.setSituazione(Situazione.ATTIVONASCOSTO);
+		//this.setStato(Stato.INIZIO);
+		//this.setSituazione(Situazione.ATTIVONASCOSTO);
 	}
 
 	@Override
-	protected void setPosizioneIniziale(Mappa mappa) {
+	public void setPosizioneIniziale(Mappa mappa) {
 		if(mappa instanceof Fermi)
 			posizione=mappa.mappa.get(new Coordinate("L10"));
 		else if(mappa instanceof Galilei)

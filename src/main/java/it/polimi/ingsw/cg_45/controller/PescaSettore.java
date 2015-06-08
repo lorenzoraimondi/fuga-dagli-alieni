@@ -15,24 +15,32 @@ public class PescaSettore extends Azione{
 		this.stato=giocatore.getStato();
 	}
 	
-	public void esegui(){
+	public RispostaController esegui(){
 		if(this.controlli()){
 			carta=(CartaSettore) model.getMazzoSettori().pescaCarta();
 			if(carta.getTipo()==TipoCartaSettore.RUMOREQUALUNQUESETTORE){
-				if(!carta.isOggetto())
+				if(!carta.isOggetto()){
 					giocatore.setStato(Stato.CARTABLUFF);
+					return new RispostaController("Hai pescato una carta 'Rumore in qualunque settore'. Annuncia il settore.","Il giocatore "+giocatore.getID()+"ha pescato una carta settore");
+				}
 				else
 					giocatore.setStato(Stato.CARTABLUFFOGGETTO);
+				return new RispostaController("Hai pescato una carta 'Rumore in qualunque settore' con oggetto. Annuncia il settore e pesca una carta.","Il giocatore "+giocatore.getID()+"ha pescato una carta settore");
 			}
 			else if(carta.getTipo()==TipoCartaSettore.RUMORETUOSETTORE){
-				if(!carta.isOggetto())
+				if(!carta.isOggetto()){
 					giocatore.setStato(Stato.CARTARIVELA);
+				return new RispostaController("Hai pescato una carta 'Rumore nel tuo settore'. Annuncia il tuo settore.","Il giocatore "+giocatore.getID()+"ha pescato una carta settore");
+				}
 				else
 					giocatore.setStato(Stato.CARTARIVELAOGGETTO);
+				return new RispostaController("Hai pescato una carta 'Rumore nel tuo settore' con oggetto. Annuncia il tuo settore e pesca una carta.","Il giocatore "+giocatore.getID()+"ha pescato una carta settore");
 			}
 			else
 				giocatore.setStato(Stato.SILENZIO);
-		}	
+				return new RispostaController("Hai pescato una carta 'Silenzio'. Annuncia il silenzio.","Il giocatore "+giocatore.getID()+"ha pescato una carta settore");
+		}
+		return new RispostaController("Mossa non valida",null);	
 	}
 
 	protected boolean controlli() {
@@ -41,4 +49,14 @@ public class PescaSettore extends Azione{
 		return false;
 		
 	}
+	//Per test
+
+			public Giocatore getGiocatore() {
+				return giocatore;
+			}
+			public StatoDiGioco getPartita() {
+				return model;
+			}
+			
+			//
 }

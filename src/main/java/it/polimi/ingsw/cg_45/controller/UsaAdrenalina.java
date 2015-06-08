@@ -16,15 +16,17 @@ public class UsaAdrenalina extends Azione {
 		this.mazzo=(MazzoOggetti) p.getMazzoOggetti();
 	}
 	
-	public void esegui(){
-		System.out.println("1");
+	public RispostaController esegui(){
+		
 		if(controlli()){
-			System.out.println("2");
+			
 			giocatore.setPortata(2);
 			carta=giocatore.getCarta(TipoCartaOggetto.ADRENALINA);
 			giocatore.getCarte().remove(carta);
 			mazzo.getMazzoScarti().add(carta);
+			new RispostaController("Hai utilizzato Adrenalina",null);
 		}
+		return new RispostaController("Mossa non valida",null);
 		
 	}
 	
@@ -34,4 +36,14 @@ public class UsaAdrenalina extends Azione {
 			} 
 		return false;
 	}
+	//Per test
+
+			public Giocatore getGiocatore() {
+				return giocatore;
+			}
+			public StatoDiGioco getPartita() {
+				return model;
+			}
+			
+			//
 }

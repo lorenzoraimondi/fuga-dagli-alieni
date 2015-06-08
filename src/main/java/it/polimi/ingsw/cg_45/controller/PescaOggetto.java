@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg_45.controller;
 
 import it.polimi.ingsw.cg_45.CartaOggetto;
 import it.polimi.ingsw.cg_45.Giocatore;
+import it.polimi.ingsw.cg_45.Settore;
 import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 
@@ -13,12 +14,21 @@ public class PescaOggetto extends Azione{
 		super(gioc,model);
 	}
 	
-	public void esegui(){
+	public RispostaController esegui(){
 		if(this.controlli()){
 			carta=(CartaOggetto) model.getMazzoOggetti().pescaCarta();
-			giocatore.setCarta(carta);
-			giocatore.setStato(Stato.EFFETTOCONCLUSO);
+			if(carta!=null){
+				giocatore.setCarta(carta);
+				giocatore.setStato(Stato.EFFETTOCONCLUSO);
+				return new RispostaController("Hai pescato una carta "+carta.getTipo().toString(),"Il giocatore "+giocatore.getID()+"ha pescato una carta oggetto");	
+			} else {
+				giocatore.setStato(Stato.EFFETTOCONCLUSO);
+				return new RispostaController("Non ci sono carte oggetto disponibili, continua il turno.",null);
+				
+			}
+			
 		}
+		return new RispostaController("Mossa non valida",null);
 	}
 	
 	protected boolean controlli(){
@@ -26,4 +36,14 @@ public class PescaOggetto extends Azione{
 					return true;
 		return false;
 	}
+	//Per test
+
+		public Giocatore getGiocatore() {
+			return giocatore;
+		}
+		public StatoDiGioco getPartita() {
+			return model;
+		}
+		
+		//
 }

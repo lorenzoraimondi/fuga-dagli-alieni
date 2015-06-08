@@ -6,6 +6,8 @@ public class Alieno extends Giocatore {
 		
 		public Alieno(int id, int ordine){
 			super(id,ordine);
+			this.portata=2;
+			this.haUcciso=false;
 			//this.setPosizioneIniziale(mappa);
 			
 		}

@@ -21,13 +21,16 @@ public class UsaAttacco extends Azione {
 		this.giocatore=g;
 	}
 	
-	public void esegui(){
+	public RispostaController esegui(){
 		if(controlli()){
-			attacco.esegui();
+			RispostaController rispostaAttacco;
+			rispostaAttacco=attacco.esegui();
 			carta=giocatore.getCarta(TipoCartaOggetto.ATTACCO);
 			giocatore.getCarte().remove(carta);
 			model.getMazzoOggetti().getMazzoScarti().add(carta);
+			return rispostaAttacco;
 		}
+		return new RispostaController("Mossa non valida",null);
 	}
 	
 	protected boolean controlli(){
@@ -36,5 +39,16 @@ public class UsaAttacco extends Azione {
 		} 
 		return false;
 	}
-	
+	//Per test
+			public Settore getSettore() {
+				return settore;
+			}
+			public Giocatore getGiocatore() {
+				return giocatore;
+			}
+			public StatoDiGioco getPartita() {
+				return model;
+			}
+			
+			//
 }

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg_45.controller;
 
+import java.io.IOException;
+
 import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
@@ -16,7 +18,10 @@ public abstract class Azione {
 		this.stato=giocatore.getStato();
 	}
 	
-	public abstract void esegui();
+	public Azione(){};
+	
+	//public abstract void esegui() throws IOException;
+	public abstract RispostaController esegui() throws IOException;
 	
 	protected abstract boolean controlli();
 }

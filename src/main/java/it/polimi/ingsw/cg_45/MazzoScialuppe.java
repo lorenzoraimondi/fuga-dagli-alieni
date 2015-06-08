@@ -23,5 +23,20 @@ public class MazzoScialuppe extends Mazzo {
 			return "MazzoScialuppe [MazzoIniziale=" + mazzoIniziale + "]\n";
 		}
 		
+		@Override
+		public Carta pescaCarta() {
+			if(mazzoIniziale.isEmpty()){
+				if(!mazzoScarti.isEmpty()){
+					this.getMazzoIniziale().addAll(this.getMazzoScarti());
+					Collections.shuffle(this.getMazzoIniziale());
+					this.getMazzoScarti().removeAll(this.getMazzoScarti());
+				}
+			}
+			Carta pescata;
+			pescata=this.mazzoIniziale.remove(0);
+			this.mazzoScarti.add(pescata);
+			return pescata;		
+		}
+		
 		
 }

@@ -35,6 +35,8 @@ public abstract class Mazzo {
 					this.getMazzoIniziale().addAll(this.getMazzoScarti());
 					Collections.shuffle(this.getMazzoIniziale());
 					this.getMazzoScarti().removeAll(this.getMazzoScarti());
+				} else {
+					return null;
 				}
 			}
 			return this.getMazzoIniziale().remove(0);

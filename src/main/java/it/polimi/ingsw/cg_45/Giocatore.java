@@ -84,6 +84,10 @@ public abstract class Giocatore {
 				this.portata = portata;
 			}
 			
+			public void setOrdine(int ordine) {
+				this.ordine = ordine;
+			}
+
 			public Settore getPosizione() {
 				return posizione;
 			}

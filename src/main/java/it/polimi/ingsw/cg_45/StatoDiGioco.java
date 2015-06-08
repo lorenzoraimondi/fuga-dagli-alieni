@@ -55,6 +55,15 @@ public class StatoDiGioco{
 		return giocatori;
 	}
 
+	public Giocatore getGiocatore(int id){
+		for(Giocatore g : giocatori){
+			if(g.getID()==id){
+				return g;
+			}
+		}
+		return null;
+		
+	}
 
 	public Mappa getMappa() {
 		return mappa;

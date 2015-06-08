@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg_45;
 
 public class Coordinate {
+	
 	private final int x;
 	private final int y;
 	private final int z;
@@ -29,6 +30,21 @@ public class Coordinate {
 	
 	public int getZ() {
 		return z;
+	}
+	
+	@Override
+	public String toString() {
+		
+		char[] coordinate = new char[3];
+		
+		coordinate[0]=(char)(x+65);
+		int somma=y-((-x/2)-1);
+		coordinate[1]=(char)((somma/10)+48);
+		coordinate[2]=(char)((somma%10)+48);
+		
+		String c=new String(coordinate);
+			
+		return c;
 	}
 
 	@Override

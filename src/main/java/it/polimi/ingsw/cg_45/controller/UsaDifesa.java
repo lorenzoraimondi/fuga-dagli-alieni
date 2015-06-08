@@ -14,10 +14,11 @@ public class UsaDifesa extends Azione{
 		super(g,p);
 	}
 	
-	public void esegui(){
+	public RispostaController esegui(){
 		carta=giocatore.getCarta(TipoCartaOggetto.DIFESA);
 		giocatore.getCarte().remove(carta);
 		model.getMazzoOggetti().getMazzoScarti().add(carta);
+		return new RispostaController(null,null);
 	}
 
 	
