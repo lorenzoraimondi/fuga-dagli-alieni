@@ -14,6 +14,7 @@ public class PescaOggetto extends Azione{
 		super(gioc,model);
 	}
 	
+	@Override
 	public RispostaController esegui(){
 		if(this.controlli()){
 			carta=(CartaOggetto) model.getMazzoOggetti().pescaCarta();
@@ -31,6 +32,7 @@ public class PescaOggetto extends Azione{
 		return new RispostaController("Mossa non valida",null);
 	}
 	
+	@Override
 	protected boolean controlli(){
 		if((stato==Stato.BLUFFATO)||(stato==Stato.RIVELATO))
 					return true;

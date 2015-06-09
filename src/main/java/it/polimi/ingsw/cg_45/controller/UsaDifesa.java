@@ -14,6 +14,7 @@ public class UsaDifesa extends Azione{
 		super(g,p);
 	}
 	
+	@Override
 	public RispostaController esegui(){
 		carta=giocatore.getCarta(TipoCartaOggetto.DIFESA);
 		giocatore.getCarte().remove(carta);
@@ -21,7 +22,7 @@ public class UsaDifesa extends Azione{
 		return new RispostaController(null,null);
 	}
 
-	
+	@Override
 	protected boolean controlli() {
 		return true;
 	}

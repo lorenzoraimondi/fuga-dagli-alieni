@@ -10,7 +10,7 @@ import java.util.TimerTask;
 public class creaPartita extends TimerTask {
 	
 	private List<Accettazione> giocatori=new ArrayList<Accettazione>();
-	private ArrayList<BrokerThread> threadSubs=new ArrayList<BrokerThread>();
+	private List<BrokerThread> threadSubs=new ArrayList<BrokerThread>();
 	private Server server;
 	private String mappa;
 	private Sala sala;
@@ -89,7 +89,7 @@ public class creaPartita extends TimerTask {
 		for(Giocatore g2 : players){
 			
 			server.getPartite().put(g2.getID(), partita);
-			server.getIdSub().put(g2.getID(), threadSubs);
+			server.getIdSub().put(g2.getID(), (ArrayList<BrokerThread>)threadSubs);
 		}
 		
 		sala.svuotaLista(mappa);

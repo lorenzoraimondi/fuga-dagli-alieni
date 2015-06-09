@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 //progetto
 public class BrokerThread extends Thread {
@@ -19,7 +20,7 @@ public class BrokerThread extends Thread {
 	
 	//Una coda che contiene i messaggi, specifici per ciascun subscriber
 	//private ConcurrentLinkedQueue<String> buffer;
-	private ConcurrentLinkedQueue<Messaggio> buffer;
+	private Queue<Messaggio> buffer;
 	
 	/**
 	 * Quando un client esterno si sottoscrive viene creato un nuovo thread

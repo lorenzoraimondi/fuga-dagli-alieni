@@ -5,8 +5,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
 
 import it.polimi.ingsw.cg_45.*;
 
@@ -15,11 +15,11 @@ public class Server {
 	//palesemente uguale a quello del lab, cambia come lavora il clientHandler
 	private Map<Integer, StatoDiGioco> Partite = new HashMap<Integer, StatoDiGioco>();
 	private Map<Integer, ArrayList<BrokerThread>> idSub = new HashMap<Integer, ArrayList<BrokerThread>>();
-	private ArrayList<StatoDiGioco> partite = new ArrayList<StatoDiGioco>();
+	private List<StatoDiGioco> partite = new ArrayList<StatoDiGioco>();
 	
 	private Sala sala=new Sala();
 	
-	private ArrayList<BrokerThread> clientConnessi = new ArrayList<BrokerThread>();
+	private List<BrokerThread> clientConnessi = new ArrayList<BrokerThread>();
 	
 	/*
 	private StatoDiGioco partitaProva;
@@ -31,10 +31,10 @@ public class Server {
 	
 	*/
 	
-	private ArrayList<BrokerThread> subscribers = new ArrayList<BrokerThread>();
+	private List<BrokerThread> subscribers = new ArrayList<BrokerThread>();
 		
 	public ArrayList<BrokerThread> getSubscribers() {
-		return subscribers;
+		return (ArrayList<BrokerThread>) subscribers;
 	}
 
 	private int counter=1;

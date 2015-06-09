@@ -15,6 +15,7 @@ public class PescaSettore extends Azione{
 		this.stato=giocatore.getStato();
 	}
 	
+	@Override
 	public RispostaController esegui(){
 		if(this.controlli()){
 			carta=(CartaSettore) model.getMazzoSettori().pescaCarta();
@@ -43,6 +44,7 @@ public class PescaSettore extends Azione{
 		return new RispostaController("Mossa non valida",null);	
 	}
 
+	@Override
 	protected boolean controlli() {
 		if(stato==Stato.PERICOLO)
 			return true;

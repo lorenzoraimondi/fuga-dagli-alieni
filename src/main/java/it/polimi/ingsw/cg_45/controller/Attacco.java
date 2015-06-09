@@ -3,6 +3,10 @@ package it.polimi.ingsw.cg_45.controller;
 import java.util.ArrayList;
 
 
+
+
+import java.util.List;
+
 import it.polimi.ingsw.cg_45.Alieno;
 import it.polimi.ingsw.cg_45.CartaOggetto;
 import it.polimi.ingsw.cg_45.Giocatore;
@@ -22,8 +26,9 @@ public class Attacco extends Azione{
 		this.settore=s;
 	}
 	
+	@Override
 	public RispostaController esegui(){
-		ArrayList<String> risposte=new ArrayList<String>();
+		List<String> risposte=new ArrayList<String>();
 		if(controlli()){
 			String rispostaCarta=new String();
 			if(giocatore instanceof Umano){
@@ -63,6 +68,7 @@ public class Attacco extends Azione{
 		return new RispostaController("Mossa non valida",null);
 	}
 	
+	@Override
 	protected boolean controlli(){
 		if(giocatore.getPosizione().getCoordinate().equals(settore.getCoordinate())){
 			if(giocatore instanceof Alieno){

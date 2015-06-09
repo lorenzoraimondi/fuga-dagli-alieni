@@ -18,6 +18,7 @@ public class UsaSedativi extends Azione{
 		this.mazzo=(MazzoOggetti) p.getMazzoOggetti();
 	}
 	
+	@Override
 	public RispostaController esegui(){
 		if(controlli()){
 			Umano g=(Umano)giocatore;
@@ -30,6 +31,7 @@ public class UsaSedativi extends Azione{
 		return new RispostaController("Mossa non valida",null);
 	}
 	
+	@Override
 	protected boolean controlli(){
 		if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.SEDATIVI))){
 				return true;

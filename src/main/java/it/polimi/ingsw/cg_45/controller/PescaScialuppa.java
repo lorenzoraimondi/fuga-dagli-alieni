@@ -19,6 +19,7 @@ public class PescaScialuppa extends Azione{
 		this.scialuppa=(SettoreScialuppa)giocatore.getPosizione();
 	}
 	
+	@Override
 	public RispostaController esegui(){
 		if(this.controlli()){
 			carta=(CartaScialuppa) model.getMazzoScialuppe().pescaCarta();
@@ -34,6 +35,7 @@ public class PescaScialuppa extends Azione{
 		return new RispostaController("Mossa non valida",null);
 	}
 
+	@Override
 	protected boolean controlli() {
 		if(giocatore.getStato()==Stato.SCIALUPPA){
 			SettoreScialuppa scialuppa=(SettoreScialuppa) model.getMappa().getMappa().get(giocatore.getPosizione().getCoordinate());

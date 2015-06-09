@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg_45.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import it.polimi.ingsw.cg_45.CartaOggetto;
 import it.polimi.ingsw.cg_45.Giocatore;
@@ -20,12 +21,13 @@ public class UsaLuci extends Azione {
 		this.settore=s;		
 	}
 	
+	@Override
 	public RispostaController esegui(){
 		if(controlli()){
 			
-			ArrayList<String> risposte=new ArrayList<String>();
+			List<String> risposte=new ArrayList<String>();
 			vicini=model.getMappa().getMappa().get(settore.getCoordinate()).getVicini();
-			ArrayList<Settore> viciniList=new ArrayList<Settore>(Arrays.asList(vicini));
+			List<Settore> viciniList=new ArrayList<Settore>(Arrays.asList(vicini));
 			viciniList.add(settore);
 			
 			for(Giocatore g :  model.getGiocatori()){
@@ -50,6 +52,7 @@ public class UsaLuci extends Azione {
 		return new RispostaController("Mossa non valida",null);
 	}
 	
+	@Override
 	protected boolean controlli(){
 		if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.LUCI))){
 			return true;

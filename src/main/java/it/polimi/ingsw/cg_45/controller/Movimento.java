@@ -31,6 +31,7 @@ public class Movimento extends Azione{
 		
 		}
 	
+	@Override
 	public RispostaController esegui(){
 		if(this.controlli()){
 			giocatore.setPosizione(settoreArrivo);
@@ -60,6 +61,7 @@ public class Movimento extends Azione{
 			
 	}
 		
+	@Override
 	protected boolean controlli(){
 		System.out.println(settorePartenza);
 		System.out.println(settoreArrivo);

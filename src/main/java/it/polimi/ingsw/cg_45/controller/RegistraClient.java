@@ -3,6 +3,7 @@ package it.polimi.ingsw.cg_45.controller;
 import java.io.IOException;
 
 
+
 import it.polimi.ingsw.cg_45.view.*;
 
 public class RegistraClient extends Azione {
@@ -14,6 +15,7 @@ public class RegistraClient extends Azione {
 		this.client=client;
 	}
 	
+	@Override
 	public RispostaController esegui() throws IOException{
 		/*
 		BrokerThread brokerThread = new BrokerThread(client);

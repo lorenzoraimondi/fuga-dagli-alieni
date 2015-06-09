@@ -22,6 +22,7 @@ public class UsaTeletrasporto extends Azione {
 		
 	}
 	
+	@Override
 	public RispostaController esegui(){
 		if(controlli()){
 			Umano giocatoreUmano=(Umano)giocatore;
@@ -36,6 +37,7 @@ public class UsaTeletrasporto extends Azione {
 		
 	}
 	
+	@Override
 	protected boolean controlli(){
 		if(giocatore.getSituazione()==Situazione.ATTIVONASCOSTO){
 			if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.TELETRASPORTO))){

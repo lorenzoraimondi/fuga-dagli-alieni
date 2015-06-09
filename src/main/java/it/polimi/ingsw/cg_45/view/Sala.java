@@ -102,7 +102,7 @@ public class Sala extends Thread{
 	}
 	
 	public void publish(Messaggio msg, int id){
-		ArrayList<BrokerThread> threadSubs=new ArrayList<BrokerThread>();
+		List<BrokerThread> threadSubs=new ArrayList<BrokerThread>();
 		for(Accettazione a : giocatoriFermi){
 			threadSubs.add(a.getbt());
 		}

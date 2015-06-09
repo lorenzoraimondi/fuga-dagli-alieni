@@ -21,6 +21,7 @@ public class UsaAttacco extends Azione {
 		this.giocatore=g;
 	}
 	
+	@Override
 	public RispostaController esegui(){
 		if(controlli()){
 			RispostaController rispostaAttacco;
@@ -36,6 +37,7 @@ public class UsaAttacco extends Azione {
 		return new RispostaController("Mossa non valida",null);
 	}
 	
+	@Override
 	protected boolean controlli(){
 		if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.ATTACCO))){
 			return true;

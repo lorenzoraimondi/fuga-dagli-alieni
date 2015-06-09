@@ -16,6 +16,7 @@ public class UsaAdrenalina extends Azione {
 		this.mazzo=(MazzoOggetti) p.getMazzoOggetti();
 	}
 	
+	@Override
 	public RispostaController esegui(){
 		
 		if(controlli()){
@@ -29,7 +30,7 @@ public class UsaAdrenalina extends Azione {
 		return new RispostaController("Mossa non valida",null);
 		
 	}
-	
+	@Override
 	protected boolean controlli(){
 		if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.ADRENALINA))){
 				return true;

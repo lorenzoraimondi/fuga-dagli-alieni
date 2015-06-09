@@ -30,7 +30,8 @@ public class SocketCommunicator implements Communicator {
             
         
 	}
-
+	
+	@Override
 	public void send(Object msg) throws IOException{
 		out.writeObject(msg);
 		//out.flush(); 
@@ -74,6 +75,7 @@ public class SocketCommunicator implements Communicator {
 	}
 	
 	//Per prova pub sub, perchè nel registraClient ho il client e non il socket
+	@Override
 	public Socket getSocket(){
 		return socket;
 	}
