@@ -25,6 +25,10 @@ public class Attacco extends Azione{
 	public RispostaController esegui(){
 		ArrayList<String> risposte=new ArrayList<String>();
 		if(controlli()){
+			String rispostaCarta=new String();
+			if(giocatore instanceof Umano){
+				rispostaCarta=new String("Il giocatore "+giocatore.getID()+" usa carta Attacco\n");
+			}
 			for(Giocatore g : model.getGiocatori()){
 				if(g!=giocatore && g.getPosizione()==settore){
 					if(g instanceof Umano && (g.getCarte().contains(new CartaOggetto(TipoCartaOggetto.DIFESA)))){
@@ -48,8 +52,8 @@ public class Attacco extends Azione{
 			}
 			giocatore.setStato(Stato.ATTACCATO);
 			if(risposte.isEmpty())
-				return new RispostaController("","Attacco fallito!");
-			String risposta=new String("");
+				return new RispostaController(null,rispostaCarta+"Attacco in "+settore.getCoordinate().toString()+" fallito!");
+			String risposta=new String(rispostaCarta+"Attacco in "+settore.getCoordinate().toString()+"\n");
 			for(String s : risposte){
 				risposta=risposta.concat(s+"\n");
 			}

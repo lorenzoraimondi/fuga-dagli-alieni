@@ -10,6 +10,7 @@ import it.polimi.ingsw.cg_45.SettoreScialuppa;
 import it.polimi.ingsw.cg_45.SettoreSicuro;
 import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
+import it.polimi.ingsw.cg_45.Umano;
 
 public class Movimento extends Azione{
 	private Settore settorePartenza,settoreArrivo;
@@ -37,6 +38,13 @@ public class Movimento extends Azione{
 				giocatore.setStato(Stato.SICURO);
 				return new RispostaController("Movimento effettuato",null);
 			} else if(settoreArrivo instanceof SettorePericoloso){
+				if(giocatore instanceof Umano){
+					Umano umano=(Umano)giocatore;
+					if(umano.isSedato()){
+						giocatore.setStato(Stato.SICURO);
+						return new RispostaController("Movimento effettuato",null);
+					}
+				}
 				giocatore.setStato(Stato.PERICOLO);
 				return new RispostaController("Movimento effettuato, pesca una carta Settore",null);
 			} else {

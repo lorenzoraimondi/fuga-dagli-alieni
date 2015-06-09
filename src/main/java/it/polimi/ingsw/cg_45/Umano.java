@@ -14,7 +14,7 @@ public class Umano extends Giocatore {
 	}
 	
 	public Umano(int id, int ordine,Mappa mappa) {
-		super(id, ordine, mappa); 
+		super(id, ordine, mappa);
 		this.portata=1;
 		this.setPosizioneIniziale(mappa);
 		//this.setStato(Stato.INIZIO);

@@ -24,7 +24,7 @@ public class UsaAdrenalina extends Azione {
 			carta=giocatore.getCarta(TipoCartaOggetto.ADRENALINA);
 			giocatore.getCarte().remove(carta);
 			mazzo.getMazzoScarti().add(carta);
-			new RispostaController("Hai utilizzato Adrenalina",null);
+			return new RispostaController("Hai utilizzato Adrenalina","Il giocatore "+giocatore.getID()+" ha utilizzato Adrenalina");
 		}
 		return new RispostaController("Mossa non valida",null);
 		

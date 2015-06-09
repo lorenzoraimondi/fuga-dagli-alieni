@@ -109,16 +109,16 @@ public class Server {
 	public void publish(Messaggio msg, int id){
 		ArrayList<BrokerThread> subscribers=idSub.get(id);
 		
-		//if(!subscribers.isEmpty()){
+		if(subscribers!=null){
 			System.out.println("Publishing message");
 			for (BrokerThread sub : subscribers) {
 				sub.dispatchMessage(msg);
 			}
-		//}else{
+		}else{
 			//System.err.println("No subscribers!!");
 			sala.publish(msg, id);
 			
-		//}
+		}
 	
 	}
 

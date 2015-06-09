@@ -4,6 +4,7 @@ import it.polimi.ingsw.cg_45.controller.*;
 import it.polimi.ingsw.cg_45.*;
 
 import java.io.IOException;
+import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 public class TraduttoreComandi {
@@ -21,6 +22,7 @@ public class TraduttoreComandi {
 	
 	public Object traduci() throws IOException{
 		StringTokenizer s=new StringTokenizer(comando);
+		try{
 		String primaParola=s.nextToken();
 		String terzaParola;
 		String quintaParola;
@@ -119,6 +121,9 @@ public class TraduttoreComandi {
 			}
 			
 			
+		}
+		} catch(NoSuchElementException n){
+			return "Comando errato";
 		}
 		return "Comando errato";
 		

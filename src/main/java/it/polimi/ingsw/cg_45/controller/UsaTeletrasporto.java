@@ -29,7 +29,7 @@ public class UsaTeletrasporto extends Azione {
 			carta=giocatore.getCarta(TipoCartaOggetto.TELETRASPORTO);
 			giocatore.getCarte().remove(carta);
 			mazzo.getMazzoScarti().add(carta);
-			return new RispostaController("Sei stato teletrasportato nella tua posizione iniziale",null);
+			return new RispostaController("Sei stato teletrasportato nella tua posizione iniziale","Il giocatore "+giocatore.getID()+"è stato teletrasportato nella tua posizione iniziale");
 		}
 		return new RispostaController("Mossa non valida",null);
 		

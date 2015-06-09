@@ -25,7 +25,7 @@ public class UsaSedativi extends Azione{
 			carta=giocatore.getCarta(TipoCartaOggetto.SEDATIVI);
 			giocatore.getCarte().remove(carta);
 			mazzo.getMazzoScarti().add(carta);
-			return new RispostaController("Hai usato la carta Sedativi",null);
+			return new RispostaController("Hai usato la carta Sedativi","Il giocatore "+giocatore.getID()+"ha usato una carta Sedativi");
 		}
 		return new RispostaController("Mossa non valida",null);
 	}
@@ -33,7 +33,7 @@ public class UsaSedativi extends Azione{
 	protected boolean controlli(){
 		if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.SEDATIVI))){
 				return true;
-		} 
+		} 		
 		return false;
 	}
 	//Per test

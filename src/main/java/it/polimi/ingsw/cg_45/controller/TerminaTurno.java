@@ -16,10 +16,13 @@ public class TerminaTurno extends Azione {
 	public RispostaController esegui() {
 		if(this.controlli()){
 			Giocatore giocatorePassato,giocatoreProssimo,giocatoreSwap;
-			Umano giocatoreUmano=(Umano)giocatore;
 			//giocatore.setStato(Stato.INIZIO);
 			giocatore.setStato(Stato.TURNOTERMINATO);
-			giocatoreUmano.setSedato(false);
+			if(giocatore instanceof Umano){
+				Umano giocatoreUmano=(Umano)giocatore;
+				giocatoreUmano.setSedato(false);
+				giocatoreUmano.setPortata(1);
+			}
 			//model.incrementCurrentPlayer();
 			giocatorePassato=model.getGiocatori().remove(0);
 			model.getGiocatori().add(giocatorePassato);
@@ -57,7 +60,7 @@ public class TerminaTurno extends Azione {
 
 	@Override
 	protected boolean controlli() {
-		if(giocatore.getStato()==Stato.ATTACCATO||giocatore.getStato()==Stato.SCIALUPPA||giocatore.getStato()==Stato.EFFETTOCONCLUSO||giocatore.getStato()==Stato.SICURO){
+		if(giocatore.getStato()==Stato.ATTACCATO||giocatore.getStato()==Stato.CARTASCIALUPPA||giocatore.getStato()==Stato.EFFETTOCONCLUSO||giocatore.getStato()==Stato.SICURO){
 			if(giocatore.getCarte().size()>=4){
 				System.out.println("1");
 				return false;

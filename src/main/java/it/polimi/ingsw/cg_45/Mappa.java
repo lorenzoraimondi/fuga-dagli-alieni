@@ -103,6 +103,12 @@ public abstract class Mappa {
 			System.out.println("1");
 			return false;
 		}
+		
+		if(arrivo instanceof SettoreScialuppa){
+			SettoreScialuppa scialuppa=(SettoreScialuppa)arrivo;
+			if(scialuppa.isScoperta())
+				return false;			
+		}
 				
 		final Map<Integer,ArrayList<Settore>> m = new HashMap<Integer,ArrayList<Settore>>();
 		m.put(0,new ArrayList<Settore>());

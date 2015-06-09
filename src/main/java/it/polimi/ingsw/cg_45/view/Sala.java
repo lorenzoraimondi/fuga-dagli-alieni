@@ -29,7 +29,7 @@ public class Sala extends Thread{
 		else
 			galilei.cancel();
 	}
-	private int seconds=30;
+	private int seconds=3;
 	
 	public Sala(){
 		

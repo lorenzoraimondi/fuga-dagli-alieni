@@ -42,7 +42,7 @@ public class ClientHandler extends Thread {
             TraduttoreComandi tc=new TraduttoreComandi(prova,server,client);
             try {
 				Azione prova1=(Azione)tc.traduci();
-				System.out.println("Tradottoto il pacchetto");
+				System.out.println("Tradotto il pacchetto");
 				
 				RispostaController risposta=prova1.esegui();
 				System.out.println("Eseguito il pacchetto");
@@ -53,6 +53,7 @@ public class ClientHandler extends Thread {
 			} catch (ClassCastException e){
 				try {
 					client.send(new Messaggio("Comando non valido"));
+					e.printStackTrace();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

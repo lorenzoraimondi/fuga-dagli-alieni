@@ -25,9 +25,12 @@ public class UsaAttacco extends Azione {
 		if(controlli()){
 			RispostaController rispostaAttacco;
 			rispostaAttacco=attacco.esegui();
-			carta=giocatore.getCarta(TipoCartaOggetto.ATTACCO);
-			giocatore.getCarte().remove(carta);
-			model.getMazzoOggetti().getMazzoScarti().add(carta);
+			if(!(rispostaAttacco.getMessaggioBroadcast()==null)){
+				carta=giocatore.getCarta(TipoCartaOggetto.ATTACCO);
+				giocatore.getCarte().remove(carta);
+				model.getMazzoOggetti().getMazzoScarti().add(carta);
+			}
+	
 			return rispostaAttacco;
 		}
 		return new RispostaController("Mossa non valida",null);
