@@ -4,7 +4,6 @@ import it.polimi.ingsw.cg_45.Coordinate;
 import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
-import it.polimi.ingsw.cg_45.Umano;
 
 import java.io.IOException;
 
@@ -24,24 +23,22 @@ public class AnnunciaRumore extends Azione{
 			giocatore.setStato(Stato.EFFETTOCONCLUSO);
 			System.out.println(giocatore.getStato());
 			return new RispostaController(null,"Silenzio nell'astronave.");
-		case CARTABLUFF:
-			giocatore.setStato(Stato.EFFETTOCONCLUSO);
-			System.out.println(giocatore.getStato());
-			return new RispostaController(null,"Rumore nel settore "+coordinateSettore+".");
 		case CARTABLUFFOGGETTO:
 			giocatore.setStato(Stato.BLUFFATO);
 			System.out.println(giocatore.getStato());
-			return new RispostaController(null,"Rumore nel settore "+coordinateSettore+".");
-		case CARTARIVELA:
+			return new RispostaController("Pesca un oggetto","Rumore nel settore "+coordinateSettore+".");
+		case CARTABLUFF:
 			giocatore.setStato(Stato.EFFETTOCONCLUSO);
 			System.out.println(giocatore.getStato());
 			return new RispostaController(null,"Rumore nel settore "+coordinateSettore+".");
 		case CARTARIVELAOGGETTO:
 			giocatore.setStato(Stato.RIVELATO);
 			System.out.println(giocatore.getStato());
+			return new RispostaController("Pesca un oggetto","Rumore nel settore "+coordinateSettore+".");
+		case CARTARIVELA:
+			giocatore.setStato(Stato.EFFETTOCONCLUSO);
+			System.out.println(giocatore.getStato());
 			return new RispostaController(null,"Rumore nel settore "+coordinateSettore+".");
-		/*default:
-			break;*/
 		default:
 			break;
 		
@@ -53,7 +50,6 @@ public class AnnunciaRumore extends Azione{
 
 	@Override
 	protected boolean controlli() {
-		if(giocatore instanceof Umano){
 			if(giocatore.getStato()==Stato.CARTABLUFF || giocatore.getStato()==Stato.CARTABLUFFOGGETTO || giocatore.getStato()==Stato.SILENZIO)
 				return true;
 			else if(giocatore.getStato()==Stato.CARTARIVELA || giocatore.getStato()==Stato.CARTARIVELAOGGETTO){
@@ -63,8 +59,6 @@ public class AnnunciaRumore extends Azione{
 				return false;
 			}
 			return false;	
-		}
-		return false;
 	}
 
 }
