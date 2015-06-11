@@ -4,7 +4,7 @@ import it.polimi.ingsw.cg_45.CartaOggetto;
 import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.Mappa;
 import it.polimi.ingsw.cg_45.MazzoOggetti;
-import it.polimi.ingsw.cg_45.Situazione;
+import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.TipoCartaOggetto;
 import it.polimi.ingsw.cg_45.Umano;
@@ -30,7 +30,7 @@ public class UsaTeletrasporto extends Azione {
 			carta=giocatore.getCarta(TipoCartaOggetto.TELETRASPORTO);
 			giocatore.getCarte().remove(carta);
 			mazzo.getMazzoScarti().add(carta);
-			return new RispostaController("Sei stato teletrasportato nella tua posizione iniziale","Il giocatore "+giocatore.getID()+"è stato teletrasportato nella tua posizione iniziale");
+			return new RispostaController("Sei stato teletrasportato nella tua posizione iniziale",giocatore.getNome()+"è stato teletrasportato nella tua posizione iniziale");
 		}
 		return new RispostaController("Mossa non valida",null);
 		
@@ -39,11 +39,13 @@ public class UsaTeletrasporto extends Azione {
 	
 	@Override
 	protected boolean controlli(){
-		if(giocatore.getSituazione()==Situazione.ATTIVONASCOSTO){
+		if(giocatore.getStato()!=Stato.TURNOTERMINATO && giocatore instanceof Umano){
 			if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.TELETRASPORTO))){
 				return true;
-			} 
-		} return false;
+			}
+			return false;
+		} 
+		return false;
 	}
 	//Per test
 	

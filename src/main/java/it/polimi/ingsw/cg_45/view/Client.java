@@ -1,8 +1,5 @@
 package it.polimi.ingsw.cg_45.view;
 
-import it.polimi.ingsw.cg_45.controller.RispostaController;
-
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
@@ -27,12 +24,15 @@ public class Client {
 			//pubsub
 			//new SubThread(ID).start();
             String command = "";
+            String nome = "";
             Scanner stdin = new Scanner(System.in);
             Socket socket,subSocket;
             
             //Socket subSocket;
             SocketCommunicator server,subServer;
             //SocketCommunicator subServer;
+            System.out.println("Inserire il proprio nome");
+            nome = stdin.nextLine();
             System.out.println("Scegliere la mappa dove giocare: FERMI || GALILEI || GALVANI");
             
             //subSocket = new Socket(ip, port);
@@ -42,22 +42,28 @@ public class Client {
         	
         	subSocket = new Socket(ip, port);
         	subServer = new SocketCommunicator(subSocket);
-            command = stdin.nextLine();
+            do{command = stdin.nextLine();
             //server.send(command);
-            subServer.send(new PacchettoAzione(id,command));
+            if(!(command.contentEquals("Scelgo Fermi")||command.contentEquals("Scelgo Galilei")||command.contentEquals("Scelgo Galvani")))
+            	System.out.println("mappa inesistente");
+            }while(!(command.contentEquals("Scelgo Fermi")||command.contentEquals("Scelgo Galilei")||command.contentEquals("Scelgo Galvani")));
+            subServer.send(new PacchettoAzione(id,command+" "+nome));
             Messaggio response = (Messaggio)subServer.receiveO();
             this.setId(response.getMessaggio());
             System.out.println(response.getMessaggio().split("-")[1]);
-            System.out.println("Il tuo id è "+id);
+            //System.out.println("Il tuo id è "+id);
+            //
+            System.out.println(nome+", sei "+response.getMessaggio().split("-")[2]);
+            //
             //new SubThread(socket).start();
             new SubThread(subServer).start();
             //socket.close();
             //server.close();
 
            do {
-            	socket = new Socket(ip, port);
+            	command = stdin.nextLine();
+                socket = new Socket(ip, port);
             	server = new SocketCommunicator(socket);
-                command = stdin.nextLine();
                 //server.send(command);
                 server.send(new PacchettoAzione(id,command));
                 Messaggio rixp = (Messaggio)server.receiveO();

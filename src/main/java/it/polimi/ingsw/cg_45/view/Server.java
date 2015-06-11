@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg_45.view;
 
+import it.polimi.ingsw.cg_45.StatoDiGioco;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -7,8 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import it.polimi.ingsw.cg_45.*;
 
 public class Server {
 	
@@ -19,7 +19,7 @@ public class Server {
 	
 	private Sala sala=new Sala();
 	
-	private List<BrokerThread> clientConnessi = new ArrayList<BrokerThread>();
+	//private List<BrokerThread> clientConnessi = new ArrayList<BrokerThread>();
 	
 	/*
 	private StatoDiGioco partitaProva;
@@ -115,7 +115,8 @@ public class Server {
 				sub.dispatchMessage(msg);
 			}
 		}else{
-			//System.err.println("No subscribers!!");
+			/////
+			System.out.println("Devo pubblicare all'id "+id);
 			sala.publish(msg, id);
 			
 		}

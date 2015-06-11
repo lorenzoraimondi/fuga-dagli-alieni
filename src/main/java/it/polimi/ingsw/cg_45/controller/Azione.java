@@ -1,10 +1,10 @@
 package it.polimi.ingsw.cg_45.controller;
 
-import java.io.IOException;
-
 import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
+
+import java.io.IOException;
 
 public abstract class Azione {
 

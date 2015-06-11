@@ -1,18 +1,26 @@
 package it.polimi.ingsw.cg_45.controller;
 
+import it.polimi.ingsw.cg_45.view.Communicator;
+import it.polimi.ingsw.cg_45.view.Server;
+
 import java.io.IOException;
 
-
-
-import it.polimi.ingsw.cg_45.view.*;
-
 public class RegistraClient extends Azione {
-	Server server;
-	Communicator client;
+	private Server server;
+	private Communicator client;
+	private int id;
+	//
+	private String sceltaMappa;
+	private String nome;
+	//
 	
-	public RegistraClient(Server server, Communicator client){
+	public RegistraClient(Server server, Communicator client, String scelta, String nome){
 		this.server=server;
 		this.client=client;
+		//
+		this.sceltaMappa=scelta;
+		this.nome=nome;
+		//
 	}
 	
 	@Override
@@ -25,9 +33,19 @@ public class RegistraClient extends Azione {
 		
 		
 		*/
-		int id=server.getCounter();
+		//
+		int posizione=server.getSala().aggiungiGiocatore(sceltaMappa, client, server, nome);
+		//
+		this.id=server.getCounter();
 		server.incCounter();
-		return new RispostaController(id+"-Iscritto alla sala di attesa.","Si è aggiunto un nuovo giocatore con ID "+id);
+		
+		//Queste tre istruzioni vanno sicuramente sincronizzate
+		String razza;
+		if(posizione%2==0){
+			razza=new String("alieno");
+		} else razza=new String("umano");
+		//return new RispostaController(id+"-Iscritto alla sala di attesa.","Si è aggiunto un nuovo giocatore con ID "+id);
+		return new RispostaController(id+"-Iscritto alla sala di attesa.-"+razza,"Si è aggiunto un nuovo giocatore");
 	}
 	
 	/*public void esegui() throws IOException{
@@ -35,6 +53,10 @@ public class RegistraClient extends Azione {
 		server.incCounter();
 		client.close();
 	}*/
+
+	public int getId() {
+		return id;
+	}
 
 	@Override
 	protected boolean controlli() {

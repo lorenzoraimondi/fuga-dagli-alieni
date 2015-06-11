@@ -1,13 +1,22 @@
 package it.polimi.ingsw.cg_45.view;
 
-import it.polimi.ingsw.cg_45.*;
+import it.polimi.ingsw.cg_45.Alieno;
+import it.polimi.ingsw.cg_45.Fermi;
+import it.polimi.ingsw.cg_45.Galilei;
+import it.polimi.ingsw.cg_45.Galvani;
+import it.polimi.ingsw.cg_45.Giocatore;
+import it.polimi.ingsw.cg_45.Mappa;
+import it.polimi.ingsw.cg_45.Situazione;
+import it.polimi.ingsw.cg_45.Stato;
+import it.polimi.ingsw.cg_45.StatoDiGioco;
+import it.polimi.ingsw.cg_45.Umano;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.TimerTask;
 
-public class creaPartita extends TimerTask {
+public class CreaPartita extends TimerTask {
 	
 	private List<Accettazione> giocatori=new ArrayList<Accettazione>();
 	private List<BrokerThread> threadSubs=new ArrayList<BrokerThread>();
@@ -16,7 +25,7 @@ public class creaPartita extends TimerTask {
 	private Sala sala;
 	private Mappa map;
 	
-	public creaPartita(List<Accettazione> giocatori, Server server, String mappa,Sala sala){
+	public CreaPartita(List<Accettazione> giocatori, Server server, String mappa,Sala sala){
 		this.mappa=mappa;
 		this.giocatori=giocatori;
 		this.server=server;
@@ -35,10 +44,10 @@ public class creaPartita extends TimerTask {
 			map=new Galvani();
 		else
 			map=new Galilei();
-		//Cambiare algoritmo inserimento giocatori alieni/umani
+		
 		for(Accettazione a : giocatori){
 			if((i%2)==0){
-				g=new Alieno(a.getId(),0,map);
+				g=new Alieno(a.getId(),0,map,a.getNomeGiocatore());
 				/*
 				if(i==0)
 					g.setSituazione(Situazione.ATTIVONASCOSTO);
@@ -48,7 +57,7 @@ public class creaPartita extends TimerTask {
 				*/
 			}
 			else
-				g=new Umano(a.getId(),0,map);
+				g=new Umano(a.getId(),0,map,a.getNomeGiocatore());
 			i++;
 			players.add(g);
 		}
@@ -80,7 +89,6 @@ public class creaPartita extends TimerTask {
 			//
 		}
 		server.addPartita(partita);
-		int k=0;
 		
 		for(Accettazione a : sala.getListaAccettazione(map)){
 			threadSubs.add(a.getbt());
@@ -95,7 +103,7 @@ public class creaPartita extends TimerTask {
 		sala.svuotaLista(mappa);
 		System.out.println("svuoto Lista");
 		sala.cancelloTimer(mappa);
-		String messaggio=new String("Partita Iniziata. Parte il giocatore "+players.get(0).getID()+" .");
+		String messaggio=new String("Partita Iniziata. Parte "+players.get(0).getNome()+".");
 		server.publish(new Messaggio(messaggio),players.get(0).getID());
 	}
 		

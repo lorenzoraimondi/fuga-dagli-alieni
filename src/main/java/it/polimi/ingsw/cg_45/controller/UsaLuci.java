@@ -1,14 +1,16 @@
 package it.polimi.ingsw.cg_45.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import it.polimi.ingsw.cg_45.CartaOggetto;
 import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.Settore;
+import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.TipoCartaOggetto;
+import it.polimi.ingsw.cg_45.Umano;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class UsaLuci extends Azione {
 	
@@ -35,7 +37,7 @@ public class UsaLuci extends Azione {
 				for(Settore s : viciniList){
 					if(g.getPosizione()==s && g!=giocatore){
 						System.out.println("Settore "+s.getCoordinate().toString());
-						risposte.add("Il giocatore "+g.getID()+" si trova nel settore "+g.getPosizione().getCoordinate().toString());
+						risposte.add(g.getNome()+" si trova nel settore "+g.getPosizione().getCoordinate().toString());
 					}	
 				}
 			}
@@ -54,9 +56,12 @@ public class UsaLuci extends Azione {
 	
 	@Override
 	protected boolean controlli(){
-		if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.LUCI))){
-			return true;
-		} 
+		if(giocatore.getStato()!=Stato.TURNOTERMINATO && giocatore instanceof Umano){
+			if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.LUCI))){
+				return true;
+			} 
+			return false;	
+		}
 		return false;
 	}
 	//Per test

@@ -2,7 +2,6 @@ package it.polimi.ingsw.cg_45.controller;
 
 import it.polimi.ingsw.cg_45.CartaOggetto;
 import it.polimi.ingsw.cg_45.Giocatore;
-import it.polimi.ingsw.cg_45.Settore;
 import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 
@@ -21,7 +20,7 @@ public class PescaOggetto extends Azione{
 			if(carta!=null){
 				giocatore.setCarta(carta);
 				giocatore.setStato(Stato.EFFETTOCONCLUSO);
-				return new RispostaController("Hai pescato una carta "+carta.getTipo().toString(),"Il giocatore "+giocatore.getID()+"ha pescato una carta oggetto");	
+				return new RispostaController("Hai pescato una carta "+carta.getTipo().toString(),giocatore.getNome()+" ha pescato una carta oggetto");	
 			} else {
 				giocatore.setStato(Stato.EFFETTOCONCLUSO);
 				return new RispostaController("Non ci sono carte oggetto disponibili, continua il turno.",null);

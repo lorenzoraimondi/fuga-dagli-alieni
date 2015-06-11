@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg_45;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public abstract class Mazzo {
 		protected int numCarte;

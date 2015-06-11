@@ -1,6 +1,9 @@
 package it.polimi.ingsw.cg_45;
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 public abstract class Mappa {
 	protected final static int ROW=14;
 	protected final static int COL=23;

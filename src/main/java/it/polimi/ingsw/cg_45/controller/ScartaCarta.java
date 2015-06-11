@@ -1,6 +1,9 @@
 package it.polimi.ingsw.cg_45.controller;
 
-import it.polimi.ingsw.cg_45.*;
+import it.polimi.ingsw.cg_45.Carta;
+import it.polimi.ingsw.cg_45.Giocatore;
+import it.polimi.ingsw.cg_45.StatoDiGioco;
+import it.polimi.ingsw.cg_45.TipoCartaOggetto;
 
 public class ScartaCarta extends Azione{
 	
@@ -18,7 +21,7 @@ public class ScartaCarta extends Azione{
 			carta=giocatore.getCarta(tipoCarta);
 			giocatore.getCarte().remove(carta);
 			model.getMazzoOggetti().getMazzoScarti().add(carta);
-			return new RispostaController("Carta "+tipoCarta.toString()+" scartata.","Il giocatore "+giocatore.getID()+" ha scartato una carta.");
+			return new RispostaController("Carta "+tipoCarta.toString()+" scartata.",giocatore.getNome()+" ha scartato una carta.");
 		}
 		return new RispostaController("Mossa non valida",null);
 	}

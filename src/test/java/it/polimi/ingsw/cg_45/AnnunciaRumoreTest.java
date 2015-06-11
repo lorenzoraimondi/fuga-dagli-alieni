@@ -1,11 +1,10 @@
 package it.polimi.ingsw.cg_45;
 
-import static org.junit.Assert.*;
-
-import java.io.IOException;
-
+import static org.junit.Assert.assertTrue;
 import it.polimi.ingsw.cg_45.controller.AnnunciaRumore;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
+
+import java.io.IOException;
 
 import org.junit.Test;
 
@@ -13,13 +12,14 @@ public class AnnunciaRumoreTest {
 
 	@Test
 	public void test() throws IOException {
-		Alieno a1=new Alieno(1,1);
+		Fermi mappa=new Fermi();
+		Alieno a1=new Alieno(1,1,mappa,"Lorenzo");
 		Umano u1=new Umano(2,2);
 		Umano u2=new Umano(2,2);
 		Umano u3=new Umano(3,3);
-		Alieno a2=new Alieno(4,4);
-		Alieno a3=new Alieno(5,5);
-		Fermi mappa=new Fermi();
+		Alieno a2=new Alieno(4,4,mappa,"Andrea");
+		Alieno a3=new Alieno(5,5,mappa,"Giovanni");
+		
 		Settore s=mappa.getMappa().get(new Coordinate("L07"));
 		StatoDiGioco partita=new StatoDiGioco();
 		

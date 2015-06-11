@@ -1,13 +1,6 @@
 package it.polimi.ingsw.cg_45;
 
-import static org.junit.Assert.*;
-import it.polimi.ingsw.cg_45.Carta;
-import it.polimi.ingsw.cg_45.CartaOggetto;
-import it.polimi.ingsw.cg_45.Mazzo;
-import it.polimi.ingsw.cg_45.MazzoOggetti;
-
-
-
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 

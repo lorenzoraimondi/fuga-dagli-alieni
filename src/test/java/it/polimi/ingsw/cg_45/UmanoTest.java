@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg_45;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -11,9 +11,9 @@ public class UmanoTest {
 		Mappa fermi=new Fermi();
 		Mappa galvani=new Galvani();
 		Mappa galilei=new Galilei();
-		Giocatore u1=new Umano(1,1,fermi);
-		Giocatore u2=new Umano(2,2,galvani);
-		Giocatore u3=new Umano(3,3,galilei);
+		Giocatore u1=new Umano(1,1,fermi,"Lorenzo");
+		Giocatore u2=new Umano(2,2,galvani,"Andrea");
+		Giocatore u3=new Umano(3,3,galilei,"Giovanni");
 		
 		assertEquals(1,u1.id);
 		assertEquals(1,u1.ordine);

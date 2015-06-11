@@ -1,7 +1,6 @@
 package it.polimi.ingsw.cg_45.controller;
 
 import it.polimi.ingsw.cg_45.Alieno;
-import it.polimi.ingsw.cg_45.Coordinate;
 import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.Mappa;
 import it.polimi.ingsw.cg_45.Settore;
@@ -37,23 +36,24 @@ public class Movimento extends Azione{
 			giocatore.setPosizione(settoreArrivo);
 			if(settoreArrivo instanceof SettoreSicuro){
 				giocatore.setStato(Stato.SICURO);
-				return new RispostaController("Movimento effettuato",null);
+				return new RispostaController("Movimento effettuato in settore sicuro",null);
 			} else if(settoreArrivo instanceof SettorePericoloso){
 				if(giocatore instanceof Umano){
 					Umano umano=(Umano)giocatore;
 					if(umano.isSedato()){
 						giocatore.setStato(Stato.SICURO);
-						return new RispostaController("Movimento effettuato",null);
+						return new RispostaController("Movimento effettuato in settore pericoloso",null);
 					}
 				}
 				giocatore.setStato(Stato.PERICOLO);
-				return new RispostaController("Movimento effettuato, pesca una carta Settore",null);
+				//Cambiato messaggio al giocatore
+				return new RispostaController("Movimento effettuato in settore pericoloso",null);
 			} else {
 				giocatore.setStato(Stato.SCIALUPPA);
-				SettoreScialuppa arrivo=(SettoreScialuppa) mappa.getMappa().get(settoreArrivo.getCoordinate());
+				//SettoreScialuppa arrivo=(SettoreScialuppa) mappa.getMappa().get(settoreArrivo.getCoordinate());
 				//diventa impossibile pescare altrimenti
 				//arrivo.setScoperta();
-				return new RispostaController("Movimento effettuato, pesca una carta Scialuppa","Il giocatore "+giocatore.getID()+"è nel settore scialuppa "+settoreArrivo.getCoordinate().toString());
+				return new RispostaController("Movimento effettuato, pesca una carta Scialuppa",giocatore.getNome()+" è nel settore scialuppa "+settoreArrivo.getCoordinate().toString());
 				}
 		}
 		return new RispostaController("Mossa non valida",null);

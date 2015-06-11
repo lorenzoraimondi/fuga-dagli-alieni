@@ -22,24 +22,24 @@ public class PescaSettore extends Azione{
 			if(carta.getTipo()==TipoCartaSettore.RUMOREQUALUNQUESETTORE){
 				if(!carta.isOggetto()){
 					giocatore.setStato(Stato.CARTABLUFF);
-					return new RispostaController("Hai pescato una carta 'Rumore in qualunque settore'. Annuncia il settore.","Il giocatore "+giocatore.getID()+"ha pescato una carta settore");
+					return new RispostaController("Hai pescato una carta 'Rumore in qualunque settore'. Annuncia il settore.",giocatore.getNome()+"ha pescato una carta settore");
 				}
 				else
 					giocatore.setStato(Stato.CARTABLUFFOGGETTO);
-				return new RispostaController("Hai pescato una carta 'Rumore in qualunque settore' con oggetto. Annuncia il settore e pesca una carta.","Il giocatore "+giocatore.getID()+"ha pescato una carta settore");
+				return new RispostaController("Hai pescato una carta 'Rumore in qualunque settore' con oggetto. Annuncia il settore e pesca una carta.",giocatore.getNome()+"ha pescato una carta settore");
 			}
 			else if(carta.getTipo()==TipoCartaSettore.RUMORETUOSETTORE){
 				if(!carta.isOggetto()){
 					giocatore.setStato(Stato.CARTARIVELA);
-				return new RispostaController("Hai pescato una carta 'Rumore nel tuo settore'. Annuncia il tuo settore.","Il giocatore "+giocatore.getID()+"ha pescato una carta settore");
+				return new RispostaController("Hai pescato una carta 'Rumore nel tuo settore'. Annuncia il tuo settore.",giocatore.getNome()+"ha pescato una carta settore");
 				}
 				else
 					giocatore.setStato(Stato.CARTARIVELAOGGETTO);
-				return new RispostaController("Hai pescato una carta 'Rumore nel tuo settore' con oggetto. Annuncia il tuo settore e pesca una carta.","Il giocatore "+giocatore.getID()+"ha pescato una carta settore");
+				return new RispostaController("Hai pescato una carta 'Rumore nel tuo settore' con oggetto. Annuncia il tuo settore e pesca una carta.",giocatore.getNome()+"ha pescato una carta settore");
 			}
 			else
 				giocatore.setStato(Stato.SILENZIO);
-				return new RispostaController("Hai pescato una carta 'Silenzio'. Annuncia il silenzio.","Il giocatore "+giocatore.getID()+"ha pescato una carta settore");
+				return new RispostaController("Hai pescato una carta 'Silenzio'. Annuncia il silenzio.",giocatore.getNome()+"ha pescato una carta settore");
 		}
 		return new RispostaController("Mossa non valida",null);	
 	}

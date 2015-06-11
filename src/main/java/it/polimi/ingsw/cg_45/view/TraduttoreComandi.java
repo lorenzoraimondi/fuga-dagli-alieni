@@ -1,7 +1,26 @@
 package it.polimi.ingsw.cg_45.view;
 
-import it.polimi.ingsw.cg_45.controller.*;
-import it.polimi.ingsw.cg_45.*;
+import it.polimi.ingsw.cg_45.Coordinate;
+import it.polimi.ingsw.cg_45.Giocatore;
+import it.polimi.ingsw.cg_45.Settore;
+import it.polimi.ingsw.cg_45.StatoDiGioco;
+import it.polimi.ingsw.cg_45.TipoCartaOggetto;
+import it.polimi.ingsw.cg_45.controller.AnnunciaRumore;
+import it.polimi.ingsw.cg_45.controller.Attacco;
+import it.polimi.ingsw.cg_45.controller.Chat;
+import it.polimi.ingsw.cg_45.controller.Disconnessione;
+import it.polimi.ingsw.cg_45.controller.Movimento;
+import it.polimi.ingsw.cg_45.controller.PescaOggetto;
+import it.polimi.ingsw.cg_45.controller.PescaScialuppa;
+import it.polimi.ingsw.cg_45.controller.PescaSettore;
+import it.polimi.ingsw.cg_45.controller.RegistraClient;
+import it.polimi.ingsw.cg_45.controller.ScartaCarta;
+import it.polimi.ingsw.cg_45.controller.TerminaTurno;
+import it.polimi.ingsw.cg_45.controller.UsaAdrenalina;
+import it.polimi.ingsw.cg_45.controller.UsaAttacco;
+import it.polimi.ingsw.cg_45.controller.UsaLuci;
+import it.polimi.ingsw.cg_45.controller.UsaSedativi;
+import it.polimi.ingsw.cg_45.controller.UsaTeletrasporto;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;
@@ -54,7 +73,8 @@ public class TraduttoreComandi {
 			giocatore=partita.getGiocatore(id);
 			return new AnnunciaRumore(partita,giocatore,null);
 		case "Chat":
-			return new Chat(comando.substring(5),id);
+			giocatore=partita.getGiocatore(id);
+			return new Chat(comando.substring(5),giocatore);
 		case "Rumore":
 			s.nextToken();
 			terzaParola=s.nextToken();
@@ -65,8 +85,10 @@ public class TraduttoreComandi {
 			return new TerminaTurno(giocatore,partita);
 		case "Scelgo":
 			String scelta=s.nextToken();
-			server.getSala().aggiungiGiocatore(scelta, client, server);
-			return new RegistraClient(server,client);
+			String nome=s.nextToken();
+			//server.getSala().aggiungiGiocatore(scelta, client, server);
+			//return new RegistraClient(server,client);
+			return new RegistraClient(server,client,scelta,nome);
 		case "Attacco":
 			s.nextToken();
 			terzaParola=s.nextToken();
@@ -119,7 +141,9 @@ public class TraduttoreComandi {
 			case "teletrasporto":
 				return new UsaTeletrasporto(giocatore,partita);
 			}
-			
+		case "exit":
+				giocatore=partita.getGiocatore(id);
+				return new Disconnessione(giocatore,partita);
 			
 		}
 		} catch(NoSuchElementException n){

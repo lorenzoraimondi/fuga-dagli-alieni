@@ -4,8 +4,12 @@ import it.polimi.ingsw.cg_45.Carta;
 import it.polimi.ingsw.cg_45.CartaOggetto;
 import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.Settore;
+import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.TipoCartaOggetto;
+import it.polimi.ingsw.cg_45.Umano;
+
+import java.io.IOException;
 
 public class UsaAttacco extends Azione {
 	
@@ -22,7 +26,8 @@ public class UsaAttacco extends Azione {
 	}
 	
 	@Override
-	public RispostaController esegui(){
+	public RispostaController esegui() throws IOException{
+		//IOEx per terminaPartita in attacco
 		if(controlli()){
 			RispostaController rispostaAttacco;
 			rispostaAttacco=attacco.esegui();
@@ -39,10 +44,14 @@ public class UsaAttacco extends Azione {
 	
 	@Override
 	protected boolean controlli(){
-		if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.ATTACCO))){
-			return true;
-		} 
+		if((giocatore.getStato()==Stato.PERICOLO || giocatore.getStato()==Stato.SICURO) && giocatore instanceof Umano){
+			if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.ATTACCO))){
+				return true;
+			} 
+			return false;	
+		}
 		return false;
+		
 	}
 	//Per test
 			public Settore getSettore() {

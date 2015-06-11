@@ -4,6 +4,7 @@ import it.polimi.ingsw.cg_45.Coordinate;
 import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
+import it.polimi.ingsw.cg_45.Umano;
 
 import java.io.IOException;
 
@@ -41,6 +42,8 @@ public class AnnunciaRumore extends Azione{
 			return new RispostaController(null,"Rumore nel settore "+coordinateSettore+".");
 		/*default:
 			break;*/
+		default:
+			break;
 		
 		}
 		}
@@ -50,13 +53,16 @@ public class AnnunciaRumore extends Azione{
 
 	@Override
 	protected boolean controlli() {
-		if(giocatore.getStato()==Stato.CARTABLUFF || giocatore.getStato()==Stato.CARTABLUFFOGGETTO || giocatore.getStato()==Stato.SILENZIO)
-			return true;
-		else if(giocatore.getStato()==Stato.CARTARIVELA || giocatore.getStato()==Stato.CARTARIVELAOGGETTO){
-			if(giocatore.getPosizione().getCoordinate().equals(new Coordinate(coordinateSettore))){
+		if(giocatore instanceof Umano){
+			if(giocatore.getStato()==Stato.CARTABLUFF || giocatore.getStato()==Stato.CARTABLUFFOGGETTO || giocatore.getStato()==Stato.SILENZIO)
 				return true;
+			else if(giocatore.getStato()==Stato.CARTARIVELA || giocatore.getStato()==Stato.CARTARIVELAOGGETTO){
+				if(giocatore.getPosizione().getCoordinate().equals(new Coordinate(coordinateSettore))){
+					return true;
+				}
+				return false;
 			}
-			return false;
+			return false;	
 		}
 		return false;
 	}

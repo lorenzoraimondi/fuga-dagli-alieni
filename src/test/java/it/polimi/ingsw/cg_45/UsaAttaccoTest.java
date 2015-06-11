@@ -1,20 +1,23 @@
 package it.polimi.ingsw.cg_45;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import it.polimi.ingsw.cg_45.controller.UsaAttacco;
+
+import java.io.IOException;
 
 import org.junit.Test;
 
 public class UsaAttaccoTest {
 
 	@Test
-	public void test() {
+	public void test() throws IOException {
 		
 		
-		Alieno a=new Alieno(1,1);
-		Umano u1=new Umano(2,2);
-		Umano u2=new Umano(2,2);
-		Umano u3=new Umano(3,3);
+		Mappa mappa = new Fermi();
+		Alieno a=new Alieno(1,1,mappa,"Lorenzo");
+		Umano u1=new Umano(2,2,mappa,"Andrea");
+		Umano u2=new Umano(2,2,mappa,"Giovanni");
+		Umano u3=new Umano(3,3,mappa,"Francesco");
 		SettorePericoloso s=new SettorePericoloso(1,1,1);
 		StatoDiGioco partita=new StatoDiGioco();
 		

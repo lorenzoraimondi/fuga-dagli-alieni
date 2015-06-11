@@ -1,6 +1,5 @@
 package it.polimi.ingsw.cg_45;
 
-import it.polimi.ingsw.cg_45.CartaOggetto;
 
 public class Umano extends Giocatore {
 
@@ -13,8 +12,8 @@ public class Umano extends Giocatore {
 		this.setSituazione(Situazione.ATTIVONASCOSTO);
 	}
 	
-	public Umano(int id, int ordine,Mappa mappa) {
-		super(id, ordine, mappa);
+	public Umano(int id, int ordine,Mappa mappa, String nome) {
+		super(id, ordine, mappa, nome);
 		this.portata=1;
 		this.setPosizioneIniziale(mappa);
 		//this.setStato(Stato.INIZIO);

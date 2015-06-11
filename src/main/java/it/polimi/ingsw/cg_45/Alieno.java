@@ -4,15 +4,15 @@ public class Alieno extends Giocatore {
 		
 		private boolean haUcciso;
 		
-		public Alieno(int id, int ordine){
+		/*public Alieno(int id, int ordine){
 			super(id,ordine);
 			this.portata=2;
 			this.haUcciso=false;
 			//this.setPosizioneIniziale(mappa);
 			
-		}
-		public Alieno(int id, int ordine, Mappa mappa) {
-			super(id, ordine, mappa);
+		}*/
+		public Alieno(int id, int ordine, Mappa mappa, String nome) {
+			super(id, ordine, mappa, nome);
 			this.portata=2;
 			this.haUcciso=false;
 			this.setPosizioneIniziale(mappa);

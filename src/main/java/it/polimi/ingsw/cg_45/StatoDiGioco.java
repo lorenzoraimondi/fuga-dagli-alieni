@@ -54,6 +54,18 @@ public class StatoDiGioco{
 	public List<Giocatore> getGiocatori() {
 		return giocatori;
 	}
+	//Per termina partita
+	public int numeroUmaniInGioco(){
+		int count = 0;
+		for(Giocatore g : giocatori){
+			if(g instanceof Umano && (g.getSituazione()==Situazione.ATTIVONASCOSTO || g.getSituazione()==Situazione.INATTIVO)){
+				count++;				
+			}
+		}
+		return count;
+	}	
+	//
+	
 
 	public Giocatore getGiocatore(int id){
 		for(Giocatore g : giocatori){

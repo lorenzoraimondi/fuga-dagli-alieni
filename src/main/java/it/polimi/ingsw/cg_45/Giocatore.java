@@ -1,16 +1,19 @@
 package it.polimi.ingsw.cg_45;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public abstract class Giocatore {
 			protected int id;
 			protected int ordine;
 			protected int portata;
+			protected String nome;
 			protected Settore posizione;
 			//Aggiunto stato con getter/setter
 			protected Stato stato;
 			protected Mappa mappa;
+	
 			protected Situazione situazione;
 			protected List<CartaOggetto> carte = new ArrayList<CartaOggetto>();
 			//protected CartaOggetto[] oggetti= new CartaOggetto[3];
@@ -24,9 +27,10 @@ public abstract class Giocatore {
 				this.stato=Stato.INIZIO;
 			}
 			
-			public Giocatore(int id, int ordine, Mappa mappa){
+			public Giocatore(int id, int ordine, Mappa mappa, String nome){
 				this.id=id;
 				this.ordine=ordine;
+				this.nome=nome;
 				this.situazione=Situazione.ATTIVONASCOSTO;
 				this.stato=Stato.INIZIO;
 			}
@@ -72,6 +76,11 @@ public abstract class Giocatore {
 			public int getID() {
 				return id;
 			}
+			
+			public String getNome() {
+				return nome;
+			}
+
 			
 			public int getOrdine() {
 				return ordine;

@@ -1,9 +1,10 @@
 package it.polimi.ingsw.cg_45.view;
 
-import java.io.IOException;
+import it.polimi.ingsw.cg_45.controller.Azione;
+import it.polimi.ingsw.cg_45.controller.RegistraClient;
+import it.polimi.ingsw.cg_45.controller.RispostaController;
 
-import it.polimi.ingsw.cg_45.*;
-import it.polimi.ingsw.cg_45.controller.*;
+import java.io.IOException;
 
 //
 public class ClientHandler extends Thread {
@@ -14,7 +15,7 @@ public class ClientHandler extends Thread {
 	
 	Communicator client;
 	Server server;
-	int id;
+	int idClient;
 	public ClientHandler(Server s, Communicator c) {
 		client = c;
 		server = s;
@@ -30,7 +31,7 @@ public class ClientHandler extends Thread {
             //command =client.receive();
 			try {
 				prova=(PacchettoAzione)client.receiveO();
-				id=prova.getId();
+				idClient=prova.getId();
 				System.out.println("Mi è arrivato il pacchetto");
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -47,9 +48,15 @@ public class ClientHandler extends Thread {
 				RispostaController risposta=prova1.esegui();
 				System.out.println("Eseguito il pacchetto");
 				
+				if(idClient==0){
+					RegistraClient registrazione=(RegistraClient)prova1;
+					idClient=registrazione.getId();
+				}
+				
 				client.send(new Messaggio(risposta.getMessaggioClient()));
 				if(risposta.getMessaggioBroadcast()!=null)
-					server.publish(new Messaggio(risposta.getMessaggioBroadcast()),id);
+					//server.publish(new Messaggio(risposta.getMessaggioBroadcast()),server.getCounter()-1);
+					server.publish(new Messaggio(risposta.getMessaggioBroadcast()),idClient);
 			} catch (ClassCastException e){
 				try {
 					client.send(new Messaggio("Comando non valido"));

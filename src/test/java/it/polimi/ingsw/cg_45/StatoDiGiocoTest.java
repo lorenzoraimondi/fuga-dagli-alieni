@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg_45;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +14,8 @@ public class StatoDiGiocoTest {
 		Mappa mappa=new Fermi();
 		List<Giocatore> giocatori=new ArrayList<Giocatore>();
 		
-		Giocatore g1=new Alieno(1,1);
-		Giocatore g2=new Umano(2,2);
+		Giocatore g1=new Alieno(1,1,mappa,"Lorenzo");
+		Giocatore g2=new Umano(2,2,mappa,"Andrea");
 		
 		giocatori.add(g1);
 		giocatori.add(g2);
