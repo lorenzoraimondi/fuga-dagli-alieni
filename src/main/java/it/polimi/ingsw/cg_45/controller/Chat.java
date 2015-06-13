@@ -21,7 +21,7 @@ public class Chat extends Azione {
 		//System.out.println(date.getTime());
 		
 		System.out.println("["+sdf.format(date)+"] "+giocatore.getNome()+" : "+messaggio);
-		return new RispostaController("Messaggio inviato","["+sdf.format(date)+"] "+giocatore.getNome()+": "+messaggio);
+		return new RispostaController("Messaggio inviato","\n"+"["+sdf.format(date)+"] "+giocatore.getNome()+": "+messaggio);
 	}
 
 	@Override

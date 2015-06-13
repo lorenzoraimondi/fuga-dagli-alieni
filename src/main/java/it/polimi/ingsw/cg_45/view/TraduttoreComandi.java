@@ -17,7 +17,6 @@ import it.polimi.ingsw.cg_45.controller.RegistraClient;
 import it.polimi.ingsw.cg_45.controller.ScartaCarta;
 import it.polimi.ingsw.cg_45.controller.TerminaTurno;
 import it.polimi.ingsw.cg_45.controller.UsaAdrenalina;
-import it.polimi.ingsw.cg_45.controller.UsaAttacco;
 import it.polimi.ingsw.cg_45.controller.UsaLuci;
 import it.polimi.ingsw.cg_45.controller.UsaSedativi;
 import it.polimi.ingsw.cg_45.controller.UsaTeletrasporto;
@@ -94,9 +93,7 @@ public class TraduttoreComandi {
 			terzaParola=s.nextToken();
 			coordinate=new Coordinate(terzaParola);
 			settore=partita.getMappa().getMappa().get(coordinate);
-			System.out.println("a");
 			giocatore=partita.getGiocatore(id);
-			System.out.println("b");
 			return new Attacco(partita,giocatore,settore);
 		case "Movimento":
 			s.nextToken();
@@ -129,7 +126,7 @@ public class TraduttoreComandi {
 				quintaParola=s.nextToken();
 				coordinate=new Coordinate(quintaParola);
 				settore=partita.getMappa().getMappa().get(coordinate);
-				return new UsaAttacco(partita,giocatore,settore);
+				return new Attacco(partita,giocatore,settore);
 			case "luci":
 				s.nextToken();
 				quintaParola=s.nextToken();

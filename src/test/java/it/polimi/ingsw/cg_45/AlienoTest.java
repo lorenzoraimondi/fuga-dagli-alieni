@@ -28,7 +28,7 @@ public class AlienoTest {
 		assertEquals(mappa.mappa.get(new Coordinate("L09")), a.getPosizione());
 		assertEquals(galvani.mappa.get(new Coordinate("L06")), a2.getPosizione());
 		assertEquals(galilei.mappa.get(new Coordinate("L06")), a3.getPosizione());
-		assertEquals(a.getSituazione(),Situazione.ATTIVONASCOSTO);
+		assertEquals(a.getSituazione(),Situazione.ATTIVO);
 		assertEquals(a.getStato(),Stato.INIZIO);
 		
 		

@@ -18,11 +18,11 @@ public class UsaSedativiTest {
 		p1.setCarta(new CartaOggetto(TipoCartaOggetto.SEDATIVI));
 		p1.setCarta(new CartaOggetto(TipoCartaOggetto.ATTACCO));
 		p1.setCarta(new CartaOggetto(TipoCartaOggetto.DIFESA));
-		p1.setSituazione(Situazione.ATTIVONASCOSTO);
+		p1.setSituazione(Situazione.ATTIVO);
 		
 		p2.setCarta(new CartaOggetto(TipoCartaOggetto.ATTACCO));
 		p2.setCarta(new CartaOggetto(TipoCartaOggetto.DIFESA));
-		p2.setSituazione(Situazione.ATTIVONASCOSTO);
+		p2.setSituazione(Situazione.ATTIVO);
 		
 		p3.setSituazione(Situazione.INATTIVO);
 		

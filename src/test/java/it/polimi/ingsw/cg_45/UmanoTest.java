@@ -18,7 +18,7 @@ public class UmanoTest {
 		assertEquals(1,u1.id);
 		assertEquals(1,u1.ordine);
 		assertEquals(1,u1.portata);
-		assertEquals(u1.getSituazione(),Situazione.ATTIVONASCOSTO);
+		assertEquals(u1.getSituazione(),Situazione.ATTIVO);
 		assertEquals(u1.getStato(),Stato.INIZIO);
 		
 		assertEquals(fermi.mappa.get(new Coordinate("L10")), u1.getPosizione());

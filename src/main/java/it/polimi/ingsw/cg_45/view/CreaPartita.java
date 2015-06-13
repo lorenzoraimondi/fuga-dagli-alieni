@@ -50,7 +50,7 @@ public class CreaPartita extends TimerTask {
 				g=new Alieno(a.getId(),0,map,a.getNomeGiocatore());
 				/*
 				if(i==0)
-					g.setSituazione(Situazione.ATTIVONASCOSTO);
+					g.setSituazione(Situazione.ATTIVO);
 					
 				else
 					g.setSituazione(Situazione.INATTIVO);
@@ -64,10 +64,9 @@ public class CreaPartita extends TimerTask {
 		Collections.shuffle(players);
 		int j=0;
 		for(Giocatore g1 : players){
-			
 			g1.setOrdine(j);
 			if(j==0){
-				g1.setSituazione(Situazione.ATTIVONASCOSTO);
+				g1.setSituazione(Situazione.ATTIVO);
 				g1.setStato(Stato.INIZIO);
 			} else {
 				g1.setSituazione(Situazione.INATTIVO);
@@ -76,7 +75,7 @@ public class CreaPartita extends TimerTask {
 			j++;
 		}
 		
-		StatoDiGioco partita=new StatoDiGioco((ArrayList<Giocatore>) players,map);
+		StatoDiGioco partita=new StatoDiGioco((ArrayList<Giocatore>) players, map);
 		System.out.println("creo partita");
 		for(Giocatore p: players){
 			server.getPartite().put(p.getID(), partita);
@@ -88,7 +87,7 @@ public class CreaPartita extends TimerTask {
 				System.out.println("umano"+p.getID()+" "+p.getStato()+" "+p.getSituazione());
 			//
 		}
-		server.addPartita(partita);
+		//server.addPartita(partita);
 		
 		for(Accettazione a : sala.getListaAccettazione(map)){
 			threadSubs.add(a.getbt());
@@ -96,7 +95,7 @@ public class CreaPartita extends TimerTask {
 		
 		for(Giocatore g2 : players){
 			
-			server.getPartite().put(g2.getID(), partita);
+			//server.getPartite().put(g2.getID(), partita);
 			server.getIdSub().put(g2.getID(), (ArrayList<BrokerThread>)threadSubs);
 		}
 		

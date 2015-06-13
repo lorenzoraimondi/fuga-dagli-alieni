@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg_45.controller;
 
 import it.polimi.ingsw.cg_45.CartaOggetto;
 import it.polimi.ingsw.cg_45.Giocatore;
+import it.polimi.ingsw.cg_45.Situazione;
 import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 
@@ -33,7 +34,7 @@ public class PescaOggetto extends Azione{
 	
 	@Override
 	protected boolean controlli(){
-		if((stato==Stato.BLUFFATO)||(stato==Stato.RIVELATO))
+		if((stato==Stato.BLUFFATO)||(stato==Stato.RIVELATO) && giocatore.getSituazione()==Situazione.ATTIVO)
 					return true;
 		return false;
 	}

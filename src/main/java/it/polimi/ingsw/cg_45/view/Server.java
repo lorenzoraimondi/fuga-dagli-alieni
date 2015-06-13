@@ -15,8 +15,8 @@ public class Server {
 	//palesemente uguale a quello del lab, cambia come lavora il clientHandler
 	private Map<Integer, StatoDiGioco> Partite = new HashMap<Integer, StatoDiGioco>();
 	private Map<Integer, ArrayList<BrokerThread>> idSub = new HashMap<Integer, ArrayList<BrokerThread>>();
-	private List<StatoDiGioco> partite = new ArrayList<StatoDiGioco>();
-	
+	//private List<StatoDiGioco> partite = new ArrayList<StatoDiGioco>();
+		
 	private Sala sala=new Sala();
 	
 	//private List<BrokerThread> clientConnessi = new ArrayList<BrokerThread>();
@@ -127,9 +127,9 @@ public class Server {
 		return sala;
 	}
 	
-	public void addPartita(StatoDiGioco partita){
+	/*public void addPartita(StatoDiGioco partita){
 		partite.add(partita);
-	}
+	}*/
 
 	public Map<Integer, ArrayList<BrokerThread>> getIdSub() {
 		return idSub;

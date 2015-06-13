@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg_45.controller;
 
 import it.polimi.ingsw.cg_45.Alieno;
+import it.polimi.ingsw.cg_45.Carta;
 import it.polimi.ingsw.cg_45.CartaOggetto;
 import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.Settore;
@@ -15,7 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Attacco extends Azione{
+	
 	private Settore settore;
+	Carta carta;
 	
 	
 	public Attacco(StatoDiGioco p, Giocatore g, Settore s){
@@ -27,9 +30,13 @@ public class Attacco extends Azione{
 	public RispostaController esegui() throws IOException{
 		//IOEx aggiunta per terminaPartita
 		List<String> risposte=new ArrayList<String>();
+		
 		if(controlli()){
 			String rispostaCarta=new String();
 			if(giocatore instanceof Umano){
+				carta=giocatore.getCarta(TipoCartaOggetto.ATTACCO);
+				giocatore.getCarte().remove(carta);
+				model.getMazzoOggetti().getMazzoScarti().add(carta);
 				rispostaCarta=new String(giocatore.getNome()+" usa carta Attacco\n");
 			}
 			for(Giocatore g : model.getGiocatori()){
@@ -54,6 +61,7 @@ public class Attacco extends Azione{
 					}
 			}
 			giocatore.setStato(Stato.ATTACCATO);
+			
 			if(risposte.isEmpty())
 				return new RispostaController(null,rispostaCarta+"Attacco in "+settore.getCoordinate().toString()+" fallito!");
 			String risposta=new String(rispostaCarta+"Attacco in "+settore.getCoordinate().toString()+"\n");
@@ -73,12 +81,15 @@ public class Attacco extends Azione{
 	
 	@Override
 	protected boolean controlli(){
-		if(giocatore.getPosizione().getCoordinate().equals(settore.getCoordinate())){
-			//if(giocatore instanceof Alieno){
-				if(stato==Stato.PERICOLO || stato==Stato.SICURO){
-					return true;
+		if(giocatore.getPosizione().getCoordinate().equals(settore.getCoordinate()) && (stato==Stato.PERICOLO || stato==Stato.SICURO) && giocatore.getSituazione()==Situazione.ATTIVO){
+					if(giocatore instanceof Alieno){
+						return true;
+					} else {
+						if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.ATTACCO))){
+							return true;
+						} 
+					}
 				}
-				
 				return false;
 			/*}
 			else {
@@ -88,15 +99,10 @@ public class Attacco extends Azione{
 				}
 									
 				return false;
-			}	*/
-		}
-		
-		return false;
-			
-		
+			}	*/	
 	}
 	//Per test
-
+	
 		public Settore getSettore() {
 			return settore;
 		}

@@ -28,12 +28,13 @@ public class PescaScialuppa extends Azione{
 			if(carta.getTipo()!=TipoCartaScialuppa.ROSSA){
 				scialuppa.setScoperta();
 				giocatore.setSituazione(Situazione.VINTO);
-				giocatore.setStato(Stato.CARTASCIALUPPA);				
+				//In questo stato può solo usare/scartare carta, che sono vietati da controlli
+				giocatore.setStato(Stato.EFFETTOCONCLUSO);				
 				RispostaController terminaPartita=new TerminaPartita(giocatore,model).esegui();
 				if(terminaPartita!=null)
 					return terminaPartita;
 				
-				return new RispostaController("Hai vinto",giocatore.getNome()+" ha vinto!");
+				return new RispostaController("Ci sei riuscito!",giocatore.getNome()+" è scappato dall'astronave!");
 			}
 			scialuppa.setScoperta();
 			giocatore.setStato(Stato.CARTASCIALUPPA);
@@ -44,7 +45,7 @@ public class PescaScialuppa extends Azione{
 
 	@Override
 	protected boolean controlli() {
-		if(giocatore.getStato()==Stato.SCIALUPPA){
+		if(giocatore.getStato()==Stato.SCIALUPPA && giocatore.getSituazione()==Situazione.ATTIVO){
 			SettoreScialuppa scialuppa=(SettoreScialuppa) model.getMappa().getMappa().get(giocatore.getPosizione().getCoordinate());
 			if(!scialuppa.isScoperta())
 				return true;

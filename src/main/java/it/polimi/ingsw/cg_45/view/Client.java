@@ -25,7 +25,7 @@ public class Client {
 			//new SubThread(ID).start();
             String command = "";
             String nome = "";
-            Scanner stdin = new Scanner(System.in);
+            Scanner stdin=new Scanner(System.in);
             Socket socket,subSocket;
             
             //Socket subSocket;

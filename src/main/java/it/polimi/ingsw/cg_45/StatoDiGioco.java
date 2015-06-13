@@ -58,7 +58,7 @@ public class StatoDiGioco{
 	public int numeroUmaniInGioco(){
 		int count = 0;
 		for(Giocatore g : giocatori){
-			if(g instanceof Umano && (g.getSituazione()==Situazione.ATTIVONASCOSTO || g.getSituazione()==Situazione.INATTIVO)){
+			if(g instanceof Umano && (g.getSituazione()==Situazione.ATTIVO || g.getSituazione()==Situazione.INATTIVO)){
 				count++;				
 			}
 		}

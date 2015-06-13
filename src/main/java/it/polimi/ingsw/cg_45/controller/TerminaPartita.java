@@ -45,10 +45,13 @@ public class TerminaPartita extends Azione{
 			}
 			
 			for(Giocatore g : model.getGiocatori()){
-				//Pensare se cambiare stato?
+				//Forzare disconnessione utenti
 				g.setSituazione(Situazione.DISCONNESSO);
 				g.setStato(Stato.TURNOTERMINATO);
 			}
+			
+			//eliminare partita da hashmap?
+			
 			
 			return new RispostaController("",risposta);
 	

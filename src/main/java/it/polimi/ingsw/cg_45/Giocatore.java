@@ -23,7 +23,7 @@ public abstract class Giocatore {
 			public Giocatore(int id, int ordine){
 				this.id=id;
 				this.ordine=ordine;
-				this.situazione=Situazione.ATTIVONASCOSTO;
+				this.situazione=Situazione.ATTIVO;
 				this.stato=Stato.INIZIO;
 			}
 			
@@ -31,7 +31,7 @@ public abstract class Giocatore {
 				this.id=id;
 				this.ordine=ordine;
 				this.nome=nome;
-				this.situazione=Situazione.ATTIVONASCOSTO;
+				this.situazione=Situazione.ATTIVO;
 				this.stato=Stato.INIZIO;
 			}
 			

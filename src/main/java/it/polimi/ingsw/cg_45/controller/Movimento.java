@@ -7,6 +7,7 @@ import it.polimi.ingsw.cg_45.Settore;
 import it.polimi.ingsw.cg_45.SettorePericoloso;
 import it.polimi.ingsw.cg_45.SettoreScialuppa;
 import it.polimi.ingsw.cg_45.SettoreSicuro;
+import it.polimi.ingsw.cg_45.Situazione;
 import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.Umano;
@@ -66,7 +67,7 @@ public class Movimento extends Azione{
 		System.out.println(settorePartenza);
 		System.out.println(settoreArrivo);
 		System.out.println(portata);
-		if(giocatore.getStato()!=Stato.INIZIO){
+		if(giocatore.getStato()!=Stato.INIZIO && giocatore.getSituazione()==Situazione.ATTIVO){
 			return false;
 		} else if(mappa.mossaValida(settorePartenza, settoreArrivo, portata)){
 			

@@ -22,7 +22,7 @@ public class UsaAttaccoTest {
 		StatoDiGioco partita=new StatoDiGioco();
 		
 		u1.setPosizione(s);
-		u1.setSituazione(Situazione.ATTIVONASCOSTO);
+		u1.setSituazione(Situazione.ATTIVO);
 		u1.setStato(Stato.PERICOLO);
 		u1.setCarta(new CartaOggetto(TipoCartaOggetto.DIFESA));
 		u1.setCarta(new CartaOggetto(TipoCartaOggetto.ATTACCO));
@@ -59,13 +59,13 @@ public class UsaAttaccoTest {
 		assertEquals(Situazione.INATTIVO,u2.getSituazione());
 		
 		u3.setPosizione(s);
-		u3.setSituazione(Situazione.ATTIVONASCOSTO);
+		u3.setSituazione(Situazione.ATTIVO);
 		u3.setCarta(new CartaOggetto(TipoCartaOggetto.DIFESA));
 		
 		UsaAttacco attacco2=new UsaAttacco(partita,u3,s);
 		attacco2.esegui();
 		
-		assertEquals(Situazione.ATTIVONASCOSTO, u1.getSituazione());
+		assertEquals(Situazione.ATTIVO, u1.getSituazione());
 		assertEquals(Situazione.INATTIVO, u2.getSituazione());
 		
 	}

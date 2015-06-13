@@ -18,7 +18,8 @@ public class TerminaTurno extends Azione {
 	public RispostaController esegui() throws IOException {
 		if(this.controlli()){
 			Giocatore giocatorePassato,giocatoreProssimo,giocatoreSwap;
-			//giocatore.setStato(Stato.INIZIO);
+
+			giocatore.setSituazione(Situazione.INATTIVO);
 			giocatore.setStato(Stato.TURNOTERMINATO);
 			if(giocatore instanceof Umano){
 				Umano giocatoreUmano=(Umano)giocatore;
@@ -46,6 +47,7 @@ public class TerminaTurno extends Azione {
 				giocatoriSaltati++;
 			
 			}
+			giocatoreProssimo.setSituazione(Situazione.ATTIVO);
 			giocatoreProssimo.setStato(Stato.INIZIO);
 			
 			//if(giocatore.getOrdine()==1){
@@ -77,7 +79,7 @@ public class TerminaTurno extends Azione {
 
 	@Override
 	protected boolean controlli() {
-		if(giocatore.getStato()==Stato.ATTACCATO||giocatore.getStato()==Stato.CARTASCIALUPPA||giocatore.getStato()==Stato.EFFETTOCONCLUSO||giocatore.getStato()==Stato.SICURO){
+		if((giocatore.getStato()==Stato.ATTACCATO||giocatore.getStato()==Stato.CARTASCIALUPPA||giocatore.getStato()==Stato.EFFETTOCONCLUSO||giocatore.getStato()==Stato.SICURO) && giocatore.getSituazione()==Situazione.ATTIVO){
 			if(giocatore.getCarte().size()>=4){
 				System.out.println("1");
 				return false;

@@ -9,7 +9,7 @@ public class Umano extends Giocatore {
 		super(id,ordine);
 		this.setPortata(1);
 		//this.setPosizioneIniziale(mappa);
-		this.setSituazione(Situazione.ATTIVONASCOSTO);
+		this.setSituazione(Situazione.ATTIVO);
 	}
 	
 	public Umano(int id, int ordine,Mappa mappa, String nome) {
@@ -17,7 +17,7 @@ public class Umano extends Giocatore {
 		this.portata=1;
 		this.setPosizioneIniziale(mappa);
 		//this.setStato(Stato.INIZIO);
-		//this.setSituazione(Situazione.ATTIVONASCOSTO);
+		//this.setSituazione(Situazione.ATTIVO);
 	}
 
 	@Override

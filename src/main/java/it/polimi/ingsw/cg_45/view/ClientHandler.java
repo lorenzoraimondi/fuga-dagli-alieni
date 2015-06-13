@@ -44,8 +44,12 @@ public class ClientHandler extends Thread {
             try {
 				Azione prova1=(Azione)tc.traduci();
 				System.out.println("Tradotto il pacchetto");
-				
-				RispostaController risposta=prova1.esegui();
+				//
+				RispostaController risposta;
+				synchronized(server.getPartite()){
+				risposta=prova1.esegui();
+				}
+				//
 				System.out.println("Eseguito il pacchetto");
 				
 				if(idClient==0){

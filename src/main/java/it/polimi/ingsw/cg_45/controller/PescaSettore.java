@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg_45.controller;
 
 import it.polimi.ingsw.cg_45.CartaSettore;
 import it.polimi.ingsw.cg_45.Giocatore;
+import it.polimi.ingsw.cg_45.Situazione;
 import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.TipoCartaSettore;
@@ -46,7 +47,7 @@ public class PescaSettore extends Azione{
 
 	@Override
 	protected boolean controlli() {
-		if(stato==Stato.PERICOLO)
+		if(stato==Stato.PERICOLO && giocatore.getSituazione()==Situazione.ATTIVO)
 			return true;
 		return false;
 		

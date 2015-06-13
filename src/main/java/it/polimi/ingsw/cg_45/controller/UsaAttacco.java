@@ -4,6 +4,7 @@ import it.polimi.ingsw.cg_45.Carta;
 import it.polimi.ingsw.cg_45.CartaOggetto;
 import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.Settore;
+import it.polimi.ingsw.cg_45.Situazione;
 import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.TipoCartaOggetto;
@@ -44,7 +45,7 @@ public class UsaAttacco extends Azione {
 	
 	@Override
 	protected boolean controlli(){
-		if((giocatore.getStato()==Stato.PERICOLO || giocatore.getStato()==Stato.SICURO) && giocatore instanceof Umano){
+		if(giocatore.getSituazione()==Situazione.ATTIVO && (giocatore.getStato()==Stato.PERICOLO || giocatore.getStato()==Stato.SICURO) && giocatore instanceof Umano){
 			if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.ATTACCO))){
 				return true;
 			} 
