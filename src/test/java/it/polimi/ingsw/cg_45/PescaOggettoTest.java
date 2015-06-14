@@ -38,6 +38,7 @@ public class PescaOggettoTest {
 		
 		g1.setStato(Stato.INIZIO);
 		azione=new PescaOggetto(g1,model);
+		azione.esegui();
 		assertEquals(Stato.INIZIO,g1.getStato());
 		
 		g1.setStato(Stato.RIVELATO);

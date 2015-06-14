@@ -26,20 +26,41 @@ public class PescaSettoreTest {
 		giocatori.add(g1);
 		
 		StatoDiGioco model=new StatoDiGioco((ArrayList<Giocatore>) giocatori,mappa);
-		CartaSettore carta=(CartaSettore) model.getMazzoSettori().getMazzoIniziale().get(0);
-		
+		CartaSettore carta=new CartaSettore(TipoCartaSettore.RUMOREQUALUNQUESETTORE,true);
+		model.getMazzoSettori().getMazzoIniziale().removeAll(model.getMazzoSettori().getMazzoIniziale());
+		model.getMazzoSettori().getMazzoIniziale().add(carta);
+				
 		azione=new PescaSettore(g1,model);
 		azione.esegui();
-		if(carta.getTipo()==TipoCartaSettore.RUMOREQUALUNQUESETTORE && carta.isOggetto()==true)
-			assertEquals(Stato.CARTABLUFFOGGETTO,g1.getStato());
-		else if(carta.getTipo()==TipoCartaSettore.RUMOREQUALUNQUESETTORE && carta.isOggetto()==false)
-			assertEquals(Stato.CARTABLUFF,g1.getStato());
-		else if(carta.getTipo()==TipoCartaSettore.RUMORETUOSETTORE && carta.isOggetto()==true)
-			assertEquals(Stato.CARTARIVELAOGGETTO,g1.getStato());
-		else if(carta.getTipo()==TipoCartaSettore.RUMORETUOSETTORE && carta.isOggetto()==false)
-			assertEquals(Stato.CARTARIVELA,g1.getStato());
-		else
-			assertEquals(Stato.SILENZIO,g1.getStato());
+		assertEquals(Stato.CARTABLUFFOGGETTO,g1.getStato());
+		
+		carta=new CartaSettore(TipoCartaSettore.RUMOREQUALUNQUESETTORE,false);
+		model.getMazzoSettori().getMazzoIniziale().add(carta);
+		g1.setStato(Stato.PERICOLO);
+		azione=new PescaSettore(g1,model);
+		azione.esegui();
+		assertEquals(Stato.CARTABLUFF,g1.getStato());
+		
+		carta=new CartaSettore(TipoCartaSettore.RUMORETUOSETTORE,true);
+		model.getMazzoSettori().getMazzoIniziale().add(carta);
+		g1.setStato(Stato.PERICOLO);
+		azione=new PescaSettore(g1,model);
+		azione.esegui();
+		assertEquals(Stato.CARTARIVELAOGGETTO,g1.getStato());
+		
+		carta=new CartaSettore(TipoCartaSettore.RUMORETUOSETTORE,false);
+		model.getMazzoSettori().getMazzoIniziale().add(carta);
+		g1.setStato(Stato.PERICOLO);
+		azione=new PescaSettore(g1,model);
+		azione.esegui();	
+		assertEquals(Stato.CARTARIVELA,g1.getStato());
+		
+		carta=new CartaSettore(TipoCartaSettore.SILENZIO,true);
+		model.getMazzoSettori().getMazzoIniziale().add(carta);
+		g1.setStato(Stato.PERICOLO);
+		azione=new PescaSettore(g1,model);
+		azione.esegui();
+		assertEquals(Stato.SILENZIO,g1.getStato());
 		
 		g1.setStato(Stato.SICURO);
 		azione = new PescaSettore(g1,model);

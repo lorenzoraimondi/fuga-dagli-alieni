@@ -19,35 +19,46 @@ public class PescaScialuppaTest {
 		Azione azione;
 			
 		Umano g1=new Umano(1,0,mappa,"g1");
+		Umano g2=new Umano(2,1,mappa,"g2");
 		
 		g1.setStato(Stato.SCIALUPPA);
 		g1.setSituazione(Situazione.ATTIVO);
 		g1.setPosizione(mappa.getMappa().get(new Coordinate("P01")));
+		g2.setSituazione(Situazione.ATTIVO);
+		g2.setStato(Stato.SCIALUPPA);
+		g2.setPosizione(mappa.getMappa().get(new Coordinate("V11")));
 		
 		giocatori.add(g1);
+		giocatori.add(g2);
 		
 		StatoDiGioco model=new StatoDiGioco((ArrayList<Giocatore>) giocatori,mappa);
 		
-		azione=new PescaScialuppa(g1,model);
-		CartaScialuppa carta=(CartaScialuppa) model.getMazzoScialuppe().getMazzoIniziale().get(0);
-		azione.esegui();
-		if(carta.getTipo()==TipoCartaScialuppa.VERDE){
-			assertEquals(Stato.TURNOTERMINATO,g1.getStato());
-			assertEquals(Situazione.DISCONNESSO,g1.getSituazione());}
-		else
-			assertEquals(Stato.CARTASCIALUPPA,g1.getStato());
+		CartaScialuppa carta=new CartaScialuppa(TipoCartaScialuppa.VERDE);
+		model.getMazzoScialuppe().getMazzoIniziale().removeAll(model.getMazzoScialuppe().getMazzoIniziale());
+		model.getMazzoScialuppe().getMazzoIniziale().add(carta);
 		
-		g1.setStato(Stato.INIZIO);
-		azione=new PescaScialuppa(g1,model);
-		assertEquals(Stato.INIZIO,g1.getStato());
-		
-		SettoreScialuppa settore=(SettoreScialuppa) mappa.getMappa().get(new Coordinate("P01"));
-		settore.setScoperta();
-		g1.setStato(Stato.SCIALUPPA);
-		g1.setSituazione(Situazione.ATTIVO);
 		azione=new PescaScialuppa(g1,model);
 		azione.esegui();
-		assertEquals(Stato.SCIALUPPA,g1.getStato());
+		assertEquals(Stato.EFFETTOCONCLUSO,g1.getStato());
+		assertEquals(Situazione.VINTO,g1.getSituazione());
+			
+		carta=new CartaScialuppa(TipoCartaScialuppa.ROSSA);
+		model.getMazzoScialuppe().getMazzoIniziale().add(carta);
+		azione=new PescaScialuppa(g2,model);
+		azione.esegui();
+		assertEquals(Stato.CARTASCIALUPPA,g2.getStato());
+		
+		model.getMazzoScialuppe().getMazzoIniziale().add(carta);
+		g2.setStato(Stato.INIZIO);
+		azione=new PescaScialuppa(g2,model);
+		assertEquals(Stato.INIZIO,g2.getStato());
+		
+		g2.setStato(Stato.SCIALUPPA);
+		g2.setSituazione(Situazione.ATTIVO);
+		model.getMazzoScialuppe().getMazzoIniziale().add(carta);
+		azione=new PescaScialuppa(g2,model);
+		azione.esegui();
+		assertEquals(Stato.SCIALUPPA,g2.getStato());
 
 	}
 
