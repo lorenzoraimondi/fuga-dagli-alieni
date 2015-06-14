@@ -42,11 +42,11 @@ public class Client {
         	
         	subSocket = new Socket(ip, port);
         	subServer = new SocketCommunicator(subSocket);
-            do{command = stdin.nextLine();
+            do{command = stdin.nextLine().toLowerCase();
             //server.send(command);
-            if(!(command.contentEquals("Scelgo Fermi")||command.contentEquals("Scelgo Galilei")||command.contentEquals("Scelgo Galvani")))
+            if(!(command.contentEquals("fermi")||command.contentEquals("galilei")||command.contentEquals("galvani")))
             	System.out.println("mappa inesistente");
-            }while(!(command.contentEquals("Scelgo Fermi")||command.contentEquals("Scelgo Galilei")||command.contentEquals("Scelgo Galvani")));
+            }while(!(command.contentEquals("fermi")||command.contentEquals("galilei")||command.contentEquals("galvani")));
             subServer.send(new PacchettoAzione(id,command+" "+nome));
             Messaggio response = (Messaggio)subServer.receiveO();
             this.setId(response.getMessaggio());
@@ -61,7 +61,7 @@ public class Client {
             //server.close();
 
            do {
-            	command = stdin.nextLine();
+            	command = stdin.nextLine().toLowerCase();
                 socket = new Socket(ip, port);
             	server = new SocketCommunicator(socket);
                 //server.send(command);

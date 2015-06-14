@@ -38,9 +38,9 @@ public class CreaPartita extends TimerTask {
 		Giocatore g;
 		List<Giocatore> players=new ArrayList<Giocatore>();
 		
-		if(mappa.contentEquals("Fermi"))
+		if(mappa.contentEquals("fermi"))
 			 map=new Fermi();
-		else if(mappa.contentEquals("Galvani"))
+		else if(mappa.contentEquals("galvani"))
 			map=new Galvani();
 		else
 			map=new Galilei();

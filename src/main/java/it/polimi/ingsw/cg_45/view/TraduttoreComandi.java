@@ -15,6 +15,7 @@ import it.polimi.ingsw.cg_45.controller.PescaScialuppa;
 import it.polimi.ingsw.cg_45.controller.PescaSettore;
 import it.polimi.ingsw.cg_45.controller.RegistraClient;
 import it.polimi.ingsw.cg_45.controller.ScartaCarta;
+import it.polimi.ingsw.cg_45.controller.Statistiche;
 import it.polimi.ingsw.cg_45.controller.TerminaTurno;
 import it.polimi.ingsw.cg_45.controller.UsaAdrenalina;
 import it.polimi.ingsw.cg_45.controller.UsaLuci;
@@ -48,9 +49,13 @@ public class TraduttoreComandi {
 		Giocatore giocatore;
 		Coordinate coordinate;
 		Settore settore;
+		String nome;
 		
 		switch(primaParola){
-		case "Scarto":
+		case "?":
+			giocatore=partita.getGiocatore(id);
+			return new Statistiche(giocatore,partita);
+		case "scarto":
 			giocatore=partita.getGiocatore(id);
 			s.nextToken();
 			terzaParola=s.nextToken();
@@ -68,41 +73,50 @@ public class TraduttoreComandi {
 			case "attacco":
 				return new ScartaCarta(giocatore,partita,TipoCartaOggetto.ATTACCO);
 			}
-		case "Silenzio":
+		case "silenzio":
 			giocatore=partita.getGiocatore(id);
 			return new AnnunciaRumore(partita,giocatore,null);
-		case "Chat":
+		case "chat":
 			giocatore=partita.getGiocatore(id);
 			return new Chat(comando.substring(5),giocatore);
-		case "Rumore":
+		case "rumore":
 			s.nextToken();
-			terzaParola=s.nextToken();
+			terzaParola=s.nextToken().toUpperCase();
 			giocatore=partita.getGiocatore(id);
 			return new AnnunciaRumore(partita,giocatore,terzaParola);
-		case "Termino":
+		case "termino":
 			giocatore=partita.getGiocatore(id);
 			return new TerminaTurno(giocatore,partita);
-		case "Scelgo":
-			String scelta=s.nextToken();
-			String nome=s.nextToken();
+		case "fermi":
+			nome=s.nextToken();
 			//server.getSala().aggiungiGiocatore(scelta, client, server);
 			//return new RegistraClient(server,client);
-			return new RegistraClient(server,client,scelta,nome);
-		case "Attacco":
+			return new RegistraClient(server,client,primaParola,nome);
+		case "galilei":
+			nome=s.nextToken();
+			//server.getSala().aggiungiGiocatore(scelta, client, server);
+			//return new RegistraClient(server,client);
+			return new RegistraClient(server,client,primaParola,nome);
+		case "galvani":
+			nome=s.nextToken();
+			//server.getSala().aggiungiGiocatore(scelta, client, server);
+			//return new RegistraClient(server,client);
+			return new RegistraClient(server,client,primaParola,nome);
+		case "attacco":
 			s.nextToken();
 			terzaParola=s.nextToken();
 			coordinate=new Coordinate(terzaParola);
 			settore=partita.getMappa().getMappa().get(coordinate);
 			giocatore=partita.getGiocatore(id);
 			return new Attacco(partita,giocatore,settore);
-		case "Movimento":
+		case "movimento":
 			s.nextToken();
-			terzaParola=s.nextToken();
+			terzaParola=s.nextToken().toUpperCase();
 			coordinate=new Coordinate(terzaParola);
 			settore=partita.getMappa().getMappa().get(coordinate);
 			giocatore=partita.getGiocatore(id);
 			return new Movimento(partita,giocatore,settore);
-		case "Pesca":
+		case "pesca":
 			giocatore=partita.getGiocatore(id);
 			s.nextToken();
 			terzaParola=s.nextToken();
@@ -114,7 +128,7 @@ public class TraduttoreComandi {
 			case "settore":
 				return new PescaSettore(giocatore,partita);
 			}
-		case "Usa":
+		case "usa":
 			giocatore=partita.getGiocatore(id);
 			s.nextToken();
 			terzaParola=s.nextToken();
@@ -123,13 +137,13 @@ public class TraduttoreComandi {
 				return new UsaAdrenalina(giocatore,partita);
 			case "attacco":
 				s.nextToken();
-				quintaParola=s.nextToken();
+				quintaParola=s.nextToken().toUpperCase();
 				coordinate=new Coordinate(quintaParola);
 				settore=partita.getMappa().getMappa().get(coordinate);
 				return new Attacco(partita,giocatore,settore);
 			case "luci":
 				s.nextToken();
-				quintaParola=s.nextToken();
+				quintaParola=s.nextToken().toUpperCase();
 				coordinate=new Coordinate(quintaParola);
 				settore=partita.getMappa().getMappa().get(coordinate);
 				return new UsaLuci(partita,giocatore,settore);

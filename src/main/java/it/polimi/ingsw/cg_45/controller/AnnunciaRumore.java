@@ -22,7 +22,7 @@ public class AnnunciaRumore extends Azione{
 		case SILENZIO:
 			giocatore.setStato(Stato.EFFETTOCONCLUSO);
 			System.out.println(giocatore.getStato());
-			return new RispostaController(null,"Silenzio nell'astronave.");
+			return new RispostaController("","Silenzio nell'astronave.");
 		case CARTABLUFFOGGETTO:
 			giocatore.setStato(Stato.BLUFFATO);
 			System.out.println(giocatore.getStato());
@@ -30,7 +30,7 @@ public class AnnunciaRumore extends Azione{
 		case CARTABLUFF:
 			giocatore.setStato(Stato.EFFETTOCONCLUSO);
 			System.out.println(giocatore.getStato());
-			return new RispostaController(null,"Rumore nel settore "+coordinateSettore+".");
+			return new RispostaController("","Rumore nel settore "+coordinateSettore+".");
 		case CARTARIVELAOGGETTO:
 			giocatore.setStato(Stato.RIVELATO);
 			System.out.println(giocatore.getStato());
@@ -38,7 +38,7 @@ public class AnnunciaRumore extends Azione{
 		case CARTARIVELA:
 			giocatore.setStato(Stato.EFFETTOCONCLUSO);
 			System.out.println(giocatore.getStato());
-			return new RispostaController(null,"Rumore nel settore "+coordinateSettore+".");
+			return new RispostaController("","Rumore nel settore "+coordinateSettore+".");
 		default:
 			break;
 		

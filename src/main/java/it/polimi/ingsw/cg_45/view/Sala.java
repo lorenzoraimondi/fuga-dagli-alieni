@@ -26,9 +26,9 @@ public class Sala extends Thread{
 	private Timer galvani;
 	
 	public void cancelloTimer(String mappa){
-		if(mappa.contentEquals("Fermi"))
+		if(mappa.contentEquals("fermi"))
 			fermi.cancel();
-		else if(mappa.contentEquals("Galvani"))
+		else if(mappa.contentEquals("galvani"))
 			galvani.cancel();
 		else
 			galilei.cancel();
@@ -57,7 +57,7 @@ public class Sala extends Thread{
 		//
 		//server.getSubscribers().add(brokerThread);
 		//System.out.println("added new subscribers");
-		if(scelta.contentEquals("Fermi")){
+		if(scelta.contentEquals("fermi")){
 			//
 			Accettazione accettazione=new Accettazione(brokerThread,server.getCounter(),nomeGiocatore);
 			giocatoriFermi.add(accettazione);
@@ -76,7 +76,7 @@ public class Sala extends Thread{
 				
 			}
 		}
-		else if(scelta.contentEquals("Galilei")){
+		else if(scelta.contentEquals("galilei")){
 			Accettazione accettazione=new Accettazione(brokerThread,server.getCounter(),nomeGiocatore);
 			giocatoriGalilei.add(accettazione);
 			posizione=giocatoriGalilei.indexOf(accettazione);
@@ -88,7 +88,7 @@ public class Sala extends Thread{
 				galilei.schedule(new CreaPartita(giocatoriGalilei,server,scelta,this),0);
 			}
 		}
-		else if(scelta.contentEquals("Galvani")){
+		else if(scelta.contentEquals("galvani")){
 			Accettazione accettazione=new Accettazione(brokerThread,server.getCounter(),nomeGiocatore);
 			giocatoriGalvani.add(accettazione);
 			posizione=giocatoriGalvani.indexOf(accettazione);
@@ -117,9 +117,9 @@ public class Sala extends Thread{
 
 
 	public void svuotaLista(String mappa){
-		if(mappa.contentEquals("Fermi"))
+		if(mappa.contentEquals("fermi"))
 			giocatoriFermi.removeAll(giocatoriFermi);
-		else if(mappa.contentEquals("Galilei"))
+		else if(mappa.contentEquals("galilei"))
 			giocatoriGalilei.removeAll(giocatoriGalilei);
 		else
 			giocatoriGalvani.removeAll(giocatoriGalvani);
