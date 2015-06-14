@@ -32,6 +32,12 @@ public class StatoDiGiocoTest {
 		assertEquals(25,partita.getMazzoSettori().numCarte);
 		assertEquals(6,partita.getMazzoScialuppe().numCarte);
 		
+		assertEquals(g1,partita.getGiocatore(1));
+		assertEquals(null,partita.getGiocatore(10));
+		
+		partita.incrementCurrentPlayer();
+		assertEquals(1,partita.getCurrentPlayer());
+		
 		
 	}
 
