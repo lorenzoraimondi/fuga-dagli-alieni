@@ -3,6 +3,8 @@ package it.polimi.ingsw.cg_45.view;
 import it.polimi.ingsw.cg_45.controller.Azione;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
 import it.polimi.ingsw.cg_45.controller.TerminaTurno;
+import it.polimi.ingsw.cg_45.netCommons.Messaggio;
+import it.polimi.ingsw.cg_45.netCommons.PacchettoAzione;
 import it.polimi.ingsw.cg_45.netCommons.TraduttoreComandi;
 
 import java.io.IOException;

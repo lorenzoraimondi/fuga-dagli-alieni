@@ -1,5 +1,8 @@
 package it.polimi.ingsw.cg_45.view;
 
+import it.polimi.ingsw.cg_45.netCommons.Messaggio;
+import it.polimi.ingsw.cg_45.netCommons.PacchettoAzione;
+
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.Socket;

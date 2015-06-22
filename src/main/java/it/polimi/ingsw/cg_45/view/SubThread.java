@@ -1,7 +1,8 @@
 package it.polimi.ingsw.cg_45.view;
 
+import it.polimi.ingsw.cg_45.netCommons.Messaggio;
+
 import java.io.IOException;
-import java.net.UnknownHostException;
 
 public class SubThread extends Thread {
 	//private Socket subSocket;

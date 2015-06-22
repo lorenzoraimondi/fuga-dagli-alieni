@@ -1,11 +1,12 @@
 package it.polimi.ingsw.cg_45.rmi;
 
-import it.polimi.ingsw.cg_45.*;
-import it.polimi.ingsw.cg_45.controller.*;
+import it.polimi.ingsw.cg_45.StatoDiGioco;
+import it.polimi.ingsw.cg_45.controller.Azione;
+import it.polimi.ingsw.cg_45.controller.RispostaController;
+import it.polimi.ingsw.cg_45.netCommons.Messaggio;
+import it.polimi.ingsw.cg_45.netCommons.PacchettoAzione;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
 import it.polimi.ingsw.cg_45.netCommons.TraduttoreComandi;
-import it.polimi.ingsw.cg_45.view.Messaggio;
-import it.polimi.ingsw.cg_45.view.PacchettoAzione;
 
 import java.io.IOException;
 import java.rmi.RemoteException;

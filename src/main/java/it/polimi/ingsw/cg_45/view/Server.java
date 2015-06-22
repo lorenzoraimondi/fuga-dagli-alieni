@@ -2,12 +2,12 @@ package it.polimi.ingsw.cg_45.view;
 
 import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
+import it.polimi.ingsw.cg_45.netCommons.Messaggio;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

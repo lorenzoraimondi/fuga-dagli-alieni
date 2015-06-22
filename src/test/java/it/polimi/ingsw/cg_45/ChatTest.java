@@ -1,13 +1,13 @@
 package it.polimi.ingsw.cg_45;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import it.polimi.ingsw.cg_45.controller.Azione;
 import it.polimi.ingsw.cg_45.controller.Chat;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Test;
 

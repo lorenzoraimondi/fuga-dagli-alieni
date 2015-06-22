@@ -1,9 +1,10 @@
 package it.polimi.ingsw.cg_45;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import it.polimi.ingsw.cg_45.controller.Attacco;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
-import it.polimi.ingsw.cg_45.view.Server;
 
 import java.io.IOException;
 import java.util.ArrayList;

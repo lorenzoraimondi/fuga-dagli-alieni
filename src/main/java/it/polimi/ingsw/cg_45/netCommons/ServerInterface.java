@@ -1,7 +1,6 @@
 package it.polimi.ingsw.cg_45.netCommons;
 
 import it.polimi.ingsw.cg_45.StatoDiGioco;
-import it.polimi.ingsw.cg_45.view.Messaggio;
 
 import java.rmi.RemoteException;
 import java.util.Map;

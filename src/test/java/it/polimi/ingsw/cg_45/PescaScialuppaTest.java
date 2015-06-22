@@ -1,6 +1,6 @@
 package it.polimi.ingsw.cg_45;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import it.polimi.ingsw.cg_45.controller.Azione;
 import it.polimi.ingsw.cg_45.controller.PescaScialuppa;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;

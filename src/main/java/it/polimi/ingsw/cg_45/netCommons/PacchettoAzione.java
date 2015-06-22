@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg_45.view;
+package it.polimi.ingsw.cg_45.netCommons;
 
 import java.io.Serializable;
 

@@ -1,6 +1,8 @@
 package it.polimi.ingsw.cg_45.controller;
 
-import it.polimi.ingsw.cg_45.*;
+import it.polimi.ingsw.cg_45.Giocatore;
+import it.polimi.ingsw.cg_45.StatoDiGioco;
+
 import java.io.IOException;
 
 /**Represent an information request, for all player's action during the game.

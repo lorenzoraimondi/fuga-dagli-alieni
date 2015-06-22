@@ -3,18 +3,7 @@ package it.polimi.ingsw.cg_45.netCommons;
 import it.polimi.ingsw.cg_45.rmi.RMIClientMain;
 import it.polimi.ingsw.cg_45.view.Client;
 
-
-
-
-
-
-
-
-
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;

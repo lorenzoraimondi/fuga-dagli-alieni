@@ -3,7 +3,7 @@ package it.polimi.ingsw.cg_45.netCommons;
 import it.polimi.ingsw.cg_45.Fermi;
 import it.polimi.ingsw.cg_45.Galvani;
 import it.polimi.ingsw.cg_45.Mappa;
-import it.polimi.ingsw.cg_45.view.Messaggio;
+
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Timer;

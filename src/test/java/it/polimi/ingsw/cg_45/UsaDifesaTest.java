@@ -1,11 +1,10 @@
 package it.polimi.ingsw.cg_45;
 
 import static org.junit.Assert.assertTrue;
+import it.polimi.ingsw.cg_45.controller.UsaDifesa;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import it.polimi.ingsw.cg_45.controller.UsaDifesa;
 
 import org.junit.Test;
 

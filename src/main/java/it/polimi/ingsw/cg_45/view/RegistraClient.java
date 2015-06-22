@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg_45.view;
 
 //import it.polimi.ingsw.cg_45.controller.Azione;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
+import it.polimi.ingsw.cg_45.netCommons.PacchettoAzione;
 
 import java.io.IOException;
 import java.util.StringTokenizer;

@@ -1,9 +1,8 @@
 package it.polimi.ingsw.cg_45;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import it.polimi.ingsw.cg_45.controller.Disconnessione;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
-import it.polimi.ingsw.cg_45.view.Server;
 
 import java.io.IOException;
 import java.util.ArrayList;

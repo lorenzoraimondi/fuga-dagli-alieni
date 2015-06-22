@@ -11,8 +11,8 @@ import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.Umano;
 import it.polimi.ingsw.cg_45.netCommons.Accettazione;
+import it.polimi.ingsw.cg_45.netCommons.Messaggio;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
-import it.polimi.ingsw.cg_45.view.Messaggio;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;

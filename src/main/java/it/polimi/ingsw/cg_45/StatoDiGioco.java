@@ -1,6 +1,5 @@
 package it.polimi.ingsw.cg_45;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**Represent an entire game with all of its attributes. Contains the players, the game map, and the

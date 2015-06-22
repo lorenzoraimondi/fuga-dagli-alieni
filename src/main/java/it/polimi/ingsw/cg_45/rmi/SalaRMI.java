@@ -1,9 +1,9 @@
 package it.polimi.ingsw.cg_45.rmi;
 
 import it.polimi.ingsw.cg_45.netCommons.Accettazione;
+import it.polimi.ingsw.cg_45.netCommons.Messaggio;
 import it.polimi.ingsw.cg_45.netCommons.Sala;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
-import it.polimi.ingsw.cg_45.view.Messaggio;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;

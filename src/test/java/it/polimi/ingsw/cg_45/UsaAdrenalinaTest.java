@@ -2,11 +2,10 @@ package it.polimi.ingsw.cg_45;
 
 
 import static org.junit.Assert.assertEquals;
+import it.polimi.ingsw.cg_45.controller.UsaAdrenalina;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import it.polimi.ingsw.cg_45.controller.UsaAdrenalina;
 
 import org.junit.Test;
 

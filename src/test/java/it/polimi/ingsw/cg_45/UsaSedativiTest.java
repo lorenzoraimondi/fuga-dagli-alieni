@@ -2,11 +2,10 @@ package it.polimi.ingsw.cg_45;
 
 
 import static org.junit.Assert.assertEquals;
+import it.polimi.ingsw.cg_45.controller.UsaSedativi;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import it.polimi.ingsw.cg_45.controller.UsaSedativi;
 
 import org.junit.Test;
 
