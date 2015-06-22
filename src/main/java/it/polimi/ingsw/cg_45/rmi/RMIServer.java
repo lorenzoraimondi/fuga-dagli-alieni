@@ -1,8 +1,10 @@
 package it.polimi.ingsw.cg_45.rmi;
 
+import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.controller.Azione;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
+import it.polimi.ingsw.cg_45.controller.TerminaTurno;
 import it.polimi.ingsw.cg_45.netCommons.Messaggio;
 import it.polimi.ingsw.cg_45.netCommons.PacchettoAzione;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
@@ -33,6 +35,20 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 	private int counter=1;
 	private int port;
 		
+	public Map<Integer, Thread> timers=new HashMap<Integer, Thread>();
+	
+	public Map<Integer, Thread> getRmiTimers(){
+		return timers;
+	}
+
+	public void startTimer(StatoDiGioco partita,Giocatore giocatore){
+		RmiTimer timerTurno=new RmiTimer(partita,giocatore,this);
+		//timers.put(giocatore.getID(), timerTurno);
+		Thread t=new Thread(timerTurno);
+		timers.put(giocatore.getID(), t);
+		t.start();
+	}
+	
 	/**Create a game RMI server on the specified port.
 	 * 
 	 * @param port the port on which open the server.
@@ -78,9 +94,11 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 			synchronized(this.getPartite()){
 				risp=a.esegui();
 			}
-			
-			
 			this.publish(new Messaggio(risp.getMessaggioBroadcast()),id);
+			if(a instanceof TerminaTurno){
+				this.getRmiTimers().get(id).interrupt();
+				this.startTimer(this.getPartite().get(id), this.getPartite().get(id).getGiocatori().get(0));
+			}
 			return risp.getMessaggioClient();
 		} catch (ClassCastException e) {
 			//e.printStackTrace();

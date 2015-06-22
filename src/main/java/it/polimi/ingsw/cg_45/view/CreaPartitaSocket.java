@@ -112,7 +112,7 @@ public class CreaPartitaSocket extends TimerTask {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		((Server) server).startTimer(partita, partita.getGiocatori().get(0));
+		server.startTimer(partita, partita.getGiocatori().get(0));
 	}
 		
 }

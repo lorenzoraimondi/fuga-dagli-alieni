@@ -25,7 +25,7 @@ public class Disconnessione extends Azione {
 		new TerminaTurno(giocatore,model,server).esegui();
 		giocatore.setSituazione(Situazione.DISCONNESSO);
 		giocatore.setStato(Stato.TURNOTERMINATO);
-		return new RispostaController("ti sei disconnesso con successo",giocatore.getNome()+" si Ã¨ disconnesso.Tocca a "+model.getGiocatori().get(0).getNome());
+		return new RispostaController("ti sei disconnesso con successo",giocatore.getNome()+" si è disconnesso.Tocca a "+model.getGiocatori().get(0).getNome());
 	}
 
 	@Override

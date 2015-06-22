@@ -76,7 +76,7 @@ public class ClientHandler extends Thread {
 					
 					if(azione instanceof TerminaTurno ){
 						synchronized(server){
-							server.getTimers().get(idClient).setFlag();
+							server.getTimers().get(idClient).interrupt();
 							server.startTimer(server.getPartite().get(idClient), server.getPartite().get(idClient).getGiocatori().get(0));	
 						}
 						

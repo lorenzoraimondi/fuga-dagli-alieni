@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg_45.netCommons;
 
+import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 
 import java.rmi.RemoteException;
@@ -39,6 +40,8 @@ public interface ServerInterface {
 	 * @throws RemoteException
 	 */
 	public void publish(Messaggio messaggio, int id) throws RemoteException;
+
+	public void startTimer(StatoDiGioco partita, Giocatore giocatore);
 
 
 }

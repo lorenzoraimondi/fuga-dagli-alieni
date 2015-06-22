@@ -113,6 +113,9 @@ public class CreaPartitaRMI extends TimerTask {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		synchronized(server){
+			server.startTimer(partita, partita.getGiocatori().get(0));
+		}
 	}
 		
 }

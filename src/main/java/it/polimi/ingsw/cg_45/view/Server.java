@@ -28,7 +28,7 @@ public class Server implements ServerInterface {
 		
 	private SalaSocket sala=new SalaSocket();
 	
-	private Map<Integer, Timer> timers=new HashMap<Integer, Timer>();
+	private Map<Integer, Thread> timers=new HashMap<Integer, Thread>();
 	
 	private int counter=1;
 	private int port;
@@ -144,14 +144,15 @@ public class Server implements ServerInterface {
 	
 	}
 
-	public Map<Integer, Timer> getTimers(){
+	public Map<Integer, Thread> getTimers(){
 		return timers;
 	}
 	
 	public void startTimer(StatoDiGioco partita, Giocatore giocatore){
 		Timer timerTurno=new Timer(partita,giocatore,this);
-		timers.put(giocatore.getID(), timerTurno);
-		timerTurno.run();
+		Thread t=new Thread(timerTurno);
+		timers.put(giocatore.getID(), t);
+		t.start();
 	}
 	
 	/**
