@@ -1,8 +1,9 @@
 package it.polimi.ingsw.cg_45;
 
-public abstract class Carta {
+public interface Carta {
+//public abstract class Carta {
 		
-	public Carta(){
+	/*public Carta(){
 		
-	}
+	}*/
 }

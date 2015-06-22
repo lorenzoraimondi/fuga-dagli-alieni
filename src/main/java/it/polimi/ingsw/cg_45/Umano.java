@@ -5,21 +5,36 @@ public class Umano extends Giocatore {
 
 	private boolean sedato;
 	
-	public Umano(int id, int ordine){
+	/*public Umano(int id, int ordine){
 		super(id,ordine);
 		this.setPortata(1);
 		//this.setPosizioneIniziale(mappa);
 		this.setSituazione(Situazione.ATTIVO);
-	}
+	}*/
 	
-	public Umano(int id, int ordine,Mappa mappa, String nome) {
-		super(id, ordine, mappa, nome);
+	/**Create a new human player setting his position in the Human Sector relative to the game map 
+	 * in which the player will play. The method also sets the human's{@code portata} to {@value 1} 
+	 * and the {@value boolean} attribute {@code sedato} to {@value false}
+	 * 
+	 * @param id the unique value that identifies a client for the server  
+	 * @param ordine the player's sequence number into the game turn
+	 * @param mappa the map in which the player has decided to play
+	 * @param nome the nickname chosen by the player
+	 */
+	public Umano(int id, int ordine, Mappa mappa, String nome) {
+		super(id, ordine, nome);
 		this.portata=1;
 		this.setPosizioneIniziale(mappa);
+		//aggiunto, prima non c'era
+		this.sedato=false;
 		//this.setStato(Stato.INIZIO);
 		//this.setSituazione(Situazione.ATTIVO);
 	}
 
+	/**Sets the human in the Human Sector according to the map in which he plays.
+	 * 
+	 * @param mappa the map in which the player plays.
+	 */
 	@Override
 	public void setPosizioneIniziale(Mappa mappa) {
 		if(mappa instanceof Fermi)
@@ -30,10 +45,18 @@ public class Umano extends Giocatore {
 			posizione=mappa.mappa.get(new Coordinate("L08"));
 	}
 
+	/**Tells if the human player is under sedatives or not.
+	 * 
+	 * @return {@value false} if the player isn't sedated, {@value true} otherwise. 
+	 */
 	public boolean isSedato() {
 		return sedato;
 	}
 
+	/**
+	 * 
+	 * @param sedato the sedated value to set.  
+	 */
 	public void setSedato(boolean sedato) {
 		this.sedato = sedato;
 	}

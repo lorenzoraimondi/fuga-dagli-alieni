@@ -1,14 +1,25 @@
 package it.polimi.ingsw.cg_45;
 
-public class CartaScialuppa extends Carta{
+/**Represent an Item Card, with its own color.
+ * 
+ * @author Andrea Turconi
+ *
+ */
+//public class CartaScialuppa extends Carta{
+public class CartaScialuppa implements Carta{
+	
 		private TipoCartaScialuppa tipo;
-		private boolean isBlocked;
+		//private boolean isBlocked;
 		
+		/**Create a new Escape Hatch card of the specified type.
+		 * 
+		 * @param tipo the type of which will be created the card, {@code red} or {@code green}.
+		 */
 		public CartaScialuppa(TipoCartaScialuppa tipo){
 			this.tipo=tipo;
-			this.isBlocked=false;
+			//this.isBlocked=false;
 		}
-
+		/*
 		public boolean isBlocked() {
 			return isBlocked;
 		}
@@ -16,11 +27,22 @@ public class CartaScialuppa extends Carta{
 		public void blocca(){
 			this.isBlocked=true;
 		}
+		*/
 		
+		/**
+		 * 
+		 * @return the type of this Escape Hatch Card.
+		 */
 		public TipoCartaScialuppa getTipo() {
 			return tipo;
 		}
 
+		/**Prints the Escape Hatch card's type in the form <i>"CartaScialuppa [tipo= TYPE ]"</i>.
+		 * <p>
+		 * For example, a red card will be printed as <i>CartaScialuppa [tipo= ROSSA ]</i>.
+		 * 
+		 * 
+		 */
 		@Override
 		public String toString() {
 			return "\nCartaScialuppa [tipo=" + tipo + "]";

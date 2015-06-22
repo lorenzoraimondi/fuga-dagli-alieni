@@ -4,11 +4,37 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+/**Represents a generic game map, with all its sectors and relationships between them.
+ * 
+ * @author Lorenzo Raimondi
+ *
+ */
 public abstract class Mappa {
+	
+	/**
+	 * @param the number of rows in every map. 
+	 */
 	protected final static int ROW=14;
+	
+	/**
+	 * @param the number of columns in every map.
+	 */
 	protected final static int COL=23;
+	
+	/**Represents the proper map, linking every sector to its coordinates. So it's possible to get a sector of the
+	 * map simply passing its coordinates.
+	 * 
+	 */
 	protected Map<Coordinate, Settore> mappa = new HashMap<Coordinate, Settore>();
 		
+	/**Create a new game map, generating all its sectors and the links between them.
+	 * <p>
+	 * This constructor reads a text file where are specified coordinates and type of sector and build
+	 * the game map relative to the file by putting all the sectors in {@link mappa}. 
+	 * 
+	 * @param percorso the file path of the text file used to build the map.
+	 */
 	public Mappa(String percorso){
 	    
 		int m[][]=importaFile(percorso,ROW,COL);		
@@ -82,6 +108,10 @@ public abstract class Mappa {
 	    
 	}
 	
+	/**Calculates all the sectors adjacent to the given one and sets all its six neighbors in its attributes.    
+	 * 
+	 * @param settore the sector of which will be calculated the neighbors.
+	 */
 	public void calcolaAdiacenze(Settore settore){
 		int x=settore.getCoordinate().getX();
 		int y=settore.getCoordinate().getY();
@@ -99,11 +129,23 @@ public abstract class Mappa {
 		settore.setVicini(a[0], a[1], a[2], a[3], a[4], a[5]);
 	}
 	
-	
+	/**Calculate if a move from a sector to another can be performed given a maximum number of steps,
+	 * following the games rules:
+	 * <ul>
+	 * <li> it's forbidden to move to an Alien/Human sector or transit over them;
+	 * <li> it's forbidden to move to an Escape Hatch sector already discovered;
+	 * <li> it's forbidden for an Alien to move into an Escape Hatch sector;
+	 * <li> it's forbidden to move to the current sector, so it's forbidden not to move during a move;
+	 * <li> it's forbidden to transit over Empty sectors.
+	 * 	
+	 * @param partenza the sector in which the move starts.
+	 * @param arrivo the sector in which the player wishes to move.
+	 * @param portata the number of steps a player can cover.
+	 * @return {@code true} if the player is capable to perform the move, {@code false} otherwise.
+	 */
 	public boolean mossaValida(Settore partenza, Settore arrivo, int portata){
 		
 		if(arrivo instanceof SettorePartenzaAlieni || arrivo instanceof SettorePartenzaUmani || partenza.equals(arrivo)){
-			System.out.println("1");
 			return false;
 		}
 		
@@ -132,10 +174,13 @@ public abstract class Mappa {
 				}
 			}
 		}
-		System.out.println("2");
 		return false;
 	}
 
+	/**
+	 * 
+	 * @return the data structure which contains sectors and links between them. 
+	 */
 	public Map<Coordinate, Settore> getMappa() {
 		return mappa;
 	}

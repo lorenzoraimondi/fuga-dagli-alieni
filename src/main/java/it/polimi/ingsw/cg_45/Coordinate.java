@@ -1,18 +1,34 @@
 package it.polimi.ingsw.cg_45;
 
+/**Represents the coordinates of a map's sector
+ * 
+ * @author Lorenzo Raimondi
+ *
+ */
 public class Coordinate {
 	
 	private final int x;
 	private final int y;
 	private final int z;
 	
+	/**Create a coordinates variable by a 3 system variable.  
+	 * 
+	 * @param x the x coordinate variable
+	 * @param y the y coordinate variable
+	 * @param z the z coordinate variable
+	 */
 	public Coordinate(int x, int y, int z){
 			this.x = x;
 			this.y = y;
 			this.z = z;
 	}
-
+	
+	/**Create a coordinates variable by the relative sector's sign.
+	 * 
+	 * @param coord the sector's sign
+	 */
 	public Coordinate(String coord){
+		coord=coord.toUpperCase();
 		char[] nome= coord.toCharArray();
 		x=nome[0]-65;
 		int somma=(nome[1]-48)*10+(nome[2]-48);
@@ -20,18 +36,33 @@ public class Coordinate {
 		z=-x-y;
 	}
 	 
+	/**
+	 * 
+	 * @return the x value of the coordinate variable
+	 */
 	public int getX() {
 		return x;
 	}
-
+	
+	/**
+	 * 
+	 * @return the y value of the coordinate variable
+	 */
 	public int getY() {
 		return y;
 	}
 	
+	/**
+	 * 
+	 * @return the z value of the coordinate variable
+	 */
 	public int getZ() {
 		return z;
 	}
 	
+	/**Print the sector size starting from the three values coordinate variable.
+	 * 
+	 */
 	@Override
 	public String toString() {
 		
