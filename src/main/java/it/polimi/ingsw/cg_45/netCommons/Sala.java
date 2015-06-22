@@ -41,11 +41,11 @@ public abstract class Sala {
 	 */
 	public void svuotaLista(String mappa){
 		if(mappa.contentEquals("fermi"))
-			giocatoriFermi.removeAll(giocatoriFermi);
+			giocatoriFermi.clear();
 		else if(mappa.contentEquals("galilei"))
-			giocatoriGalilei.removeAll(giocatoriGalilei);
+			giocatoriGalilei.clear();
 		else
-			giocatoriGalvani.removeAll(giocatoriGalvani);
+			giocatoriGalvani.clear();
 	}
 	
 	/**Creating a new game, the timers bounded to its map is deleted. It will be restored

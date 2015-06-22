@@ -79,6 +79,8 @@ public class TraduttoreComandi {
 				return new ScartaCarta(giocatore,partita,TipoCartaOggetto.TELETRASPORTO);
 			case "attacco":
 				return new ScartaCarta(giocatore,partita,TipoCartaOggetto.ATTACCO);
+			default:
+				return "Comando errato";
 			}
 		case "silenzio":
 			giocatore=partita.getGiocatore(id);
@@ -140,6 +142,7 @@ public class TraduttoreComandi {
 				return new PescaScialuppa(giocatore,partita,server);
 			case "settore":
 				return new PescaSettore(giocatore,partita);
+			default: return "Comando errato";
 			}
 		case "usa":
 			giocatore=partita.getGiocatore(id);
@@ -164,10 +167,14 @@ public class TraduttoreComandi {
 				return new UsaSedativi(giocatore,partita);
 			case "teletrasporto":
 				return new UsaTeletrasporto(giocatore,partita);
+			default:
+				return "Comando errato";
 			}
 		case "exit":
 				giocatore=partita.getGiocatore(id);
 				return new Disconnessione(giocatore,partita,server);
+		default:
+			return "Comando errato";
 			
 		}
 		} catch(NoSuchElementException n){
@@ -175,7 +182,6 @@ public class TraduttoreComandi {
 		} catch(NullPointerException e) {
 			return "Comando errato";
 		}
-		return "Comando errato";
 		
 	}
 }

@@ -34,7 +34,8 @@ public class RMIClientMain {
 	    nome = stdin.nextLine();
 	    System.out.println("Scegliere la mappa dove giocare: FERMI || GALILEI || GALVANI");
 	       
-	    do{command = stdin.nextLine().toLowerCase();
+	    do{
+	    	command = stdin.nextLine().toLowerCase();
 	         
 	    if(!(command.contentEquals("fermi")||command.contentEquals("galilei")||command.contentEquals("galvani")))
 		    System.out.println("mappa inesistente");
@@ -84,7 +85,7 @@ public class RMIClientMain {
              //server.close();
              
 
-         } while (!command.equals("exit"));
+         } while (!"exit".equals(command));
         stdin.close();
 
     }

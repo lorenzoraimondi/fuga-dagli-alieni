@@ -37,7 +37,7 @@ public class Timer implements Runnable{
 		// TODO Auto-generated method stub
 		System.out.println("timer partito");
 		try {
-			Thread.sleep(secondi*1000);
+			Thread.sleep((long)secondi*1000);
 			if(flag==0){
 				azione=new Disconnessione(giocatore,partita,server);
 				try {

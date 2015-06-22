@@ -37,7 +37,7 @@ public abstract class Mappa {
 	 */
 	public Mappa(String percorso){
 	    
-		int m[][]=importaFile(percorso,ROW,COL);		
+		int[][] m=importaFile(percorso,ROW,COL);		
 		    	
 		for(int i=0;i<ROW;i++){
 			for(int j=0;j<COL;j++){
@@ -65,6 +65,8 @@ public abstract class Mappa {
 					break;
 				case 9:
 					break;
+				default: 
+					break;
 				}
 				
 				
@@ -80,10 +82,10 @@ public abstract class Mappa {
 	protected int[][] importaFile(String percorso,int row,int col){
 		int righe=row;
 	    int colonne=col;
-	    int m[][]= new int[righe][colonne];
+	    int[][] m= new int[righe][colonne];
 	    int p=0;
 		Scanner s;
-	    String r[]=new String[righe];
+	    String[] r=new String[righe];
 		
 		try{
 			s = new Scanner(new File(percorso));
@@ -100,7 +102,8 @@ public abstract class Mappa {
 	    
 	    	for(int k=0;k<righe;k++){
 	    		for(int j=0;j<colonne;j++){
-	    	            m[k][j]=(int)(r[k].charAt(j)-48);
+	    	            //m[k][j]=(int)(r[k].charAt(j)-48);
+	    	            m[k][j]=(r[k].charAt(j)-48);
 	    	    }
 	    	}
 	  

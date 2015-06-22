@@ -49,7 +49,8 @@ public class Client {
             System.out.println("Scegliere la mappa dove giocare: FERMI || GALILEI || GALVANI");
             
         	subServer = new SocketCommunicator(subSocket);
-            do{command = stdin.nextLine().toLowerCase();
+            do{
+            	command = stdin.nextLine().toLowerCase();
             //server.send(command);
             if(!(command.contentEquals("fermi")||command.contentEquals("galilei")||command.contentEquals("galvani")))
             	System.out.println("mappa inesistente");
@@ -84,7 +85,7 @@ public class Client {
                 server.close();
                 
 
-            } while (!command.equals("exit"));
+            } while (!"exit".equals(command));
 
             
             stdin.close();
@@ -115,8 +116,8 @@ public class Client {
 
 	public void setId(String msg) {
 		String a=msg.split("-")[0];
-		int id=Integer.parseInt(a);
-		this.id=id;
+		int numeroId=Integer.parseInt(a);
+		this.id=numeroId;
 	}
 	
 }

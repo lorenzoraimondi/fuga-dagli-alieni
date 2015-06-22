@@ -73,9 +73,8 @@ public class Coordinate {
 		coordinate[1]=(char)((somma/10)+48);
 		coordinate[2]=(char)((somma%10)+48);
 		
-		String c=new String(coordinate);
-			
-		return c;
+		return new String(coordinate);
+		
 	}
 
 	@Override

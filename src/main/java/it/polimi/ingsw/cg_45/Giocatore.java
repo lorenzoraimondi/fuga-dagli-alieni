@@ -14,15 +14,12 @@ public abstract class Giocatore {
 			protected int portata;
 			protected String nome;
 			protected Settore posizione;
-			//Aggiunto stato con getter/setter
+			
 			protected Stato stato;
 			protected Mappa mappa;
 	
 			protected Situazione situazione;
 			protected List<CartaOggetto> carte = new ArrayList<CartaOggetto>();
-			//protected CartaOggetto[] oggetti= new CartaOggetto[3];
-			
-			protected abstract void setPosizioneIniziale(Mappa mappa);
 			
 			/**Create a new player by setting his {@code id} and {@code ordine}. This method
 			 * also assigns player's state attributes, setting him active and at the beginning of his turn.
@@ -30,12 +27,12 @@ public abstract class Giocatore {
 			 * @param id the unique value that identifies a client for the server
 			 * @param ordine the player's sequence number into the game turn
 			 */
-			public Giocatore(int id, int ordine){
+			/*public Giocatore(int id, int ordine){
 				this.id=id;
 				this.ordine=ordine;
 				this.situazione=Situazione.ATTIVO;
 				this.stato=Stato.INIZIO;
-			}
+			}*/
 			
 			/**Create a new player by setting his {@code id} and {@code ordine}. This method
 			 * also assigns player's state attributes, setting him active and at the beginning of his turn.
@@ -54,6 +51,8 @@ public abstract class Giocatore {
 				this.situazione=Situazione.ATTIVO;
 				this.stato=Stato.INIZIO;
 			}
+			
+			protected abstract void setPosizioneIniziale(Mappa mappa);
 			
 			/**
 			 * 

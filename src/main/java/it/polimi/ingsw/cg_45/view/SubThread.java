@@ -100,17 +100,17 @@ public class SubThread extends Thread {
 	 * @throws IOException
 	 */
 	
-	private void close(){
+	/*private void close(){
 		try{
 			sc.close();
 		}catch(Exception e){
 		} finally {
 			//in=null;
 			sc=null;
-			System.gc();
+			//System.gc();
 		}
 		
-	}
+	}*/
 	
 	/*private void close(){
 		try{

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**Represents a RMI server, the system that hosts all the games and 
@@ -43,6 +44,7 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public int getCounter() {
 		return counter;
 	}
@@ -50,6 +52,7 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void incCounter() {
 		this.counter++;
 	}
@@ -57,6 +60,7 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Map<Integer, StatoDiGioco> getPartite() {
 		return Partite;
 	}
@@ -95,8 +99,9 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void publish(Messaggio msg,int id) throws RemoteException {
-		ArrayList<RMIClientInterface> subscribers=idSub.get(id);
+		List<RMIClientInterface> subscribers=idSub.get(id);
 		
 		if(subscribers!=null){
 			System.out.println("Publishing message");

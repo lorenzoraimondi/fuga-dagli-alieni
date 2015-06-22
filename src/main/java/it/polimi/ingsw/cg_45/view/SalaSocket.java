@@ -71,7 +71,7 @@ public class SalaSocket extends Sala{
 			if(giocatoriFermi.size()==2){
 				fermi=new Timer();
 				System.out.println("creo timerFermi");
-				fermi.schedule(new CreaPartitaSocket(giocatoriFermi,server,scelta,this),seconds*1000);
+				fermi.schedule(new CreaPartitaSocket(giocatoriFermi,server,scelta,this),(long)seconds*1000);
 				}
 			if(giocatoriFermi.size()==8){
 				//Da sistemare???
@@ -86,7 +86,7 @@ public class SalaSocket extends Sala{
 			if(giocatoriGalilei.size()==2){
 				galilei=new Timer();
 				System.out.println("creo timerGalilei");
-				galilei.schedule(new CreaPartitaSocket(giocatoriGalilei,server,scelta,this),seconds*1000);}
+				galilei.schedule(new CreaPartitaSocket(giocatoriGalilei,server,scelta,this),(long)seconds*1000);}
 			if(giocatoriGalilei.size()==8){
 				galilei.schedule(new CreaPartitaSocket(giocatoriGalilei,server,scelta,this),0);
 			}
@@ -98,7 +98,7 @@ public class SalaSocket extends Sala{
 			if(giocatoriGalvani.size()==2){
 				galvani=new Timer();
 				System.out.println("creo timerGalvani");
-				galvani.schedule(new CreaPartitaSocket(giocatoriGalvani,server,scelta,this),seconds*1000);}
+				galvani.schedule(new CreaPartitaSocket(giocatoriGalvani,server,scelta,this),(long)seconds*1000);}
 			if(giocatoriGalvani.size()==8){
 				galvani.schedule(new CreaPartitaSocket(giocatoriGalvani,server,scelta,this),0);
 			}
@@ -116,6 +116,7 @@ public class SalaSocket extends Sala{
 	 * @param msg the message to send.
 	 * @param id the id number of the player subscribed in the desired waiting list.  
 	 */
+	@Override
 	public void publish(Messaggio msg, int id){
 		
 		List<BrokerThread> threadSubsFermi=new ArrayList<BrokerThread>();

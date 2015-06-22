@@ -48,7 +48,7 @@ public class SalaRMI extends Sala {
 		return this.esegui();
 	}
 	
-	
+	@Override
 	protected int esegui(){
 		
 		//
@@ -67,7 +67,7 @@ public class SalaRMI extends Sala {
 			if(giocatoriFermi.size()==2){
 				fermi=new Timer();
 				System.out.println("creo timerFermi");
-				fermi.schedule(new CreaPartitaRMI(giocatoriFermi,server,scelta,this),seconds*1000);
+				fermi.schedule(new CreaPartitaRMI(giocatoriFermi,server,scelta,this),(long)seconds*1000);
 				}
 			if(giocatoriFermi.size()==8){
 				//Da sistemare???
@@ -82,7 +82,7 @@ public class SalaRMI extends Sala {
 			if(giocatoriGalilei.size()==2){
 				galilei=new Timer();
 				System.out.println("creo timerGalilei");
-				galilei.schedule(new CreaPartitaRMI(giocatoriGalilei,server,scelta,this),seconds*1000);}
+				galilei.schedule(new CreaPartitaRMI(giocatoriGalilei,server,scelta,this),(long)seconds*1000);}
 			if(giocatoriGalilei.size()==8){
 				galilei.schedule(new CreaPartitaRMI(giocatoriGalilei,server,scelta,this),0);
 			}
@@ -94,7 +94,7 @@ public class SalaRMI extends Sala {
 			if(giocatoriGalvani.size()==2){
 				galvani=new Timer();
 				System.out.println("creo timerGalvani");
-				galvani.schedule(new CreaPartitaRMI(giocatoriGalvani,server,scelta,this),seconds*1000);}
+				galvani.schedule(new CreaPartitaRMI(giocatoriGalvani,server,scelta,this),(long)seconds*1000);}
 			if(giocatoriGalvani.size()==8){
 				galvani.schedule(new CreaPartitaRMI(giocatoriGalvani,server,scelta,this),0);
 			}
@@ -110,6 +110,7 @@ public class SalaRMI extends Sala {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void publish(Messaggio msg, int id) throws RemoteException{
 	
 		List<RMIClientInterface> threadSubsFermi=new ArrayList<RMIClientInterface>();

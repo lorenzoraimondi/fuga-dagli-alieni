@@ -24,8 +24,8 @@ public class RMIClient implements RMIClientInterface {
 
 	public void setId(String msg) {
 		String a=msg.split("-")[0];
-		int id=Integer.parseInt(a);
-		this.id=id;
+		int numeroId=Integer.parseInt(a);
+		this.id=numeroId;
 	}
 	
 

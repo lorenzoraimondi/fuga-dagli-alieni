@@ -74,8 +74,8 @@ public class PescaScialuppa extends Azione{
 	@Override
 	protected boolean controlli() {
 		if(giocatore.getStato()==Stato.SCIALUPPA && giocatore.getSituazione()==Situazione.ATTIVO){
-			SettoreScialuppa scialuppa=(SettoreScialuppa) model.getMappa().getMappa().get(giocatore.getPosizione().getCoordinate());
-			if(!scialuppa.isScoperta())
+			SettoreScialuppa scialuppaCorrente=(SettoreScialuppa) model.getMappa().getMappa().get(giocatore.getPosizione().getCoordinate());
+			if(!scialuppaCorrente.isScoperta())
 				return true;
 		}
 		return false;

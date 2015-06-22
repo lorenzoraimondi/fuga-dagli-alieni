@@ -77,12 +77,11 @@ public class MazzoSettori extends Mazzo {
 		 */
 		@Override
 		public Carta pescaCarta() {
-			if(mazzoIniziale.isEmpty()){
-				if(!mazzoScarti.isEmpty()){
+			if(mazzoIniziale.isEmpty() && (!mazzoScarti.isEmpty())){
 					this.getMazzoIniziale().addAll(this.getMazzoScarti());
 					Collections.shuffle(this.getMazzoIniziale());
-					this.getMazzoScarti().removeAll(this.getMazzoScarti());
-				}
+					//this.getMazzoScarti().removeAll(this.getMazzoScarti());
+					this.getMazzoScarti().clear();
 			}
 			Carta pescata;
 			pescata=this.mazzoIniziale.remove(0);

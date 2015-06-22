@@ -8,6 +8,36 @@ package it.polimi.ingsw.cg_45;
 //public class CartaOggetto extends Carta{
 public class CartaOggetto implements Carta{
 	
+	private TipoCartaOggetto tipo;
+	
+	/**Create a new Item card of the specified type.
+	 * 
+	 * @param tipo the type of which will be created the card.
+	 */
+	public CartaOggetto(TipoCartaOggetto tipo){
+		this.tipo=tipo;
+	}
+
+	/**
+	 * 
+	 * @return the type of this Item Card.
+	 */
+	public TipoCartaOggetto getTipo() {
+		return tipo;
+	}
+	
+	/**Prints the Item card's type in the form <i>" type "</i>.
+	 * <p>
+	 * For example, an Adrenaline card will be printed as <i>" ADRENALINE "</i>.
+	 * 
+	 * 
+	 */
+	@Override
+	public String toString() {
+		return " "+tipo+" ";
+	}
+
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -36,32 +66,6 @@ public class CartaOggetto implements Carta{
 		return true;
 	}
 		
-		private TipoCartaOggetto tipo;
 		
-		/**Create a new Item card of the specified type.
-		 * 
-		 * @param tipo the type of which will be created the card.
-		 */
-		public CartaOggetto(TipoCartaOggetto tipo){
-			this.tipo=tipo;
-		}
-
-		/**
-		 * 
-		 * @return the type of this Item Card.
-		 */
-		public TipoCartaOggetto getTipo() {
-			return tipo;
-		}
 		
-		/**Prints the Item card's type in the form <i>" type "</i>.
-		 * <p>
-		 * For example, an Adrenaline card will be printed as <i>" ADRENALINE "</i>.
-		 * 
-		 * 
-		 */
-		@Override
-		public String toString() {
-			return " "+tipo+" ";
 		}
-}

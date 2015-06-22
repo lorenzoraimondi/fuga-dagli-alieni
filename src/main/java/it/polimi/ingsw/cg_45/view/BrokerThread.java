@@ -133,7 +133,7 @@ public class BrokerThread extends Thread {
 		
 			//out = null;
 			client = null;
-			System.gc();
+			//System.gc();
 		
 	}
 

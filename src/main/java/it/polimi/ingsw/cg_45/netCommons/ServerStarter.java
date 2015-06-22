@@ -15,10 +15,10 @@ public class ServerStarter {
 		do{
 			System.out.println("Quale protocollo di comunicazione utilizzare? [ RMI | SOCKET ]");
 			scelta=stdin.nextLine().toLowerCase();
-		} while (!(scelta.equals("rmi") || scelta.equals("socket")));
+		//} while (!(scelta.equals("rmi") || scelta.equals("socket")));
+		} while (!("rmi".equals(scelta) || "socket".equals("scelta")));
 		
-		
-		if(scelta.equals("rmi")){
+		if("rmi".equals(scelta)){
 			RMIServerMain.main(null);
 		} else Server.main(null);
 		 

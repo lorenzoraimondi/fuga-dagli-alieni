@@ -28,30 +28,14 @@ public class Server implements ServerInterface {
 		
 	private SalaSocket sala=new SalaSocket();
 	
-	public Map<Integer, Timer> timers=new HashMap<Integer, Timer>();
+	private Map<Integer, Timer> timers=new HashMap<Integer, Timer>();
 	
-	public Map<Integer, Timer> getTimers(){
-		return timers;
-	}
-	
-	public void startTimer(StatoDiGioco partita, Giocatore giocatore){
-		Timer timerTurno=new Timer(partita,giocatore,this);
-		timers.put(giocatore.getID(), timerTurno);
-		timerTurno.run();
-	}
-	
-	//private List<BrokerThread> clientConnessi = new ArrayList<BrokerThread>();
+	private int counter=1;
+	private int port;
+	private ServerSocket serverSocket;
 	
 	//Questa lista non è inutile???
 	private List<BrokerThread> subscribers = new ArrayList<BrokerThread>();
-	
-	public ArrayList<BrokerThread> getSubscribers() {
-		return (ArrayList<BrokerThread>) subscribers;
-	}
-
-	private int counter=1;
-	private int port;
-	private ServerSocket serverSocket; 
 	
 	/**Create a game socket server on the specified port.
 	 * 
@@ -61,6 +45,14 @@ public class Server implements ServerInterface {
 		this.port = port;
 	}
 	
+	/**Server's main method, create a new server on 1337 port and starts it.
+	 * 
+	 */
+	public static void main(String[] args) { 
+		Server server = new Server(1337);
+        server.startServer();
+	}
+		
 	/**Starts the server and all its services, granting clients to connect and 
 	 * answering to their requests opening a {@code ClientHandler} thread that will
 	 * fulfill each request.
@@ -89,17 +81,23 @@ public class Server implements ServerInterface {
 		return true;
 	}
 
-	/**Server's main method, create a new server on 1337 port and starts it.
-	 * 
-	 */
-	public static void main(String[] args) { 
-		Server server = new Server(1337);
-        server.startServer();
+	
+	//INUTILE?
+	public List<BrokerThread> getSubscribers() {
+		return subscribers;
 	}
+
+	 
+	
+	
+	
+	
+	
 
 	/**{@inheritDoc}
 	 * 
 	 */
+	@Override
 	public int getCounter() {
 		return counter;
 	}
@@ -107,6 +105,7 @@ public class Server implements ServerInterface {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void incCounter() {
 		this.counter++;
 	}
@@ -114,6 +113,7 @@ public class Server implements ServerInterface {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Map<Integer, StatoDiGioco> getPartite() {
 		return Partite;
 	}
@@ -125,12 +125,13 @@ public class Server implements ServerInterface {
 	 * @param messaggio the message to send.
 	 * @param id the id number of the player from which the action starts.
 	 */
+	@Override
 	public void publish(Messaggio msg, int id){
-		ArrayList<BrokerThread> subscribers=idSub.get(id);
+		List<BrokerThread> subs=idSub.get(id);
 		
-		if(subscribers!=null){
+		if(subs!=null){
 			System.out.println("Publishing message");
-			for (BrokerThread sub : subscribers) {
+			for (BrokerThread sub : subs) {
 				sub.dispatchMessage(msg);
 			}
 		}else{
@@ -143,6 +144,16 @@ public class Server implements ServerInterface {
 	
 	}
 
+	public Map<Integer, Timer> getTimers(){
+		return timers;
+	}
+	
+	public void startTimer(StatoDiGioco partita, Giocatore giocatore){
+		Timer timerTurno=new Timer(partita,giocatore,this);
+		timers.put(giocatore.getID(), timerTurno);
+		timerTurno.run();
+	}
+	
 	/**
 	 * 
 	 * @return the waiting player's room.
