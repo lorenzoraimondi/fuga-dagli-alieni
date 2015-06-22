@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cg_45.view;
+package it.polimi.ingsw.cg_45.rmi;
 
 import it.polimi.ingsw.cg_45.Alieno;
 import it.polimi.ingsw.cg_45.Fermi;
@@ -12,6 +12,7 @@ import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.Umano;
 import it.polimi.ingsw.cg_45.netCommons.Accettazione;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
+import it.polimi.ingsw.cg_45.view.Messaggio;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -19,16 +20,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.TimerTask;
 
-public class CreaPartitaSocket extends TimerTask {
+public class CreaPartitaRMI extends TimerTask {
 	
 	private List<Accettazione> giocatori=new ArrayList<Accettazione>();
-	private List<BrokerThread> threadSubs=new ArrayList<BrokerThread>();
+	private List<RMIClientInterface> threadSubs=new ArrayList<RMIClientInterface>();
 	private ServerInterface server;
 	private String mappa;
-	private SalaSocket sala;
+	private SalaRMI sala;
 	private Mappa map;
 	
-	public CreaPartitaSocket(List<Accettazione> giocatori, ServerInterface server, String mappa,SalaSocket sala){
+	public CreaPartitaRMI(List<Accettazione> giocatori, ServerInterface server, String mappa,SalaRMI sala){
 		this.mappa=mappa;
 		this.giocatori=giocatori;
 		this.server=server;
@@ -36,6 +37,7 @@ public class CreaPartitaSocket extends TimerTask {
 	}
 	@Override
 	public void run() {
+		// TODO Auto-generated method stub
 		int i=0;
 		Giocatore g;
 		List<Giocatore> players=new ArrayList<Giocatore>();
@@ -92,13 +94,13 @@ public class CreaPartitaSocket extends TimerTask {
 		//server.addPartita(partita);
 		
 		for(Accettazione a : sala.getListaAccettazione(map)){
-			threadSubs.add(((AccettazioneSocket) a).getbt());
+			threadSubs.add(((AccettazioneRMI) a).getClient());
 		}
 		
 		for(Giocatore g2 : players){
 			
 			//server.getPartite().put(g2.getID(), partita);
-			((Server) server).getIdSub().put(g2.getID(), (ArrayList<BrokerThread>)threadSubs);
+			((RMIServer) server).getIdSub().put(g2.getID(), (ArrayList<RMIClientInterface>)threadSubs);
 		}
 		
 		sala.svuotaLista(mappa);
@@ -111,7 +113,6 @@ public class CreaPartitaSocket extends TimerTask {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		((Server) server).startTimer(partita, partita.getGiocatori().get(0));
 	}
 		
 }

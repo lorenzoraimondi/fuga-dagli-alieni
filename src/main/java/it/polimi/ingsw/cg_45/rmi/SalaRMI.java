@@ -1,35 +1,33 @@
-package it.polimi.ingsw.cg_45.view;
+package it.polimi.ingsw.cg_45.rmi;
 
-import it.polimi.ingsw.cg_45.Fermi;
-import it.polimi.ingsw.cg_45.Galvani;
-import it.polimi.ingsw.cg_45.Mappa;
 import it.polimi.ingsw.cg_45.netCommons.Accettazione;
 import it.polimi.ingsw.cg_45.netCommons.Sala;
+import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
+import it.polimi.ingsw.cg_45.view.Messaggio;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 
-/**Represents a room where are stored socket-connected player's subscriptions and where are
+/**Represents a room where are stored RMI-connected player's subscriptions and where are
  * created new games when the requirements are satisfied.
  * 
  * @author Lorenzo Raimondi
  *
  */
-public class SalaSocket extends Sala{
+public class SalaRMI extends Sala {
 	
-	private Communicator client;
-
+	private RMIClientInterface client;
+	
 	/**Creates the room for RMI clients, by creating three waiting lists of {@code Accettazione} objects,
 	 * one for each map.
 	 * 
 	 */
-	public SalaSocket(){
+	public SalaRMI(){
 		giocatoriFermi=new ArrayList<Accettazione>();
 		giocatoriGalilei=new ArrayList<Accettazione>();
-		giocatoriGalvani=new ArrayList<Accettazione>();
-		
+		giocatoriGalvani=new ArrayList<Accettazione>();	
 	}
 	
 	/**This method adds a player in the waiting list relative to his map choice. After this
@@ -42,19 +40,17 @@ public class SalaSocket extends Sala{
 	 * @param nome player's nickname.
 	 * @return player's position in the waiting list.
 	 */
-	public int aggiungiGiocatore(String scelta,Communicator client, Server server, String nome){
+	public int aggiungiGiocatore(String scelta,RMIClientInterface client, ServerInterface server, String nome){
 		this.scelta=scelta;
+		this.client=client;
 		this.server=server;
 		this.nomeGiocatore=nome;
-		this.client=client;
-		
 		return this.esegui();
 	}
 	
-	@Override
+	
 	protected int esegui(){
-		BrokerThread brokerThread = new BrokerThread(client);
-		brokerThread.start();
+		
 		//
 		int posizione=0;
 		//
@@ -62,7 +58,7 @@ public class SalaSocket extends Sala{
 		//System.out.println("added new subscribers");
 		if(scelta.contentEquals("fermi")){
 			//
-			AccettazioneSocket accettazione=new AccettazioneSocket(brokerThread,server.getCounter(),nomeGiocatore);
+			AccettazioneRMI accettazione=new AccettazioneRMI(client,server.getCounter(),nomeGiocatore);
 			giocatoriFermi.add(accettazione);
 			//giocatoriFermi.add(new Accettazione(brokerThread,server.getCounter()));
 			//
@@ -71,36 +67,36 @@ public class SalaSocket extends Sala{
 			if(giocatoriFermi.size()==2){
 				fermi=new Timer();
 				System.out.println("creo timerFermi");
-				fermi.schedule(new CreaPartitaSocket(giocatoriFermi,server,scelta,this),seconds*1000);
+				fermi.schedule(new CreaPartitaRMI(giocatoriFermi,server,scelta,this),seconds*1000);
 				}
 			if(giocatoriFermi.size()==8){
 				//Da sistemare???
-				fermi.schedule(new CreaPartitaSocket(giocatoriFermi,server,scelta,this),0);
+				fermi.schedule(new CreaPartitaRMI(giocatoriFermi,server,scelta,this),0);
 				
 			}
 		}
 		else if(scelta.contentEquals("galilei")){
-			AccettazioneSocket accettazione=new AccettazioneSocket(brokerThread,server.getCounter(),nomeGiocatore);
+			AccettazioneRMI accettazione=new AccettazioneRMI(client,server.getCounter(),nomeGiocatore);
 			giocatoriGalilei.add(accettazione);
 			posizione=giocatoriGalilei.indexOf(accettazione);
 			if(giocatoriGalilei.size()==2){
 				galilei=new Timer();
 				System.out.println("creo timerGalilei");
-				galilei.schedule(new CreaPartitaSocket(giocatoriGalilei,server,scelta,this),seconds*1000);}
+				galilei.schedule(new CreaPartitaRMI(giocatoriGalilei,server,scelta,this),seconds*1000);}
 			if(giocatoriGalilei.size()==8){
-				galilei.schedule(new CreaPartitaSocket(giocatoriGalilei,server,scelta,this),0);
+				galilei.schedule(new CreaPartitaRMI(giocatoriGalilei,server,scelta,this),0);
 			}
 		}
 		else if(scelta.contentEquals("galvani")){
-			AccettazioneSocket accettazione=new AccettazioneSocket(brokerThread,server.getCounter(),nomeGiocatore);
+			AccettazioneRMI accettazione=new AccettazioneRMI(client,server.getCounter(),nomeGiocatore);
 			giocatoriGalvani.add(accettazione);
 			posizione=giocatoriGalvani.indexOf(accettazione);
 			if(giocatoriGalvani.size()==2){
 				galvani=new Timer();
 				System.out.println("creo timerGalvani");
-				galvani.schedule(new CreaPartitaSocket(giocatoriGalvani,server,scelta,this),seconds*1000);}
+				galvani.schedule(new CreaPartitaRMI(giocatoriGalvani,server,scelta,this),seconds*1000);}
 			if(giocatoriGalvani.size()==8){
-				galvani.schedule(new CreaPartitaSocket(giocatoriGalvani,server,scelta,this),0);
+				galvani.schedule(new CreaPartitaRMI(giocatoriGalvani,server,scelta,this),0);
 			}
 		}
 		else
@@ -108,27 +104,25 @@ public class SalaSocket extends Sala{
 		
 		return posizione;
 	}
-
-	/**Sends a message to all the players waiting for playing in a specified waiting list.
-	 * From the {@code id} of one player is found the list in which the message must 
-	 * be sent.
-	 * 
-	 * @param msg the message to send.
-	 * @param id the id number of the player subscribed in the desired waiting list.  
+	
+	
+	
+	/**
+	 * {@inheritDoc}
 	 */
-	public void publish(Messaggio msg, int id){
-		
-		List<BrokerThread> threadSubsFermi=new ArrayList<BrokerThread>();
-		List<BrokerThread> threadSubsGalvani=new ArrayList<BrokerThread>();
-		List<BrokerThread> threadSubsGalilei=new ArrayList<BrokerThread>();
+	public void publish(Messaggio msg, int id) throws RemoteException{
+	
+		List<RMIClientInterface> threadSubsFermi=new ArrayList<RMIClientInterface>();
+		List<RMIClientInterface> threadSubsGalvani=new ArrayList<RMIClientInterface>();
+		List<RMIClientInterface> threadSubsGalilei=new ArrayList<RMIClientInterface>();
 		
 		int s=0;
-				
+		
 		for(Accettazione a : giocatoriFermi){
 			if(a.getId()==id){
 				s=1;
 				for(Accettazione a2: giocatoriFermi){
-					threadSubsFermi.add(((AccettazioneSocket) a2).getbt());
+					threadSubsFermi.add(((AccettazioneRMI) a2).getClient());
 				}
 			}
 		}
@@ -138,32 +132,36 @@ public class SalaSocket extends Sala{
 			if(a.getId()==id){
 				s=2;
 				for(Accettazione a2: giocatoriGalvani){
-					threadSubsGalvani.add(((AccettazioneSocket) a2).getbt());
+					threadSubsGalvani.add(((AccettazioneRMI) a2).getClient());
 				}
 			}
 		}
 		
+		System.out.println(threadSubsFermi);
+		System.out.println(threadSubsGalvani);
+		System.out.println(threadSubsGalilei);
+		
 		for(Accettazione a : giocatoriGalilei){
-				threadSubsGalilei.add(((AccettazioneSocket) a).getbt());
+				threadSubsGalilei.add(((AccettazioneRMI) a).getClient());
 		}
 		if(s==0){
-			for (BrokerThread sub : threadSubsGalilei) {
-				sub.dispatchMessage(msg);
+			for (RMIClientInterface sub : threadSubsGalilei) {
+				sub.inviaMessaggio(msg.getMessaggio());
 			}
 		}
 		else if(s==1){
-			for (BrokerThread sub : threadSubsFermi) {
-				sub.dispatchMessage(msg);
+			for (RMIClientInterface sub : threadSubsFermi) {
+				sub.inviaMessaggio(msg.getMessaggio());
 			}
 		}
 		else
-			for(BrokerThread sub : threadSubsGalvani){
-				sub.dispatchMessage(msg);
+			for(RMIClientInterface sub : threadSubsGalvani){
+				sub.inviaMessaggio(msg.getMessaggio());
 			}
 			
 		}
 
-	
 
+	
 	
 }

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg_45.view;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -19,7 +20,7 @@ public class Client {
         this.port = port;
 	}
 	
-	public void startClient() throws ClassNotFoundException {
+	public void startClient() throws ClassNotFoundException, ConnectException {
 		try {
 			//pubsub
 			//new SubThread(ID).start();
@@ -31,16 +32,22 @@ public class Client {
             //Socket subSocket;
             SocketCommunicator server,subServer;
             //SocketCommunicator subServer;
-            System.out.println("Inserire il proprio nome");
-            nome = stdin.nextLine();
-            System.out.println("Scegliere la mappa dove giocare: FERMI || GALILEI || GALVANI");
+            
             
             //subSocket = new Socket(ip, port);
         	//subServer = new SocketCommunicator(subSocket);
         	//new SubThread(subSocket).start();
         	
-        	
-        	subSocket = new Socket(ip, port);
+            try{
+            	subSocket = new Socket(ip, port);
+            } catch (ConnectException e){
+            	throw new ConnectException();
+            }
+            
+            System.out.println("Inserire il proprio nome");
+            nome = stdin.nextLine();
+            System.out.println("Scegliere la mappa dove giocare: FERMI || GALILEI || GALVANI");
+            
         	subServer = new SocketCommunicator(subSocket);
             do{command = stdin.nextLine().toLowerCase();
             //server.send(command);
@@ -59,6 +66,9 @@ public class Client {
             new SubThread(subServer).start();
             //socket.close();
             //server.close();
+            //
+            subSocket.shutdownOutput();
+            //
 
            do {
             	command = stdin.nextLine().toLowerCase();
@@ -78,16 +88,24 @@ public class Client {
 
             
             stdin.close();
-        } catch (IOException ex) {
+		} catch (ConnectException e){
+		 throw new ConnectException();
+		} catch (IOException ex) {
             throw new AssertionError("Weird errors with I/O occured, please verify environment config", ex);
-        }
+		}
 		
 	}
 	
 	
-	public static void main(String[] args) throws ClassNotFoundException { 
-	    Client client = new Client("127.0.0.1", 1337);
-        client.startClient();
+	public static void main(String[] args) throws ClassNotFoundException, ConnectException { 
+		Client client = new Client(args[0], 1337);
+		//Client client = new Client("127.0.0.1", 1337);
+		try{
+			client.startClient();	
+		} catch (ConnectException e){
+			throw new ConnectException();
+		}
+        
          
     }
 
