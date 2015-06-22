@@ -5,15 +5,43 @@ import it.polimi.ingsw.cg_45.Situazione;
 import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.Umano;
+import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
 
 import java.io.IOException;
 
+/**Represent the turn ending action performing, for a player that wants to finish his turn.
+ * This class permit to verify if the player can perform the action and in case perform it, communicating
+ * a response to the client player and also the other ones.
+ * 
+ * @author Lorenzo Raimondi
+ *
+ */
 public class TerminaTurno extends Azione {
+	
+	private ServerInterface server;
 
-	public TerminaTurno(Giocatore gioc, StatoDiGioco model) {
-		super(gioc, model);
+	/**Create the turn ending action to perform, associating it to a game and to a player and
+	 * storing the server in which the game resides. 
+	 * 
+	 * @param giocatore the player that performs the action.
+	 * @param model the game in which the player is playing.
+	 * @param server the server in which the game resides.
+	 */
+	public TerminaTurno(Giocatore giocatore, StatoDiGioco model, ServerInterface server) {
+		super(giocatore, model);
+		this.server=server;
 	}
 
+	/**Execute the action, after checking its possibility.
+	 * <p> 
+	 * Depending on the player turn status, this method perform the turn ending action;
+	 * the current player's turn and game statuses are updated, the next player is searched in the
+	 * players list and his statuses are modified to permit him to play. Also, if the current player is human,
+	 * all the cards' effects that modifies player's attributes are reset. Moreover, if the game reaches the
+	 * 40th turn, the game ending action is performed.
+	 * 
+	 * @return the {@code RispostaController} object with the response for the client.
+	 */
 	@Override
 	public RispostaController esegui() throws IOException {
 		if(this.controlli()){
@@ -57,7 +85,7 @@ public class TerminaTurno extends Azione {
 				model.incrementTurno();
 				System.out.println("turno dopo: "+model.getTurno());
 				if(model.getTurno()==40)
-					return new TerminaPartita(giocatore,model).esegui();
+					return new TerminaPartita(giocatore,model,server).esegui();
 				return new RispostaController("Turno terminato", giocatore.getNome()+" ha passato. "
 						+ "Turno "+model.getTurno()+". "
 						+ "Tocca a "+giocatoreProssimo.getNome()+".");

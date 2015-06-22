@@ -10,19 +10,42 @@ import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.TipoCartaOggetto;
 import it.polimi.ingsw.cg_45.Umano;
 
+/**Represent the Teleport Card action performing, for a human player that uses a Teleport card during his turn.
+ * This class permit to verify if the player can perform the action and in case perform it, communicating
+ * a response to the client player and also the other ones.
+ * 
+ * @author Lorenzo Raimondi
+ *
+ */
 public class UsaTeletrasporto extends Azione {
 	
 	private Mappa mappa; 
 	private MazzoOggetti mazzo;
 	private CartaOggetto carta;
 	
-	public UsaTeletrasporto(Giocatore g, StatoDiGioco p){
-		super(g,p);
-		this.mappa=p.getMappa();
-		this.mazzo=(MazzoOggetti) p.getMazzoOggetti();
+	/**Create the Teleport Card action to perform, associating it to a game and to a player, storing
+	 * the Items discarded cards' deck, in which the used card will be added, and the map in 
+	 * which the player is.
+	 * 
+	 * @param giocatore the player that performs the action.
+	 * @param partita the game in which the player is playing.
+	 */
+	public UsaTeletrasporto(Giocatore giocatore, StatoDiGioco partita){
+		super(giocatore,partita);
+		this.mappa=partita.getMappa();
+		this.mazzo=(MazzoOggetti) partita.getMazzoOggetti();
 		
 	}
 	
+	/**Execute the action, after checking its possibility.
+	 * <p> 
+	 * Depending on the player turn status, this method perform Teleport Card action;
+	 * the effect gets activated, moving the human player to the map's Human Sector, 
+	 * and the Teleport card is taken from the player's hand and put in the Item discarded cards' deck.
+	 *  
+	 * 
+	 * @return the {@code RispostaController} object with the response for the players.
+	 */
 	@Override
 	public RispostaController esegui(){
 		if(controlli()){

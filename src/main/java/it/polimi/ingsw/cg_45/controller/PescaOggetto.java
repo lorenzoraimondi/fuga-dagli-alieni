@@ -6,14 +6,34 @@ import it.polimi.ingsw.cg_45.Situazione;
 import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 
-
+/**Represent the Item Card Draw action performing, for a player that drawn a Dangerous Sector card with the Item icon.
+ * This class permit to verify if the player can perform the action and in case perform it, communicating
+ * a response to the client player and also the other ones.
+ * 
+ * @author Andrea Turconi
+ *
+ */
 public class PescaOggetto extends Azione{
 
 	private CartaOggetto carta;
-	public PescaOggetto(Giocatore gioc, StatoDiGioco model){
-		super(gioc,model);
+	
+	/**Create the Item Card Draw action to perform, associating it to a game and to a player. 
+	 * 
+	 * @param giocatore the player that performs the action.
+	 * @param model the game in which the player is playing.
+	 */
+	public PescaOggetto(Giocatore giocatore, StatoDiGioco model){
+		super(giocatore,model);
 	}
 	
+	/**Execute the action, after checking its possibility.
+	 * <p> 
+	 * Depending on the player turn status, this method perform the Item Card draw; the card taken by the Item cards' deck
+	 * is assigned to the player and player's turn status updated. If there is no card to draw the player's status is updated
+	 * and the game can normally continue. 
+	 * 
+	 * @return the {@code RispostaController} object with the response for the client.
+	 */
 	@Override
 	public RispostaController esegui(){
 		if(this.controlli()){
@@ -38,7 +58,7 @@ public class PescaOggetto extends Azione{
 					return true;
 		return false;
 	}
-	//Per test
+	/*/Per test
 
 		public Giocatore getGiocatore() {
 			return giocatore;
@@ -47,5 +67,5 @@ public class PescaOggetto extends Azione{
 			return model;
 		}
 		
-		//
+		/*/
 }

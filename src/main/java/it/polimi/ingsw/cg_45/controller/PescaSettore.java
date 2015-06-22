@@ -7,15 +7,37 @@ import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.TipoCartaSettore;
 
+/**Represent the Dangerous Sector card draw action performing, for a player that has moved into a Dangerous Sector.
+ * This class permit to verify if the player can perform the action and in case perform it, communicating
+ * a response to the client player and also the other ones.
+ * 
+ * @author Andrea Turconi
+ *
+ */
+
 public class PescaSettore extends Azione{
 
 	private CartaSettore carta;
 	
-	public PescaSettore(Giocatore gioc,StatoDiGioco model){
-		super(gioc,model);
+	/**Create the Dangerous Sector card draw action to perform, associating it to a game and to a player
+	 * and storing player's game turn status. 
+	 * 
+	 * @param giocatore the player that performs the action.
+	 * @param model the game in which the player is playing.
+	 */
+	public PescaSettore(Giocatore giocatore,StatoDiGioco model){
+		super(giocatore,model);
 		this.stato=giocatore.getStato();
 	}
 	
+	/**Execute the Dangerous Sector card draw action, after checking its possibility.
+	 * <p> 
+	 * Depending on the player turn status, this method perform the Dangerous Sector card draw; 
+	 * the card taken by the Dangerous Sector cards' deck is drawn and depending on its type 
+	 * player's turn status gets updated, and response created. 
+	 * 
+	 * @return the {@code RispostaController} object with the response for the client and the other players.
+	 */
 	@Override
 	public RispostaController esegui(){
 		if(this.controlli()){
@@ -52,7 +74,7 @@ public class PescaSettore extends Azione{
 		return false;
 		
 	}
-	//Per test
+	/*Per test
 
 			public Giocatore getGiocatore() {
 				return giocatore;
@@ -61,5 +83,5 @@ public class PescaSettore extends Azione{
 				return model;
 			}
 			
-			//
+		*/
 }

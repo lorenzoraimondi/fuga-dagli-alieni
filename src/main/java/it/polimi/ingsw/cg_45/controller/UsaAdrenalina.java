@@ -9,16 +9,38 @@ import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.TipoCartaOggetto;
 import it.polimi.ingsw.cg_45.Umano;
 
+/**Represent the Adrenaline Card action performing, for a human player that uses an Adrenaline card during his turn.
+ * This class permit to verify if the player can perform the action and in case perform it, communicating
+ * a response to the client player and also the other ones.
+ * 
+ * @author Lorenzo Raimondi
+ *
+ */
 public class UsaAdrenalina extends Azione {
 
 	private CartaOggetto carta;
 	private MazzoOggetti mazzo;
 	
-	public UsaAdrenalina(Giocatore g, StatoDiGioco p){
-		super(g,p);
-		this.mazzo=(MazzoOggetti) p.getMazzoOggetti();
+	/**Create the Adrenaline Card action to perform, associating it to a game and to a player, and storing
+	 * the Items discarded cards' deck, in which the used card will be added. 
+	 * 
+	 * @param giocatore the player that performs the action.
+	 * @param partita the game in which the player is playing.
+	 */
+	public UsaAdrenalina(Giocatore giocatore, StatoDiGioco partita){
+		super(giocatore,partita);
+		this.mazzo=(MazzoOggetti) partita.getMazzoOggetti();
 	}
 	
+	/**Execute the action, after checking its possibility.
+	 * <p> 
+	 * Depending on the player turn status, this method perform Adrenaline Card action;
+	 * the effect gets activated, increasing player's {@code portata}, and the Adrenaline card 
+	 * is taken from the player's hand and put in the Item discarded cards' deck.
+	 *  
+	 * 
+	 * @return the {@code RispostaController} object with the response for the players.
+	 */
 	@Override
 	public RispostaController esegui(){
 		
@@ -43,7 +65,7 @@ public class UsaAdrenalina extends Azione {
 		}
 		return false;
 	}
-	//Per test
+	/*Per test
 
 			public Giocatore getGiocatore() {
 				return giocatore;
@@ -52,5 +74,5 @@ public class UsaAdrenalina extends Azione {
 				return model;
 			}
 			
-			//
+			*/
 }

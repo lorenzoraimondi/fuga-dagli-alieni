@@ -13,17 +13,39 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**Represent the Spotlight Card action performing, for a human player that uses this card during his turn.
+ * This class permit to verify if the player can perform the action and in case perform it, communicating
+ * a response to the client player and also the other ones.
+ * 
+ * @author Lorenzo Raimondi
+ *
+ */
 public class UsaLuci extends Azione {
 	
 	private Settore settore;
 	private Settore[] vicini;
 	
-	
-	public UsaLuci(StatoDiGioco p,Giocatore g,Settore s){
-		super(g,p);
-		this.settore=s;		
+	/**Create the Spotlight Card action to perform, associating it to a game and to a player,
+	 * and storing the sector in which the player wants to light up.
+	 * 
+	 * @param giocatore the player that performs the action.
+	 * @param partita the game in which the player is playing.
+	 * @param settore the sector wished to be lit up.
+	 */
+	public UsaLuci(StatoDiGioco partita,Giocatore giocatore,Settore settore){
+		super(giocatore,partita);
+		this.settore=settore;		
 	}
 	
+	/**Execute the action, after checking its possibility.
+	 * <p> 
+	 * Depending on the player turn status, this method perform Spotlight Card action;
+	 * starting from the target sector, all the adjacent sectors are searched for players.
+	 * In case there are players in this seven sectors, their position will be revealed
+	 * to everyone.  
+	 * 
+	 * @return the {@code RispostaController} object with the response for the players.
+	 */
 	@Override
 	public RispostaController esegui(){
 		if(controlli()){
@@ -65,7 +87,7 @@ public class UsaLuci extends Azione {
 		}
 		return false;
 	}
-	//Per test
+	/*Per test
 	public Settore getSettore() {
 		return settore;
 	}
@@ -76,5 +98,5 @@ public class UsaLuci extends Azione {
 		return model;
 	}
 	
-	//
+	*/
 }
