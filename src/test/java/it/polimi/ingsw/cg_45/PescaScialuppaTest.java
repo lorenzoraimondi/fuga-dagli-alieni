@@ -3,6 +3,7 @@ package it.polimi.ingsw.cg_45;
 import static org.junit.Assert.*;
 import it.polimi.ingsw.cg_45.controller.Azione;
 import it.polimi.ingsw.cg_45.controller.PescaScialuppa;
+import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class PescaScialuppaTest {
 		List<Giocatore> giocatori=new ArrayList<Giocatore>();
 		Mappa mappa=new Galvani();
 		Azione azione;
+		ServerInterface server=null;
 			
 		Umano g1=new Umano(1,0,mappa,"g1");
 		Umano g2=new Umano(2,1,mappa,"g2");
@@ -37,26 +39,26 @@ public class PescaScialuppaTest {
 		model.getMazzoScialuppe().getMazzoIniziale().removeAll(model.getMazzoScialuppe().getMazzoIniziale());
 		model.getMazzoScialuppe().getMazzoIniziale().add(carta);
 		
-		azione=new PescaScialuppa(g1,model);
+		azione=new PescaScialuppa(g1,model,server);
 		azione.esegui();
 		assertEquals(Stato.EFFETTOCONCLUSO,g1.getStato());
 		assertEquals(Situazione.VINTO,g1.getSituazione());
 			
 		carta=new CartaScialuppa(TipoCartaScialuppa.ROSSA);
 		model.getMazzoScialuppe().getMazzoIniziale().add(carta);
-		azione=new PescaScialuppa(g2,model);
+		azione=new PescaScialuppa(g2,model,server);
 		azione.esegui();
 		assertEquals(Stato.CARTASCIALUPPA,g2.getStato());
 		
 		model.getMazzoScialuppe().getMazzoIniziale().add(carta);
 		g2.setStato(Stato.INIZIO);
-		azione=new PescaScialuppa(g2,model);
+		azione=new PescaScialuppa(g2,model,server);
 		assertEquals(Stato.INIZIO,g2.getStato());
 		
 		g2.setStato(Stato.SCIALUPPA);
 		g2.setSituazione(Situazione.ATTIVO);
 		model.getMazzoScialuppe().getMazzoIniziale().add(carta);
-		azione=new PescaScialuppa(g2,model);
+		azione=new PescaScialuppa(g2,model,server);
 		azione.esegui();
 		assertEquals(Stato.SCIALUPPA,g2.getStato());
 

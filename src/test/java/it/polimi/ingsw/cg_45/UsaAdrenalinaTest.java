@@ -2,6 +2,10 @@ package it.polimi.ingsw.cg_45;
 
 
 import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import it.polimi.ingsw.cg_45.controller.UsaAdrenalina;
 
 import org.junit.Test;
@@ -12,10 +16,10 @@ public class UsaAdrenalinaTest {
 	@Test
 	public void test(){
 
-
-		Umano p1=new Umano(1,1);
-		Umano p2=new Umano(2,2);
-		Umano p3=new Umano(3,3);
+		Mappa mappa=new Fermi();
+		Umano p1=new Umano(1,1,mappa,"p1");
+		Umano p2=new Umano(2,2,mappa,"p2");
+		Umano p3=new Umano(3,3,mappa,"p3");
 		p1.setCarta(new CartaOggetto(TipoCartaOggetto.ADRENALINA));
 		p1.setCarta(new CartaOggetto(TipoCartaOggetto.ADRENALINA));
 		p1.setCarta(new CartaOggetto(TipoCartaOggetto.ATTACCO));
@@ -27,11 +31,13 @@ public class UsaAdrenalinaTest {
 		p2.setStato(Stato.INIZIO);
 		
 		p3.setStato(Stato.TURNOTERMINATO);
+		List<Giocatore> giocatori=new ArrayList<Giocatore>();
+		giocatori.add(p1);
+		giocatori.add(p2);
+		giocatori.add(p3);
 		
-		StatoDiGioco partita=new StatoDiGioco();
-		partita.getGiocatori().add(p1);
-		partita.getGiocatori().add(p2);
-		partita.getGiocatori().add(p3);
+		StatoDiGioco partita=new StatoDiGioco((ArrayList<Giocatore>) giocatori,mappa);
+		
 		
 		UsaAdrenalina a=new UsaAdrenalina(p1,partita);
 		a.esegui();

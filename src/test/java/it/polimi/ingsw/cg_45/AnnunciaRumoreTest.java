@@ -5,6 +5,8 @@ import it.polimi.ingsw.cg_45.controller.AnnunciaRumore;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -15,10 +17,10 @@ public class AnnunciaRumoreTest {
 		Fermi mappa=new Fermi();
 		
 		Umano u3=new Umano(3,3,mappa,"Addio");
-		
-		
+		List<Giocatore> giocatori=new ArrayList<Giocatore>();
+		giocatori.add(u3);
 		Settore s=mappa.getMappa().get(new Coordinate("L07"));
-		StatoDiGioco partita=new StatoDiGioco();
+		StatoDiGioco partita=new StatoDiGioco((ArrayList<Giocatore>) giocatori,mappa);
 		
 		
 		

@@ -13,8 +13,8 @@ public class MazzoScialuppeTest {
 		
 		assertTrue(carta instanceof CartaScialuppa);
 		
-		mazzo.getMazzoScarti().addAll(mazzo.getMazzoIniziale());
-		mazzo.getMazzoIniziale().removeAll(mazzo.getMazzoIniziale());
+		//mazzo.getMazzoScarti().addAll(mazzo.getMazzoIniziale());
+		//mazzo.getMazzoIniziale().removeAll(mazzo.getMazzoIniziale());
 		
 		CartaScialuppa carta2=(CartaScialuppa) mazzo.pescaCarta();
 		assertTrue(carta2 instanceof CartaScialuppa);
