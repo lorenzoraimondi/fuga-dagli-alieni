@@ -20,6 +20,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.TimerTask;
 
+/**Represents the game creator item for RMI-connected players. When the requirements
+ * for a new game are fulfilled this class is used for creating the game and for warn
+ * player's for game start.
+ * 
+ * @author Lorenzo
+ *
+ */
 public class CreaPartitaRMI extends TimerTask {
 	
 	private List<Accettazione> giocatori=new ArrayList<Accettazione>();
@@ -29,12 +36,28 @@ public class CreaPartitaRMI extends TimerTask {
 	private SalaRMI sala;
 	private Mappa map;
 	
+	/**This constructor stores into the class all the useful attributes to create a new game. 
+	 * 
+	 * @param giocatori the player's list to be added in the game.
+	 * @param server the RMI server that will host the game.
+	 * @param mappa the name of the chosen map.
+	 * @param sala the room in which the players are subscribed to the waiting list.
+	 */
 	public CreaPartitaRMI(List<Accettazione> giocatori, ServerInterface server, String mappa,SalaRMI sala){
 		this.mappa=mappa;
 		this.giocatori=giocatori;
 		this.server=server;
 		this.sala=sala;
 	}
+	
+	/**This method properly creates the game with the attributes given to the class.
+	 * It's first created a new map, and then the players, basing on their position in the subsription list,
+	 * are created, humans or aliens. Their list is then shuffled and then is created the {@code StatoDiGioco}
+	 * class which contains them and the game map. The association between communication interface and client's id
+	 * gets stored into the server, and the waiting room restored. Players are warned for the game start,
+	 * so they can begin to play.
+	 * 
+	 */
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub

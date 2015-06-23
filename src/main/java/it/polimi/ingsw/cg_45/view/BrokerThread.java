@@ -5,62 +5,42 @@ import it.polimi.ingsw.cg_45.netCommons.Messaggio;
 import java.io.IOException;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
-//progetto
+
+/**A thread that represent the specified connection between server and client, on the server side. In this way
+ * the server will be able to contact a client not only when directly asked from him,
+ * granting a one-way communication system starting from the server.
+ * 
+ * @author Lorenzo Raimondi
+ *
+ */
 public class BrokerThread extends Thread {
-	/*La nuova socket, verso uno specifico subscriber, creata dalla ServerSocket*/
-	//private Socket socket;
+
 	private Communicator client;
-	/* Abbiamo soltanto bisogno di recapitare il messaggio. 
-	 * Il pattern non prevede la ricezione, da parte del publisher, di alcun messaggio (
-	 * se non la richiesta di sottoscrizione che tuttavia viene catturata dalla accept nella ServerSocket)*/
-	//private PrintWriter out;
-	//private ObjectOutputStream out;
-	//private BufferedReader in;
 	
-	//Una coda che contiene i messaggi, specifici per ciascun subscriber
-	//private ConcurrentLinkedQueue<String> buffer;
+
 	private Queue<Messaggio> buffer;
 	
-	/**
-	 * Quando un client esterno si sottoscrive viene creato un nuovo thread
-	 * che rappresenterá la specifica connessione allo specifico client/subscriber. 
-	 * @param socket La nuova socket, verso uno specifico subscriber, creata dalla ServerSocket
+	/**Creates a new thread that will be used to contact the specified client in way to
+	 * send him messages.
+	 * 
+	 * @param client the client's {@code Communicator} used to reach the client.
 	 */
-	/*public BrokerThread(Socket socket) {
-		this.socket = socket;
-		//buffer = new ConcurrentLinkedQueue<String>();
-		buffer = new ConcurrentLinkedQueue<Messaggio>();
-		
-		try{
-			this.out = new ObjectOutputStream(socket.getOutputStream());
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-	}*/
-	
 	public BrokerThread(Communicator client) {
 		this.client = client;
-		//buffer = new ConcurrentLinkedQueue<String>();
 		buffer = new ConcurrentLinkedQueue<Messaggio>();
-		
-		/*try{
-			this.out = new ObjectOutputStream(socket.getOutputStream());
-		}catch(IOException e){
-			e.printStackTrace();
-		}*/
 	}
 	
-	/**
-	 * Questo metodo contiene, di fatto, la logica della comunicazione dal publisher
-	 * allo specifico subscriber. 
+	/**This method permit a communication system between server and client.
+	 * it continuously accept new incoming messages, that will directly be sent
+	 * to the client. For avoid a needless CPU load the thread waits over a 
+	 * message queue, and will be wakened up when there is a new incoming
+	 * message to send.  
+	 *  
 	 */
 	@Override
 	public void run() {
 		while(true){
-			//Si prova ad estrarre un messaggio dalla coda...
-			//String msg = buffer.poll();
 			Messaggio msg = buffer.poll();
-			//... se c'é lo si invia
 			if(msg != null)
 				try {
 					send(msg);
@@ -69,12 +49,7 @@ public class BrokerThread extends Thread {
 					e1.printStackTrace();
 				}
 			else{
-				//... altrimenti, per evitare cicli inutili di CPU
-				//che possono portare ad utilizzarla inutilmente...
 				try {
-					//... si aspetta fin quando la coda non conterrá qualcosa
-					//é necessario sincronizzarsi sull'oggetto monitorato, in modo tale
-					//che il thread corrente possieda il monitor sull'oggetto.
 					synchronized(buffer){
 						buffer.wait();
 					}
@@ -85,24 +60,19 @@ public class BrokerThread extends Thread {
 		}
 	}
 	
-	/**
-	 * Questo metodo inserisce un messaggio nella coda
-	 * e notifica ai thread in attesa (in questo caso a se stesso) la presenza di un messaggio.
-	 * @param msg Il messaggio da inserire.
+	
+	/**Add a new message to the send queue and notifies the thread of its presence.
+	 * 
+	 * @param msg the message to send to the client.
 	 */
 	public void dispatchMessage(Messaggio msg){
 		buffer.add(msg);
-		//é necessario sincronizzarsi sull'oggetto monitorato
 		synchronized(buffer){
 			buffer.notify();
 		}
 	}
 	
-	/**
-	 * Questo metodo invia il messaggio al subscriber tramite la rete
-	 * @param msg
-	 * @throws IOException 
-	 */
+	
 	/*private void send(String msg){
 		out.println(msg);
 		out.flush();
@@ -113,6 +83,11 @@ public class BrokerThread extends Thread {
 		//out.flush();
 	}*/
 	
+	/**This method sends the message from the server to the client.
+	 * 
+	 * @param msg the message to be sent to client.
+	 * @throws IOException 
+	 */
 	private void send(Messaggio msg) throws IOException{
 		client.send(msg);
 		//out.flush();

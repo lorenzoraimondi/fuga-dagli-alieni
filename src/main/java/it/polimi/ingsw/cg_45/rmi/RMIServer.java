@@ -34,13 +34,13 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 	
 	private int counter=1;
 	private int port;
-		
-	public Map<Integer, Thread> timers=new HashMap<Integer, Thread>();
 	
+	public Map<Integer, Thread> timers=new HashMap<Integer, Thread>();
+		
 	public Map<Integer, Thread> getRmiTimers(){
-		return timers;
-	}
-
+			return timers;
+		}
+	
 	public void startTimer(StatoDiGioco partita,Giocatore giocatore){
 		RmiTimer timerTurno=new RmiTimer(partita,giocatore,this);
 		//timers.put(giocatore.getID(), timerTurno);
@@ -48,7 +48,8 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 		timers.put(giocatore.getID(), t);
 		t.start();
 	}
-	
+		
+		
 	/**Create a game RMI server on the specified port.
 	 * 
 	 * @param port the port on which open the server.
@@ -82,12 +83,13 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 		return Partite;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String svolgiAzione(int id, String comando) throws IOException {
 		TraduttoreComandi tc=new TraduttoreComandi(new PacchettoAzione(id,comando),this);
-		/*System.out.println("Posizione iniziale: "+partitaProva.getGiocatore(id).getPosizione());
-		System.out.println("Stato iniziale: "+partitaProva.getGiocatore(id).getStato());
-		System.out.println("Situa iniziale: "+partitaProva.getGiocatore(id).getSituazione());*/
+		
 		try{
 			Azione a=(Azione)tc.traduci();
 			RispostaController risp;
@@ -105,13 +107,6 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 			return "Comando non valido";
 			
 		}
-		
-		
-		
-		
-		/*System.out.println("Posizione finale: "+partitaProva.getGiocatore(id).getPosizione());
-		System.out.println("Stato finale: "+partitaProva.getGiocatore(id).getStato());
-		System.out.println("Situa finale: "+partitaProva.getGiocatore(id).getSituazione());*/
 		
 	}
 
@@ -132,7 +127,7 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 			}
 		}else{
 			/////
-			System.out.println("Non c'è iscritto nessuno...");
+			System.out.println("Non c'Ã¨ iscritto nessuno...");
 			//System.out.println("Devo pubblicare all'id "+id);
 			//sala.publish(msg, id);
 		
@@ -141,11 +136,11 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 	}
 	
 	/**
-	 * 
+	 * {@inheritDoc}
 	 */
 	@Override
 	public synchronized String registrazione(RMIClientInterface client, String command) throws RemoteException {
-		System.out.println("Mi è arrivata un iscrizione per "+command);
+		System.out.println("Mi Ã¨ arrivata un iscrizione per "+command);
 		
 		int posizione=sala.aggiungiGiocatore(command.split("-")[0], client, this, command.split("-")[1]);
 		
@@ -158,7 +153,7 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 			razza=new String("alieno");
 		} else razza=new String("umano");
 	
-		sala.publish(new Messaggio("Si è iscritto un nuovo giocatore"), id);
+		sala.publish(new Messaggio("Si Ã¨ iscritto un nuovo giocatore"), id);
 		return new String(id+"-Iscritto alla sala di attesa.-"+razza);
 	}
 	

@@ -18,7 +18,7 @@ public class ServerStarter {
 		} while (!(scelta.equals("rmi") || scelta.equals("socket")));
 		//} while (!("rmi".equals(scelta) || "socket".equals("scelta")));
 		
-		if("rmi".equals(scelta)){
+		if(scelta.equals("rmi")){
 			RMIServerMain.main(null);
 		} else Server.main(null);
 		 

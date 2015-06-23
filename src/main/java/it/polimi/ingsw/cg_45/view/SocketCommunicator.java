@@ -6,50 +6,54 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
+/**This class implements the methods that permit a socket communication between client and server,
+ * granting the possibility to send and receive {@code Object} on the net.
+ * 
+ * @author Lorenzo
+ *
+ */
 public class SocketCommunicator implements Communicator {
 
 	Socket socket;
-	Scanner in;
+	//Scanner in;
 	ObjectInputStream inO;
-	//PrintWriter out;
 	ObjectOutputStream out;
 	
+	/**Create a new communicator for send and receive {@code Object} from the {@code Socket}
+	 * that represents the corresponding client.
+	 * 
+	 * @param s the {@code Socket} to be connected to for {@code Object} send/receive.
+	 * @throws IOException
+	 */
 	public SocketCommunicator(Socket s) throws IOException {
 		
 		this.socket=s;
-		
-            //in = new Scanner(socket.getInputStream());
 		out=new ObjectOutputStream(socket.getOutputStream());
-		
-        	inO = new ObjectInputStream(socket.getInputStream());
-        
-        	
-            //out = new PrintWriter(socket.getOutputStream());
-            
-            
-        
+		inO = new ObjectInputStream(socket.getInputStream());
+    
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void send(Object msg) throws IOException{
-		out.writeObject(msg);
-		//out.flush(); 
+		out.writeObject(msg); 
 	}
 
-	//aggiunto per inviare numeri
-	/*public void sendInt(int num){
-		out.print(num);
-		out.flush();
-	}*/
-    @Override
+    /*@Override
 	public String receive(){
 		return in.nextLine();
-	}
+	}*/
 
-    //aggiunto per ricevere numeri
+    /*aggiunto per ricevere numeri
     public int receiveInt(){
     	return in.nextInt();
-    }
+    }*/
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
 	public void close() {
         try {
@@ -61,26 +65,27 @@ public class SocketCommunicator implements Communicator {
         }
     }
 
-	@Override
+	/*@Override
 	public void send(String msg) {
 		// TODO Auto-generated method stub
-		
-	}
+	
+	}*/
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
 	public Object receiveO() throws IOException, ClassNotFoundException{
 		return inO.readObject();
 		
 	}
 	
-	//Per prova pub sub, perchè nel registraClient ho il client e non il socket
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Socket getSocket(){
 		return socket;
-	}
-	
-
-	
-	
+	}	
 	
 }

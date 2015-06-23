@@ -4,40 +4,29 @@ import it.polimi.ingsw.cg_45.netCommons.Messaggio;
 
 import java.io.IOException;
 
+/**A thread that represent the specified connection between server and client, on the client side. In this way
+ * the client will be able to receive information from the server not only when directly requesting him something,
+ * but everytime the server has the need to do this.
+ * 
+ * @author Lorenzo Raimondi
+ *
+ */
 public class SubThread extends Thread {
-	//private Socket subSocket;
+	
 	private Communicator sc;
-	//private ObjectInputStream in;
-	//private final String address = "localhost";
-	//private final int port = 1337;
-
-	
-	/**
-	 * Non appena il thread viene instanziato, ci si sottoscrive al broker.
-	 * NB. Non Ã© stato implementato il concetto di topic; questo viene lasciato come 
-	 * compito agli studenti.
-	 * @param id L'id assegnato manualmente al thread.
+		
+	/**Creates a new thread that will be used to retrieve messages from the server. 
+	 * 
+	 * @param sc the {@code communicator} that provides communications functions between server and clients.
 	 */
-	/*public SubThread(Socket subSocket){
-		
-		this.subSocket=subSocket;
-		
-		try {
-			in = new ObjectInputStream(subSocket.getInputStream());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}*/
-	
 	public SubThread(Communicator sc){
-		
-		this.sc=sc;
-		
+		this.sc=sc;	
 	}
 	
-	/**
-	 * Dopo aver effettuato la sottoscrizione, questo metodo
-	 * rimane in ascolto di messaggi da parte del publisher.
+	/**This methods continuously accept for received messages and print them.
+	 * For avoid a needless CPU load the thread sleeps for 5 ms every receive cycle and then
+	 * turns accepting new messages. 
+	 * 
 	 */
 	@Override
 	public void run() {
@@ -50,7 +39,6 @@ public class SubThread extends Thread {
 			}
 			try {
 				//aspetta 5ms per ridurre i cicli di clock
-				//soprattutto nel caso in cui il publisher vada in crash
 				Thread.sleep(5);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -59,12 +47,10 @@ public class SubThread extends Thread {
 		}
 	}
 	
-	/**
-	 * Metodo che riceve eventuali messaggi di testo dal publisher
-	 * @return
+	/**This method receive new messages sent by the server and print them on the client.
+	 * 
 	 * @throws ClassNotFoundException 
 	 */
-	
 	private void receive() throws ClassNotFoundException {
 		Messaggio msg = null;
 		try {
@@ -78,20 +64,6 @@ public class SubThread extends Thread {
 		
 	}
 	
-	/*
-	private Messaggio receive() throws ClassNotFoundException {
-		Messaggio msg = null;
-		try {
-			msg = (Messaggio)in.readObject();
-			if(msg!=null){
-				System.out.println("Received message: "+msg.getMessaggio());
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return msg;
-	}*/
-	
 	/**
 	 * Effettua la sottoscrizione al solo ed unico topic, 
 	 * i.e., crea la socket verso il subscriber e apre uno stream in ingresso per ricevere
@@ -99,20 +71,7 @@ public class SubThread extends Thread {
 	 * NB. Non Ã© necessario creare uno stream in uscita, in ottemperanza al pattern.
 	 * @throws UnknownHostException
 	 * @throws IOException
-	 */
-	
-	/*private void close(){
-		try{
-			sc.close();
-		}catch(Exception e){
-		} finally {
-			//in=null;
-			sc=null;
-			//System.gc();
-		}
-		
-	}*/
-	
+	 */	
 	/*private void close(){
 		try{
 			subSocket.close();
@@ -120,7 +79,7 @@ public class SubThread extends Thread {
 		} finally {
 			in=null;
 			subSocket=null;
-			System.gc();
+			//System.gc();
 		}
 		
 	}*/

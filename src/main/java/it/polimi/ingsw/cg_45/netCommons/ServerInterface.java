@@ -42,6 +42,6 @@ public interface ServerInterface {
 	public void publish(Messaggio messaggio, int id) throws RemoteException;
 
 	public void startTimer(StatoDiGioco partita, Giocatore giocatore);
-
-
+	
+	
 }

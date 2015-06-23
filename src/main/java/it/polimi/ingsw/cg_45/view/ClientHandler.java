@@ -9,18 +9,38 @@ import it.polimi.ingsw.cg_45.netCommons.TraduttoreComandi;
 
 import java.io.IOException;
 
-//
+/**Represent the server component that manage client's connections
+ * and requests in way to satisfy them and give response to the client about
+ * his request result. 
+ * 
+ * @author Lorenzo Raimondi
+ *
+ */
 public class ClientHandler extends Thread {
 	
 	private Communicator client;
 	private Server server;
 	private int idClient;
 	
+	/**Create a handler capable to fulfill clients requests, linked to the proper client and the 
+	 * server that hosts the games.
+	 * 
+	 * @param server the socket {@code Server} that provide services to the client.
+	 * @param client the client's {@code Communicator} used to communicate with him. 
+	 */
 	public ClientHandler(Server server, Communicator client) {
 		this.server = server;
 		this.client = client;
 	}
 	
+	/**This method starts the handler action: after the receive of a {@code PacchettoAzione} from the
+	 * client, the handler obtains the id of the client and the desired command to execute,
+	 * than translate this two informations into a concrete action throughout the {@code TraduttoreComandi}
+	 * class, execute the brand new action and warn all the players about game updates and changes.
+	 * If is the first connection to the server, the handler permit the subscription of the client and
+	 * add him to the desired waiting list.
+	 * 
+	 */
 	@Override
 	public void run(){
 	

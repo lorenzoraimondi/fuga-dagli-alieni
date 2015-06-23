@@ -34,7 +34,7 @@ public class Server implements ServerInterface {
 	private int port;
 	private ServerSocket serverSocket;
 	
-	//Questa lista non è inutile???
+	//Questa lista non Ã¨ inutile???
 	private List<BrokerThread> subscribers = new ArrayList<BrokerThread>();
 	
 	/**Create a game socket server on the specified port.
@@ -136,7 +136,7 @@ public class Server implements ServerInterface {
 			}
 		}else{
 			/////
-			System.out.println("Non c'è iscritto nessuno...");
+			System.out.println("Non c'Ã¨ iscritto nessuno...");
 			//System.out.println("Devo pubblicare all'id "+id);
 			//sala.publish(msg, id);
 			

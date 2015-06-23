@@ -93,8 +93,8 @@ public class TraduttoreComandi {
 			case "attacco":
 				return new ScartaCarta(giocatore,partita,TipoCartaOggetto.ATTACCO);
 			default:
-				return "Comando errato";
 			}
+			return "Comando errato";
 		case "silenzio":
 			giocatore=partita.getGiocatore(id);
 			return new AnnunciaRumore(partita,giocatore,null);
@@ -109,32 +109,11 @@ public class TraduttoreComandi {
 		case "termino":
 			giocatore=partita.getGiocatore(id);
 			return new TerminaTurno(giocatore,partita,server);
-		/*case "fermi":
-			nome=s.nextToken();
-			//server.getSala().aggiungiGiocatore(scelta, client, server);
-			//return new RegistraClient(server,client);
-			return new RegistraClient(server,client,primaParola,nome);
-		case "galilei":
-			nome=s.nextToken();
-			//server.getSala().aggiungiGiocatore(scelta, client, server);
-			//return new RegistraClient(server,client);
-			return new RegistraClient(server,client,primaParola,nome);
-		case "galvani":
-			nome=s.nextToken();
-			//server.getSala().aggiungiGiocatore(scelta, client, server);
-			//return new RegistraClient(server,client);
-			return new RegistraClient(server,client,primaParola,nome);*/
 		case "attacco":
 			s.nextToken();
 			terzaParola=s.nextToken();
 			coordinate=new Coordinate(terzaParola);
 			settore=partita.getMappa().getMappa().get(coordinate);
-			System.out.println("stampo in traduttore 5 righe ");
-			System.out.println(coordinate);
-			System.out.println(partita);
-			System.out.println(partita.getMappa());
-			System.out.println(partita.getMappa().getMappa());
-			System.out.println(partita.getMappa().getMappa().get(coordinate));
 			giocatore=partita.getGiocatore(id);
 			return new Attacco(partita,giocatore,settore,server);
 		case "movimento":
@@ -155,8 +134,9 @@ public class TraduttoreComandi {
 				return new PescaScialuppa(giocatore,partita,server);
 			case "settore":
 				return new PescaSettore(giocatore,partita);
-			default: return "Comando errato";
+			default: 
 			}
+			return "Comando errato";
 		case "usa":
 			giocatore=partita.getGiocatore(id);
 			s.nextToken();
@@ -180,15 +160,14 @@ public class TraduttoreComandi {
 				return new UsaSedativi(giocatore,partita);
 			case "teletrasporto":
 				return new UsaTeletrasporto(giocatore,partita);
-			default:
-				return "Comando errato";
+			default:	
 			}
+			return "Comando errato";
 		case "exit":
 				giocatore=partita.getGiocatore(id);
 				return new Disconnessione(giocatore,partita,server);
 		default:
 			return "Comando errato";
-			
 		}
 		} catch(NoSuchElementException n){
 			return "Comando errato";
