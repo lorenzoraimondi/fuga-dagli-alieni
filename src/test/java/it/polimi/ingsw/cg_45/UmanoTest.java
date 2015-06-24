@@ -21,9 +21,9 @@ public class UmanoTest {
 		assertEquals(u1.getSituazione(),Situazione.ATTIVO);
 		assertEquals(u1.getStato(),Stato.INIZIO);
 		
-		assertEquals(fermi.mappa.get(new Coordinate("L10")), u1.getPosizione());
-		assertEquals(galvani.mappa.get(new Coordinate("L08")), u2.getPosizione());
-		assertEquals(galilei.mappa.get(new Coordinate("L08")), u3.getPosizione());
+		assertEquals(fermi.settori.get(new Coordinate("L10")), u1.getPosizione());
+		assertEquals(galvani.settori.get(new Coordinate("L08")), u2.getPosizione());
+		assertEquals(galilei.settori.get(new Coordinate("L08")), u3.getPosizione());
 		
 		
 

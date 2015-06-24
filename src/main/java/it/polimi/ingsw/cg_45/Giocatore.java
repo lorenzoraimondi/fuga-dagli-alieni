@@ -20,20 +20,7 @@ public abstract class Giocatore {
 	
 			protected Situazione situazione;
 			protected List<CartaOggetto> carte = new ArrayList<CartaOggetto>();
-			
-			/**Create a new player by setting his {@code id} and {@code ordine}. This method
-			 * also assigns player's state attributes, setting him active and at the beginning of his turn.
-			 * 
-			 * @param id the unique value that identifies a client for the server
-			 * @param ordine the player's sequence number into the game turn
-			 */
-			/*public Giocatore(int id, int ordine){
-				this.id=id;
-				this.ordine=ordine;
-				this.situazione=Situazione.ATTIVO;
-				this.stato=Stato.INIZIO;
-			}*/
-			
+						
 			/**Create a new player by setting his {@code id} and {@code ordine}. This method
 			 * also assigns player's state attributes, setting him active and at the beginning of his turn.
 			 * 
@@ -43,8 +30,6 @@ public abstract class Giocatore {
 			 * @param nome the nickname chosen by the player
 			 */
 			public Giocatore(int id, int ordine, String nome){
-			//Mappa inutile?
-			//public Giocatore(int id, int ordine, Mappa mappa, String nome){
 				this.id=id;
 				this.ordine=ordine;
 				this.nome=nome;
@@ -94,8 +79,6 @@ public abstract class Giocatore {
 				return carte;
 			}
 			
-			//Metodo utile quando bisogna spostare una carta dalla mano del giocatore
-			//al mazzo scarti
 			/**
 			 * 
 			 * @param tipo the type of the seeked card
@@ -109,9 +92,7 @@ public abstract class Giocatore {
 				}
 				return null;
 			}
-			
-			//Utile per aggiungere direttamente la carta senza dover far get
-			
+						
 			/**
 			 * 
 			 * @param c the card to add in the player's hand.
@@ -183,14 +164,5 @@ public abstract class Giocatore {
 			public void setPosizione(Settore posizione) {
 				this.posizione = posizione;
 			}
-			
-			/*public CartaOggetto[] getOggetti() {
-				return oggetti;
-			}
-			
-			public void setOggetti(CartaOggetto[] oggetti) {
-				this.oggetti = oggetti;
-			}*/
-			
 			
 }

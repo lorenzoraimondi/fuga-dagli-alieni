@@ -25,9 +25,9 @@ public class AlienoTest {
 		//((Alieno) a).setHaUcciso(true);
 		//assertTrue(((Alieno) a).isHaUcciso());
 		
-		assertEquals(mappa.mappa.get(new Coordinate("L09")), a.getPosizione());
-		assertEquals(galvani.mappa.get(new Coordinate("L06")), a2.getPosizione());
-		assertEquals(galilei.mappa.get(new Coordinate("L06")), a3.getPosizione());
+		assertEquals(mappa.settori.get(new Coordinate("L09")), a.getPosizione());
+		assertEquals(galvani.settori.get(new Coordinate("L06")), a2.getPosizione());
+		assertEquals(galilei.settori.get(new Coordinate("L06")), a3.getPosizione());
 		assertEquals(a.getSituazione(),Situazione.ATTIVO);
 		assertEquals(a.getStato(),Stato.INIZIO);
 		

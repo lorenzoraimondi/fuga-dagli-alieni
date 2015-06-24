@@ -5,7 +5,6 @@ package it.polimi.ingsw.cg_45;
  * @author Andrea Turconi
  *
  */
-//public class CartaOggetto extends Carta{
 public class CartaOggetto implements Carta{
 	
 	private TipoCartaOggetto tipo;

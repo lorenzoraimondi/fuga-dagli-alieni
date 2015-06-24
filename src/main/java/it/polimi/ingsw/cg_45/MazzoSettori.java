@@ -12,27 +12,27 @@ public class MazzoSettori extends Mazzo {
 		/**
 		 * @param Number of <i>Noise in your Sector</i> cards contained in the initial deck. 
 		 */
-		private final static int NUMRUMORESETTORE=10;
+		private static final int NUMRUMORESETTORE=10;
 		
 		/**
 		 * @param Number of <i>Noise in any Sector</i> cards contained in the initial deck. 
 		 */
-		private final static int NUMRUMOREQUALUNQUE=10;
+		private static final int NUMRUMOREQUALUNQUE=10;
 		
 		/**
 		 * @param Number of <i>Silence</i> cards contained in the initial deck. 
 		 */
-		private final static int NUMSILENZIO=5;
+		private static final int NUMSILENZIO=5;
 		
 		/**
 		 * @param Number of <i>Noise in your Sector</i> cards with Item contained in the initial deck. 
 		 */
-		private final static int NUMSETTOGG=4;
+		private static final int NUMSETTOGG=4;
 		
 		/**
 		 * @param Number of <i>Noise in any Sector</i> cards with Item contained in the initial deck. 
 		 */
-		private final static int NUMQUALOGG=4;
+		private static final int NUMQUALOGG=4;
 		
 		/**Create a Dangerous Sector Card's deck adding the correct number of cards for each card type and shuffles it.
 		 * 
@@ -80,7 +80,6 @@ public class MazzoSettori extends Mazzo {
 			if(mazzoIniziale.isEmpty() && (!mazzoScarti.isEmpty())){
 					this.getMazzoIniziale().addAll(this.getMazzoScarti());
 					Collections.shuffle(this.getMazzoIniziale());
-					//this.getMazzoScarti().removeAll(this.getMazzoScarti());
 					this.getMazzoScarti().clear();
 			}
 			Carta pescata;

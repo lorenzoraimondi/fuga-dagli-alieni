@@ -28,8 +28,8 @@ public class Coordinate {
 	 * @param coord the sector's sign
 	 */
 	public Coordinate(String coord){
-		coord=coord.toUpperCase();
-		char[] nome= coord.toCharArray();
+		String coords=coord.toUpperCase();
+		char[] nome= coords.toCharArray();
 		x=nome[0]-65;
 		int somma=(nome[1]-48)*10+(nome[2]-48);
 	    y=somma+((-x/2)-1);
@@ -87,6 +87,9 @@ public class Coordinate {
 		return result;
 	}
 
+	/**Verifies if two {@code Coordinate} refers to the same map sector.
+	 * 
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

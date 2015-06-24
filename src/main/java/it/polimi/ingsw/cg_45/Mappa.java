@@ -1,5 +1,6 @@
 package it.polimi.ingsw.cg_45;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,18 +16,18 @@ public abstract class Mappa {
 	/**
 	 * @param the number of rows in every map. 
 	 */
-	protected final static int ROW=14;
+	protected static final int ROW=14;
 	
 	/**
 	 * @param the number of columns in every map.
 	 */
-	protected final static int COL=23;
+	protected static final int COL=23;
 	
 	/**Represents the proper map, linking every sector to its coordinates. So it's possible to get a sector of the
 	 * map simply passing its coordinates.
 	 * 
 	 */
-	protected Map<Coordinate, Settore> mappa = new HashMap<Coordinate, Settore>();
+	protected Map<Coordinate, Settore> settori = new HashMap<Coordinate, Settore>();
 		
 	/**Create a new game map, generating all its sectors and the links between them.
 	 * <p>
@@ -46,22 +47,22 @@ public abstract class Mappa {
 				
 				switch(m[i][j]){
 				case 0:
-					mappa.put(new Coordinate(j,y,z), new SettoreVuoto(j,y,z));
+					settori.put(new Coordinate(j,y,z), new SettoreVuoto(j,y,z));
 					break;
 				case 1:
-					mappa.put(new Coordinate(j,y,z), new SettoreSicuro(j,y,z));
+					settori.put(new Coordinate(j,y,z), new SettoreSicuro(j,y,z));
 					break;
 				case 2:
-					mappa.put(new Coordinate(j,y,z), new SettorePericoloso(j,y,z));
+					settori.put(new Coordinate(j,y,z), new SettorePericoloso(j,y,z));
 					break;
 				case 3:
-					mappa.put(new Coordinate(j,y,z), new SettoreScialuppa(j,y,z));
+					settori.put(new Coordinate(j,y,z), new SettoreScialuppa(j,y,z));
 					break;
 				case 4:
-					mappa.put(new Coordinate(j,y,z), new SettorePartenzaAlieni(j,y,z));
+					settori.put(new Coordinate(j,y,z), new SettorePartenzaAlieni(j,y,z));
 					break;
 				case 5:
-					mappa.put(new Coordinate(j,y,z), new SettorePartenzaUmani(j,y,z));
+					settori.put(new Coordinate(j,y,z), new SettorePartenzaUmani(j,y,z));
 					break;
 				case 9:
 					break;
@@ -74,7 +75,7 @@ public abstract class Mappa {
 					
 		}
 			
-		for(Settore s : mappa.values()){
+		for(Settore s : settori.values()){
 			calcolaAdiacenze(s);
 		}
 	}
@@ -87,12 +88,13 @@ public abstract class Mappa {
 		Scanner s;
 	    String[] r=new String[righe];
 		
-		try{
-			s = new Scanner(new File(percorso));
-		} catch (Exception FileNotFoundException){
 		
+		try {
+			s = new Scanner(new File(percorso));
+		} catch (FileNotFoundException e) {
 			s=null;
 		}
+	
 	   	    
 	    while(s.hasNextLine()){
 	    	r[p]=s.nextLine();
@@ -102,7 +104,6 @@ public abstract class Mappa {
 	    
 	    	for(int k=0;k<righe;k++){
 	    		for(int j=0;j<colonne;j++){
-	    	            //m[k][j]=(int)(r[k].charAt(j)-48);
 	    	            m[k][j]=(r[k].charAt(j)-48);
 	    	    }
 	    	}
@@ -122,12 +123,12 @@ public abstract class Mappa {
 		
 		Settore[] a=new Settore[6];
 		
-		a[0]=mappa.get(new Coordinate(x+1,y-1,z));
-		a[1]=mappa.get(new Coordinate(x-1,y+1,z));
-		a[2]=mappa.get(new Coordinate(x,y+1,z-1)); 
-		a[3]=mappa.get(new Coordinate(x,y-1,z+1));
-		a[4]=mappa.get(new Coordinate(x-1,y,z+1));
-		a[5]=mappa.get(new Coordinate(x+1,y,z-1));
+		a[0]=settori.get(new Coordinate(x+1,y-1,z));
+		a[1]=settori.get(new Coordinate(x-1,y+1,z));
+		a[2]=settori.get(new Coordinate(x,y+1,z-1)); 
+		a[3]=settori.get(new Coordinate(x,y-1,z+1));
+		a[4]=settori.get(new Coordinate(x-1,y,z+1));
+		a[5]=settori.get(new Coordinate(x+1,y,z-1));
 		
 		settore.setVicini(a[0], a[1], a[2], a[3], a[4], a[5]);
 	}
@@ -166,8 +167,10 @@ public abstract class Mappa {
 			m.put(i, new ArrayList<Settore>());
 			for(Settore s : m.get(i-1)){
 				for(int j=0;j<6;j++){
-					if(s.getVicini()[j]==null || s.getVicini()[j] instanceof SettorePartenzaAlieni || s.getVicini()[j] instanceof SettorePartenzaUmani){
-					} else if(!(s.getVicini()[j] instanceof SettoreVuoto)){
+					//if(s.getVicini()[j]==null || s.getVicini()[j] instanceof SettorePartenzaAlieni || s.getVicini()[j] instanceof SettorePartenzaUmani){
+					//} else 
+						//if(!(s.getVicini()[j] instanceof SettoreVuoto)){
+						if(!(s.getVicini()[j] instanceof SettoreVuoto) && s.getVicini()[j]!=null){
 						if(s.getVicini()[j]==arrivo){
 							return true;
 						} else {
@@ -185,7 +188,7 @@ public abstract class Mappa {
 	 * @return the data structure which contains sectors and links between them. 
 	 */
 	public Map<Coordinate, Settore> getMappa() {
-		return mappa;
+		return settori;
 	}
 	
 	

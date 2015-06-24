@@ -5,11 +5,9 @@ package it.polimi.ingsw.cg_45;
  * @author Andrea Turconi
  *
  */
-//public class CartaScialuppa extends Carta{
 public class CartaScialuppa implements Carta{
 	
 		private TipoCartaScialuppa tipo;
-		//private boolean isBlocked;
 		
 		/**Create a new Escape Hatch card of the specified type.
 		 * 
@@ -17,17 +15,7 @@ public class CartaScialuppa implements Carta{
 		 */
 		public CartaScialuppa(TipoCartaScialuppa tipo){
 			this.tipo=tipo;
-			//this.isBlocked=false;
 		}
-		/*
-		public boolean isBlocked() {
-			return isBlocked;
-		}
-		
-		public void blocca(){
-			this.isBlocked=true;
-		}
-		*/
 		
 		/**
 		 * 

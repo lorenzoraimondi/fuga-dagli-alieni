@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg_45;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
@@ -16,6 +17,10 @@ public class CartaOggettoTest {
 		assertNotEquals(c.getTipo(),TipoCartaOggetto.LUCI);
 		assertNotEquals(c.getTipo(),TipoCartaOggetto.SEDATIVI);
 		assertNotEquals(c.getTipo(),TipoCartaOggetto.TELETRASPORTO);
+		CartaOggetto d=null;
+		String s="prova";
+		assertFalse(c.equals(d));
+		assertFalse(c.equals(s));
 		
 	}
 

@@ -22,20 +22,12 @@ public abstract class Mazzo {
 		 */
 		List<Carta> mazzoScarti=new ArrayList<Carta>();
 		
-		/* INUTILE
-		public Mazzo(){
-			
-		}*/
-		
-		
-		//LO USIAMO?
 		/**
 		 * @return the number of cards of a new deck, from which no one has drawn yet. 
 		 */
 		public int getNumCarte() {
 			return numCarte;
 		}
-		//
 
 		/**
 		 * 

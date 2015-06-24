@@ -12,12 +12,12 @@ public class MazzoScialuppe extends Mazzo {
 		/**
 		 * @param Number of cards contained in the deck.
 		 */
-		private final static int NUM=6;
+		private static final int NUM=6;
 		/**
 		 * @param Number of Green Escape Cards contained in the deck. The green cards permit the player to escape
 		 * the spaceship. 
 		 */
-		private final static int NUMVERDE=3;
+		private static final int NUMVERDE=3;
 		
 		/**Create an Escape Hatch Card Deck adding the correct number of cards for each colors and shuffles it.
 		 * 
@@ -34,9 +34,7 @@ public class MazzoScialuppe extends Mazzo {
 			Collections.shuffle(mazzoIniziale);
 		}
 
-		
-		//LO USIAMO?
-		/**
+		/**Prints all the decks, with the cards that compose it at the moment.
 		 * 
 		 */
 		@Override
@@ -54,13 +52,6 @@ public class MazzoScialuppe extends Mazzo {
 		 */
 		@Override
 		public Carta pescaCarta() {
-			/*if(mazzoIniziale.isEmpty()){
-				if(!mazzoScarti.isEmpty()){
-					this.getMazzoIniziale().addAll(this.getMazzoScarti());
-					Collections.shuffle(this.getMazzoIniziale());
-					this.getMazzoScarti().removeAll(this.getMazzoScarti());
-				}
-			}*/
 			Carta pescata;
 			pescata=this.mazzoIniziale.remove(0);
 			this.mazzoScarti.add(pescata);

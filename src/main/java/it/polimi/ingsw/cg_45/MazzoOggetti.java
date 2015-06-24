@@ -11,27 +11,27 @@ public class MazzoOggetti extends Mazzo {
 	/**
 	 * @param Number of Attack Cards contained in the initial deck.
 	 */
-	private final static int NUMATTACCO=2;
+	private static final int NUMATTACCO=2;
 	/**
 	 * @param Number of Teleport Cards contained in the initial deck.
 	 */
-	private final static int NUMTELETRASPORTO=2;
+	private static final int NUMTELETRASPORTO=2;
 	/**
 	 * @param Number of Sedatives Cards contained in the initial deck.
 	 */
-	private final static int NUMSEDATIVI=3;
+	private static final int NUMSEDATIVI=3;
 	/**
 	 * @param Number of Spotlight Cards contained in the initial deck.
 	 */
-	private final static int NUMLUCI=2;
+	private static final int NUMLUCI=2;
 	/**
 	 * @param Number of Defense Cards contained in the initial deck.
 	 */
-	private final static int NUMDIFESA=1;
+	private static final int NUMDIFESA=1;
 	/**
 	 * @param Number of Adrenaline Cards contained in the deck.
 	 */
-	private final static int NUMADRENALINA=2;
+	private static final int NUMADRENALINA=2;
 	
 	/**Create an Item Card's deck adding the correct number of cards for each card type and shuffles it.
 	 * 

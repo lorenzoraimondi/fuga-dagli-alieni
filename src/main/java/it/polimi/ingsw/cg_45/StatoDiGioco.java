@@ -10,9 +10,6 @@ import java.util.List;
  */
 public class StatoDiGioco{
 	
-	//Lo usiamo?
-	//private int currentPlayer;
-	
 	/**
 	 * @param the number of the actual turn. After 39 turns the game ends automatically.
 	 */
@@ -42,17 +39,7 @@ public class StatoDiGioco{
 	 * @param the Escape Hatch Card's deck from which the players can draw cards.
 	 */
 	private MazzoScialuppe mazzoscialuppe;
-	
-	/*
-	public StatoDiGioco(){
-		this.currentPlayer=1;
-		this.turno=1;
-		mazzosettori=new MazzoSettori();
-		mazzooggetti=new MazzoOggetti();
-		mazzoscialuppe=new MazzoScialuppe();
-		giocatori=new ArrayList<Giocatore>();
-	}*/
-	
+		
 	/**Create a new game in the specified map and with the specified players and create the needed decks. 
 	 * 
 	 * @param giocatori the list of players that wish to play a game.
@@ -67,18 +54,6 @@ public class StatoDiGioco{
 		mazzooggetti=new MazzoOggetti();
 		mazzoscialuppe=new MazzoScialuppe();
 	}
-
-	/*LO USIAMO?
-	public int getCurrentPlayer() {
-		return currentPlayer;
-	}
-
-	public void incrementCurrentPlayer(){
-		if(currentPlayer<giocatori.size())
-			this.currentPlayer++;
-		else
-			this.currentPlayer=1;
-	}*/
 
 	/**
 	 * 
@@ -101,7 +76,7 @@ public class StatoDiGioco{
 	public List<Giocatore> getGiocatori() {
 		return giocatori;
 	}
-	//Per termina partita
+	
 	/**
 	 * 
 	 * @return the number of the Human players that are still playing.  
@@ -114,9 +89,7 @@ public class StatoDiGioco{
 			}
 		}
 		return count;
-	}	
-	//
-	
+	}		
 
 	/**
 	 * 

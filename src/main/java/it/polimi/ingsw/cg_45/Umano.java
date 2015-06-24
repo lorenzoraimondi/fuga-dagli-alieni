@@ -9,13 +9,6 @@ public class Umano extends Giocatore {
 
 	private boolean sedato;
 	
-	/*public Umano(int id, int ordine){
-		super(id,ordine);
-		this.setPortata(1);
-		//this.setPosizioneIniziale(mappa);
-		this.setSituazione(Situazione.ATTIVO);
-	}*/
-	
 	/**Create a new human player setting his position in the Human Sector relative to the game map 
 	 * in which the player will play. The method also sets the human's{@code portata} to {@value 1} 
 	 * and the {@value boolean} attribute {@code sedato} to {@value false}
@@ -29,10 +22,7 @@ public class Umano extends Giocatore {
 		super(id, ordine, nome);
 		this.portata=1;
 		this.setPosizioneIniziale(mappa);
-		//aggiunto, prima non c'era
 		this.sedato=false;
-		//this.setStato(Stato.INIZIO);
-		//this.setSituazione(Situazione.ATTIVO);
 	}
 
 	/**Sets the human in the Human Sector according to the map in which he plays.
@@ -42,11 +32,11 @@ public class Umano extends Giocatore {
 	@Override
 	public void setPosizioneIniziale(Mappa mappa) {
 		if(mappa instanceof Fermi)
-			posizione=mappa.mappa.get(new Coordinate("L10"));
+			posizione=mappa.settori.get(new Coordinate("L10"));
 		else if(mappa instanceof Galilei)
-			posizione=mappa.mappa.get(new Coordinate("L08"));
+			posizione=mappa.settori.get(new Coordinate("L08"));
 		else if(mappa instanceof Galvani)
-			posizione=mappa.mappa.get(new Coordinate("L08"));
+			posizione=mappa.settori.get(new Coordinate("L08"));
 	}
 
 	/**Tells if the human player is under sedatives or not.
