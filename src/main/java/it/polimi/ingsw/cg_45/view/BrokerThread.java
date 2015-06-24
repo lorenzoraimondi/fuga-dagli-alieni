@@ -45,8 +45,7 @@ public class BrokerThread extends Thread {
 				try {
 					send(msg);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					System.out.println("Il giocatore a cui inviare il messaggio è disconnesso");
 				}
 			else{
 				try {
@@ -54,7 +53,7 @@ public class BrokerThread extends Thread {
 						buffer.wait();
 					}
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					
 				}
 			}
 		}
@@ -104,6 +103,11 @@ public class BrokerThread extends Thread {
 		}
 	}*/
 	
+	/**Closes the communicator in way to block communication between the server
+	 * and the communicator relative client. After this method call
+	 * the client attribute is {@code null}.
+	 * 
+	 */
 	public void close(){
 		
 			client.close();

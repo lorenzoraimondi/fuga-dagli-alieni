@@ -35,8 +35,13 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 	private int counter=1;
 	private int port;
 	
-	public Map<Integer, Thread> timers=new HashMap<Integer, Thread>();
+	private Map<Integer, Thread> timers=new HashMap<Integer, Thread>();
 		
+	/**The map stores a {@code Timer} for each game. It's possible to get the correct
+	 * timer by a game player's id.
+	 *   
+	 * @return the {@code Map} of the associations between {@code id} and {@code Timer} 
+	 */
 	public Map<Integer, Thread> getRmiTimers(){
 			return timers;
 		}
@@ -96,14 +101,17 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 			synchronized(this.getPartite()){
 				risp=a.esegui();
 			}
-			this.publish(new Messaggio(risp.getMessaggioBroadcast()),id);
+			try{
+				this.publish(new Messaggio(risp.getMessaggioBroadcast()),id);	
+			} catch (RemoteException e){
+			}
+			
 			if(a instanceof TerminaTurno){
 				this.getRmiTimers().get(id).interrupt();
 				this.startTimer(this.getPartite().get(id), this.getPartite().get(id).getGiocatori().get(0));
 			}
 			return risp.getMessaggioClient();
 		} catch (ClassCastException e) {
-			//e.printStackTrace();
 			return "Comando non valido";
 			
 		}
@@ -126,11 +134,7 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 				
 			}
 		}else{
-			/////
-			System.out.println("Non c'Ã¨ iscritto nessuno...");
-			//System.out.println("Devo pubblicare all'id "+id);
-			//sala.publish(msg, id);
-		
+			System.out.println("Non c'è iscritto nessuno...");
 		}
 		
 	}
@@ -140,7 +144,7 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 	 */
 	@Override
 	public synchronized String registrazione(RMIClientInterface client, String command) throws RemoteException {
-		System.out.println("Mi Ã¨ arrivata un iscrizione per "+command);
+		System.out.println("Mi è arrivata un iscrizione per "+command);
 		
 		int posizione=sala.aggiungiGiocatore(command.split("-")[0], client, this, command.split("-")[1]);
 		
@@ -153,7 +157,7 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 			razza=new String("alieno");
 		} else razza=new String("umano");
 	
-		sala.publish(new Messaggio("Si Ã¨ iscritto un nuovo giocatore"), id);
+		sala.publish(new Messaggio("Si è iscritto un nuovo giocatore"), id);
 		return new String(id+"-Iscritto alla sala di attesa.-"+razza);
 	}
 	

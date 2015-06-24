@@ -71,7 +71,7 @@ public class UsaTeletrasporto extends Azione {
 		} 
 		return false;
 	}
-	//Per test
+	/*Per test
 	
 			public Giocatore getGiocatore() {
 				return giocatore;
@@ -80,5 +80,5 @@ public class UsaTeletrasporto extends Azione {
 				return model;
 			}
 			
-			//
+			*/
 }

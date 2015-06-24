@@ -24,7 +24,6 @@ public class Server implements ServerInterface {
 	
 	private Map<Integer, StatoDiGioco> Partite = new HashMap<Integer, StatoDiGioco>();
 	private Map<Integer, ArrayList<BrokerThread>> idSub = new HashMap<Integer, ArrayList<BrokerThread>>();
-	//private List<StatoDiGioco> partite = new ArrayList<StatoDiGioco>();
 		
 	private SalaSocket sala=new SalaSocket();
 	
@@ -34,8 +33,8 @@ public class Server implements ServerInterface {
 	private int port;
 	private ServerSocket serverSocket;
 	
-	//Questa lista non Ã¨ inutile???
-	private List<BrokerThread> subscribers = new ArrayList<BrokerThread>();
+	/*//Questa lista non Ã¨ inutile???
+	private List<BrokerThread> subscribers = new ArrayList<BrokerThread>();*/
 	
 	/**Create a game socket server on the specified port.
 	 * 
@@ -72,7 +71,6 @@ public class Server implements ServerInterface {
             }
             serverSocket.close();
         } catch (IOException ex) {
-            throw new AssertionError("Weird errors with I/O occured, please verify environment config", ex);
         }
 	}
 		
@@ -82,17 +80,10 @@ public class Server implements ServerInterface {
 	}
 
 	
-	//INUTILE?
+	/*INUTILE?
 	public List<BrokerThread> getSubscribers() {
 		return subscribers;
-	}
-
-	 
-	
-	
-	
-	
-	
+	}*/
 
 	/**{@inheritDoc}
 	 * 
@@ -135,19 +126,29 @@ public class Server implements ServerInterface {
 				sub.dispatchMessage(msg);
 			}
 		}else{
-			/////
-			System.out.println("Non c'Ã¨ iscritto nessuno...");
-			//System.out.println("Devo pubblicare all'id "+id);
-			//sala.publish(msg, id);
+			
+			System.out.println("Non c'è iscritto nessuno...");
+			
 			
 		}
 	
 	}
 
+	/**The map stores a {@code Timer} for each game. It's possible to get the correct
+	 * timer by a game player's id.
+	 *   
+	 * @return the {@code Map} of the associations between {@code id} and {@code Timer} 
+	 */
 	public Map<Integer, Thread> getTimers(){
 		return timers;
 	}
 	
+	/**This method create, saves and starts a {@code Timer}. It's created by the relative game and player
+	 * attributes and in this way stored in the timers map. Then it's started to count turn duration.
+	 * 
+	 * @param partita the {@code StatoDiGioco} game relative to the timer.
+	 * @param giocatore the current player of which count turn time.
+	 */
 	public void startTimer(StatoDiGioco partita, Giocatore giocatore){
 		Timer timerTurno=new Timer(partita,giocatore,this);
 		Thread t=new Thread(timerTurno);
@@ -162,10 +163,6 @@ public class Server implements ServerInterface {
 	public SalaSocket getSala() {
 		return sala;
 	}
-	
-	/*public void addPartita(StatoDiGioco partita){
-		partite.add(partita);
-	}*/
 
 	/**
 	 * 

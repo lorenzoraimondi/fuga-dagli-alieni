@@ -9,8 +9,9 @@ import java.util.List;
  *
  */
 public class StatoDiGioco{
+	
 	//Lo usiamo?
-	private int currentPlayer;
+	//private int currentPlayer;
 	
 	/**
 	 * @param the number of the actual turn. After 39 turns the game ends automatically.
@@ -58,7 +59,7 @@ public class StatoDiGioco{
 	 * @param mappa the map in which the players will play.
 	 */
 	public StatoDiGioco(List<Giocatore> giocatori,Mappa mappa){
-		this.currentPlayer=1;
+		//this.currentPlayer=1;
 		this.turno=1;
 		this.giocatori=giocatori;
 		this.mappa=mappa;
@@ -67,7 +68,7 @@ public class StatoDiGioco{
 		mazzoscialuppe=new MazzoScialuppe();
 	}
 
-	//LO USIAMO?
+	/*LO USIAMO?
 	public int getCurrentPlayer() {
 		return currentPlayer;
 	}
@@ -77,7 +78,7 @@ public class StatoDiGioco{
 			this.currentPlayer++;
 		else
 			this.currentPlayer=1;
-	}
+	}*/
 
 	/**
 	 * 

@@ -1,6 +1,10 @@
 package it.polimi.ingsw.cg_45;
 
-
+/**Represents the instance of a human player extending {@code Giocatore} class.
+ * 
+ * @author Lorenzo Raimondi
+ *
+ */
 public class Umano extends Giocatore {
 
 	private boolean sedato;

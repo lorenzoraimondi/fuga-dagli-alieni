@@ -59,7 +59,6 @@ public class SocketCommunicator implements Communicator {
         try {
             socket.close();
         } catch (IOException e) {
-            System.out.println("something wrong happened while closing a socket, who cares? I don't need it anymore: " + e.getMessage());
         } finally {
         		socket = null;
         }
@@ -73,11 +72,16 @@ public class SocketCommunicator implements Communicator {
 
     /**
      * {@inheritDoc}
+     * @throws IOException 
      */
 	@Override
-	public Object receiveO() throws IOException, ClassNotFoundException{
-		return inO.readObject();
+	public Object receiveO() throws IOException {
 		
+		try {
+			return inO.readObject();
+		} catch (ClassNotFoundException e) {
+			return null;
+		}
 	}
 	
 	/**

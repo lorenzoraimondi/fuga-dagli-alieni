@@ -7,7 +7,7 @@ package it.polimi.ingsw.cg_45;
  */
 public class Alieno extends Giocatore {
 		
-		private boolean haUcciso;
+		//private boolean haUcciso;
 		
 		/*public Alieno(int id, int ordine){
 			super(id,ordine);
@@ -29,13 +29,14 @@ public class Alieno extends Giocatore {
 		public Alieno(int id, int ordine, Mappa mappa, String nome) {
 			super(id, ordine, nome);
 			this.portata=2;
-			this.haUcciso=false;
+			//this.haUcciso=false;
 			this.setPosizioneIniziale(mappa);
 		}
-		//LO USIAMO?!?!?!
+		/*LO USIAMO?!?!?!
 		/** 
 		 * @return {@value true } if the alien player has killed at least one human player, {@value false} otherwise
 		 */
+		/*
 		public boolean isHaUcciso() {
 			return haUcciso;
 		}
@@ -43,7 +44,7 @@ public class Alieno extends Giocatore {
 		
 		public void setHaUcciso(boolean ucciso) {
 			this.haUcciso = ucciso;
-		}
+		}*/
 
 		/**Sets the alien in the Alien Sector according to the map in which he plays.
 		 * 

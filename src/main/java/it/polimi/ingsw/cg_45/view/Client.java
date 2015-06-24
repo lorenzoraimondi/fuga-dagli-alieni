@@ -34,23 +34,16 @@ public class Client {
 	}
 	
     //e se fosse protected???
-	public void startClient() throws ClassNotFoundException, ConnectException {
+	//public void startClient() throws ConnectException {
+	protected void startClient() throws ConnectException {
 		try {
-			//pubsub
-			//new SubThread(ID).start();
+			
             String command = "";
-            String nome = "";
+            String nome="";
             Scanner stdin=new Scanner(System.in);
             Socket socket,subSocket;
-            
-            
+            SubThread st;
             SocketCommunicator server,subServer;
-            
-            
-            
-            //subSocket = new Socket(ip, port);
-        	//subServer = new SocketCommunicator(subSocket);
-        	//new SubThread(subSocket).start();
         	
             try{
             	subSocket = new Socket(ip, port);
@@ -59,39 +52,46 @@ public class Client {
             }
             
             System.out.println("Inserire il proprio nome");
-            nome = stdin.nextLine();
-            System.out.println("Scegliere la mappa dove giocare: FERMI || GALILEI || GALVANI");
             
-        	subServer = new SocketCommunicator(subSocket);
             do{
-            	command = stdin.nextLine().toLowerCase();
+            	nome = stdin.nextLine();
+            	if(nome.isEmpty())
+            		System.out.println("Inserire il proprio nome");
+            }while(nome.isEmpty());
+           
+            System.out.println("Scegliere la mappa dove giocare: FERMI || GALILEI || GALVANI");
+               
+        	subServer = new SocketCommunicator(subSocket);
             
-            if(!(command.contentEquals("fermi")||command.contentEquals("galilei")||command.contentEquals("galvani")))
-            	System.out.println("mappa inesistente");
+        	do{
+            	command = stdin.nextLine().toLowerCase();
+            	if(!(command.contentEquals("fermi")||command.contentEquals("galilei")||command.contentEquals("galvani")))
+            		System.out.println("mappa inesistente");
             }while(!(command.contentEquals("fermi")||command.contentEquals("galilei")||command.contentEquals("galvani")));
-            subServer.send(new PacchettoAzione(id,command+" "+nome));
+            
+        	subServer.send(new PacchettoAzione(id,command+" "+nome));
             Messaggio response = (Messaggio)subServer.receiveO();
             this.setId(response.getMessaggio());
+            
             System.out.println(response.getMessaggio().split("-")[1]);
-           
-           
             System.out.println(nome+", sei "+response.getMessaggio().split("-")[2]);
            
-            new SubThread(subServer).start();
+            st=new SubThread(subServer);
+            st.start();
            
             subSocket.shutdownOutput();
-           
-
+            
            do {
             	command = stdin.nextLine().toLowerCase();
                 socket = new Socket(ip, port);
             	server = new SocketCommunicator(socket);
-                //server.send(command);
                 server.send(new PacchettoAzione(id,command));
-                Messaggio rixp = (Messaggio)server.receiveO();
-                if(rixp!=null)
-                	System.out.println(rixp.getMessaggio());
                 
+               
+               	Messaggio messaggioRisposta = (Messaggio)server.receiveO();
+               	if(messaggioRisposta!=null)
+               	System.out.println(messaggioRisposta.getMessaggio());
+             
                 socket.close();
                 server.close();
                 
@@ -100,10 +100,10 @@ public class Client {
 
             
             stdin.close();
-		} catch (ConnectException e){
-		 throw new ConnectException();
+		} catch (ConnectException e){			
+			throw new ConnectException();
 		} catch (IOException ex) {
-            throw new AssertionError("Weird errors with I/O occured, please verify environment config", ex);
+			System.out.println("Qualcosa è andato storto, riprova.");
 		}
 		
 	}
@@ -125,9 +125,9 @@ public class Client {
 		try{
 			client.startClient();	
 		} catch (ConnectException e){
+			System.out.println("Impossibile connettersi al server all'indirizzo e sulla porta desiderati.");
 			throw new ConnectException();
 		}
-        
          
     }
 

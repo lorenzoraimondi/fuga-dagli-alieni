@@ -51,29 +51,27 @@ public class ClientHandler extends Thread {
 			pacchetto=(PacchettoAzione)client.receiveO();
 			idClient=pacchetto.getId();
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				return;
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				return;
 			}       
 				
 			if(idClient==0){
-				RegistraClient registrazione=new RegistraClient(server,client,pacchetto);
 				try {
+					RegistraClient registrazione=new RegistraClient(server,client,pacchetto);
 					risposta=registrazione.esegui();
 					idClient=registrazione.getId();
 					
 					client.send(new Messaggio(risposta.getMessaggioClient()));
-					//
 					client.getSocket().shutdownInput();
-					//
 					server.getSala().publish(new Messaggio(risposta.getMessaggioBroadcast()),idClient);
 					
 					return;
+					
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					return;
+				} catch (NullPointerException e){
+					return;
 				}
 					
 			} else {
@@ -85,35 +83,28 @@ public class ClientHandler extends Thread {
 					risposta=azione.esegui();
 					}
 		        
-					try{
-						client.send(new Messaggio(risposta.getMessaggioClient()));
-						if(risposta.getMessaggioBroadcast()!=null)
-							server.publish(new Messaggio(risposta.getMessaggioBroadcast()),idClient);
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					
+					client.send(new Messaggio(risposta.getMessaggioClient()));
+					if(risposta.getMessaggioBroadcast()!=null)
+					server.publish(new Messaggio(risposta.getMessaggioBroadcast()),idClient);
+					
 					
 					if(azione instanceof TerminaTurno ){
 						synchronized(server){
 							server.getTimers().get(idClient).interrupt();
 							server.startTimer(server.getPartite().get(idClient), server.getPartite().get(idClient).getGiocatori().get(0));	
-						}
-						
+						}	
 					}
-		        	} catch (ClassCastException e){
-		        		try {
-		        			client.send(new Messaggio("Comando non valido"));
-		        			//	e.printStackTrace();
-		        			return;
-		        		} catch (IOException e1) {
-		        			// TODO Auto-generated catch block
-		        			e1.printStackTrace();
-		        		}
+		        } catch (ClassCastException e){
+		        	try {
+		        		client.send(new Messaggio("Comando non valido"));
+		        		return;
 		        	} catch (IOException e1) {
-		        		// TODO Auto-generated catch block
-		        		e1.printStackTrace();
+		        		return;
 		        	}
+		        } catch (IOException e1) {
+		        	return;
+		        }
 			}
             
     }

@@ -20,7 +20,7 @@ public class ClientStarter {
 		
 				
 		String[] ip=new String[1];
-		String scelta;
+		String scelta="";
 		boolean connesso=false;
 		
 		Scanner stdin = new Scanner(System.in);
@@ -34,10 +34,13 @@ public class ClientStarter {
 			connesso=true;
 			do{
 				System.out.println("Quale protocollo di comunicazione utilizzare? [ RMI | SOCKET ]");
+				
 				scelta=stdin.nextLine().toLowerCase();
+					
 			} while (!("rmi".equals(scelta) || "socket".equals(scelta)));
+			//} while (!(scelta.equals("rmi") || scelta.equals("socket")));
 			
-			
+			//if(scelta.equals("rmi")){
 			if("rmi".equals(scelta)){
 				try{
 					RMIClientMain.main(ip);
@@ -45,26 +48,29 @@ public class ClientStarter {
 					System.out.println("Server RMI non disponibile");
 					connesso=false;
 				}
-			} else try {
-				Client.main(ip);
-			} catch (java.net.ConnectException e){
-				System.out.println("Server SOCKET non disponibile");
-				connesso=false;
+			} else {
+				try {
+					Client.main(ip);
+				} catch (java.net.ConnectException e){
+					System.out.println("Server SOCKET non disponibile");
+					connesso=false;
+				}
+			
 			}
 			 
 			
 
 		}
-				stdin.close();
+				
 
-		
+			stdin.close();
 	
 	
 	}
 	
 	
 	
-	public static boolean validIP (String ip) {
+	protected static boolean validIP (String ip) {
 	    try {
 	        if (ip == null || ip.isEmpty()) {
 	            return false;

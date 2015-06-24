@@ -6,5 +6,19 @@ package it.polimi.ingsw.cg_45;
  *
  */
 public enum TipoCartaSettore {
-	RUMORETUOSETTORE,RUMOREQUALUNQUESETTORE,SILENZIO;
+	
+	/**
+	 * <i>Noise in your sector</i> dangerous sector card type 
+	 */
+	RUMORETUOSETTORE,
+	
+	/**
+	 * <i>Noise in any sector</i> dangerous sector card type
+	 */
+	RUMOREQUALUNQUESETTORE,
+	
+	/**
+	 * <i>Silence</i> dangerous sector card type
+	 */
+	SILENZIO;
 }

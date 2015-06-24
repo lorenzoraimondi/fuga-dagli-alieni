@@ -134,7 +134,6 @@ public class CreaPartitaRMI extends TimerTask {
 			server.publish(new Messaggio(messaggio),players.get(0).getID());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		synchronized(server){
 			server.startTimer(partita, partita.getGiocatori().get(0));

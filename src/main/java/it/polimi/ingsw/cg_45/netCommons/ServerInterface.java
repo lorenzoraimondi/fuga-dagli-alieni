@@ -41,6 +41,12 @@ public interface ServerInterface {
 	 */
 	public void publish(Messaggio messaggio, int id) throws RemoteException;
 
+	/**This method create, saves and starts a {@code Timer}. It's created by the relative game and player
+	 * attributes and in this way stored in the timers map. Then it's started to count turn duration.
+	 * 
+	 * @param partita the {@code StatoDiGioco} game relative to the timer.
+	 * @param giocatore the current player of which count turn time.
+	 */
 	public void startTimer(StatoDiGioco partita, Giocatore giocatore);
 	
 	

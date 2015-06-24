@@ -7,6 +7,8 @@ import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.Umano;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
+import it.polimi.ingsw.cg_45.rmi.RMIServer;
+import it.polimi.ingsw.cg_45.view.Server;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -77,6 +79,13 @@ public class TerminaPartita extends Azione{
 
 			for(Giocatore g : model.getGiocatori()){
 				server.getPartite().remove(g.getID());
+				/*if(server instanceof RMIServer){
+					((RMIServer) server).getIdSub().remove(g.getID());
+					((RMIServer) server).getRmiTimers().remove(g.getID());
+				} else if(server instanceof Server){
+					((Server) server).getIdSub().remove(g.getID());
+					((Server) server).getTimers().remove(g.getID());
+				}*/
 			}
 			
 			

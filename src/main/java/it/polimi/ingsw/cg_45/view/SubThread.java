@@ -34,14 +34,12 @@ public class SubThread extends Thread {
 			try {
 				receive();
 			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			try {
-				//aspetta 5ms per ridurre i cicli di clock
 				Thread.sleep(5);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				break;
 			}
 			
 		}
@@ -59,7 +57,10 @@ public class SubThread extends Thread {
 				System.out.println(msg.getMessaggio());
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Sei stato disconnesso");
+			if(sc.getSocket()!=null)
+				sc.close();
+				this.interrupt();				
 		}
 		
 	}
@@ -72,15 +73,10 @@ public class SubThread extends Thread {
 	 * @throws UnknownHostException
 	 * @throws IOException
 	 */	
-	/*private void close(){
+	private void close(){
 		try{
-			subSocket.close();
-		}catch(Exception e){
-		} finally {
-			in=null;
-			subSocket=null;
-			//System.gc();
-		}
-		
-	}*/
+			sc.getSocket().close();
+		} catch(IOException e) {
+		} 		
+	}
 }

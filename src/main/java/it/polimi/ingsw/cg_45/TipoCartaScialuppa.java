@@ -6,5 +6,14 @@ package it.polimi.ingsw.cg_45;
  *
  */
 public enum TipoCartaScialuppa {
-		ROSSA,VERDE;
+		
+	/**
+	 * <i>Red Escape Hatch</i> card type.
+	 */
+	ROSSA,
+	
+	/**
+	 * <i>Green Escape Hatch</i> card type.
+	 */
+	VERDE;
 }

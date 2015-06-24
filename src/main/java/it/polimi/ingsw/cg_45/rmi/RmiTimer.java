@@ -8,10 +8,19 @@ import it.polimi.ingsw.cg_45.controller.Disconnessione;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
 import it.polimi.ingsw.cg_45.controller.TerminaPartita;
 import it.polimi.ingsw.cg_45.netCommons.Messaggio;
+import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**Represents a timer to be used for count how many time take player's turn.
+* In fact if it lasts more than the specified number of seconds (120) the player will be
+* disconnected from the game and the turn passed to the next player.
+* 
+* @author Andrea Turconi
+*
+*/
+//public class RmiTimer extends it.polimi.ingsw.cg_45.netCommons.Timer implements Runnable{
 public class RmiTimer implements Runnable{
 	private StatoDiGioco partita;
 	private Giocatore giocatore;
@@ -20,16 +29,32 @@ public class RmiTimer implements Runnable{
 	private RispostaController risp;
 	private RMIServer server;
 	
+	/**Creates a new timer and links it to the relative player, game, and server in which it's hosted.
+	 * 
+	 * @param partita the {@code StatoDiGioco} game.
+	 * @param giocatore the current player to time track.
+	 * @param server the server that hosts the game.
+	 */
+	/*public RmiTimer(StatoDiGioco partita, Giocatore giocatore,ServerInterface server){
+		super(partita,giocatore,server);
+	}*/
 	public RmiTimer(StatoDiGioco partita, Giocatore giocatore,RMIServer server){
 		this.giocatore=giocatore;
 		this.partita=partita;
 		this.server=server;
-		secondi=30;
+		secondi=50;
 	}
 
+	/**This method starts the timer's action, counting how many seconds does player's turn take.
+	 * The timer can only be stopped if the player pass the turn before 120 seconds. Otherwise
+	 * it will be disconnected from the game and the other players warned of this fact. 
+	 * This action causes the possibility that without the 
+	 * disconnected player the game could be ended, so is needed to verify it and if so
+	 * to stop the game and warn all the players.
+	 * 
+	 */
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		System.out.println("timer RMI partito");
 		try {
 			int size=0;
@@ -64,15 +89,17 @@ public class RmiTimer implements Runnable{
 				for(int i=0;i<ordine.length;i++){
 					System.out.println("id "+ordine[i]);
 				}
+			
+				//int ordine[]=utile();
 				
-				System.out.println(server.getIdSub());
+				System.out.println(((RMIServer) server).getIdSub());
 					for(int i=0;i<ordine.length;i++){
 						if(ordine[i]==giocatore.getID()){
 							System.out.println("posizione da rimuovere: "+(i));
-							server.getIdSub().get(giocatore.getID()).remove(i);
+							((RMIServer) server).getIdSub().get(giocatore.getID()).remove(i);
 						}	
 					}
-				System.out.println(server.getIdSub());
+				System.out.println(((RMIServer) server).getIdSub());
 				try{
 				server.publish(new Messaggio(risp.getMessaggioBroadcast()), giocatore.getID());
 				}catch(RemoteException e){
@@ -83,14 +110,12 @@ public class RmiTimer implements Runnable{
 				Giocatore primo=partita.getGiocatori().get(0);
 				
 				if(partita.numeroUmaniInGioco()>0){
-						server.startTimer(partita, primo);
+					((RMIServer) server).startTimer(partita, primo);
 				}
 				else{
 				try {
-					server.publish(new Messaggio(new TerminaPartita(giocatore, partita, server).esegui().getMessaggioBroadcast()), giocatore.getID());
+					((RMIServer) server).publish(new Messaggio(new TerminaPartita(giocatore, partita, server).esegui().getMessaggioBroadcast()), giocatore.getID());
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 				}
 		} catch (InterruptedException e) {

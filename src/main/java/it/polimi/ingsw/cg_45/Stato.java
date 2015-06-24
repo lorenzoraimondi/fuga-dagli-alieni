@@ -7,7 +7,7 @@ package it.polimi.ingsw.cg_45;
  */
 public enum Stato {
 	/**
-	 * @param if the player is at the beginning of his turn and hasn't performet any action.
+	 * @param if the player is at the beginning of his turn and hasn't performed any action.
 	 */
 	INIZIO,
 	/**
