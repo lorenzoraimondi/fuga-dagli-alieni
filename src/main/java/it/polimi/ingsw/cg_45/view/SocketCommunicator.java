@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Scanner;
 
 /**This class implements the methods that permit a socket communication between client and server,
  * granting the possibility to send and receive {@code Object} on the net.

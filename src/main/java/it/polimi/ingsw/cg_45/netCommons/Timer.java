@@ -1,14 +1,13 @@
 package it.polimi.ingsw.cg_45.netCommons;
 
-import java.io.IOException;
-
 import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.Situazione;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.controller.Azione;
 import it.polimi.ingsw.cg_45.controller.Disconnessione;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
-import it.polimi.ingsw.cg_45.view.Server;
+
+import java.io.IOException;
 
 /**Represents a generic timer to be used for count how many time take player's turn.
  * In fact if it lasts more than the specified number of seconds (120) the player will be

@@ -1,14 +1,16 @@
 package it.polimi.ingsw.cg_45;
 
-import static org.junit.Assert.*;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
 import it.polimi.ingsw.cg_45.controller.TerminaPartita;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
 import it.polimi.ingsw.cg_45.view.Server;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 

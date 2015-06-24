@@ -8,7 +8,6 @@ import it.polimi.ingsw.cg_45.controller.Disconnessione;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
 import it.polimi.ingsw.cg_45.controller.TerminaPartita;
 import it.polimi.ingsw.cg_45.netCommons.Messaggio;
-import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
