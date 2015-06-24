@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg_45.controller;
 
 import it.polimi.ingsw.cg_45.Giocatore;
+import it.polimi.ingsw.cg_45.Situazione;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 
 import java.io.IOException;
@@ -50,6 +51,8 @@ public class Chat extends Azione {
 
 	@Override
 	protected boolean controlli() {
+		if(giocatore.getSituazione()==Situazione.DISCONNESSO)
+			return false;
 		return true;
 	}
 

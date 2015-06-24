@@ -2,6 +2,7 @@ package it.polimi.ingsw.cg_45.controller;
 
 import it.polimi.ingsw.cg_45.Carta;
 import it.polimi.ingsw.cg_45.Giocatore;
+import it.polimi.ingsw.cg_45.Situazione;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.TipoCartaOggetto;
 
@@ -50,7 +51,7 @@ public class ScartaCarta extends Azione{
 
 	@Override
 	protected boolean controlli() {
-		if(giocatore.getCarte().size()>=4){
+		if(giocatore.getCarte().size()>=4 && giocatore.getCarta(tipoCarta)!=null && giocatore.getSituazione()==Situazione.ATTIVO){
 				return true;
 		}
 		return false;

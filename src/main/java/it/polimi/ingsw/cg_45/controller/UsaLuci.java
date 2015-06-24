@@ -2,7 +2,9 @@ package it.polimi.ingsw.cg_45.controller;
 
 import it.polimi.ingsw.cg_45.CartaOggetto;
 import it.polimi.ingsw.cg_45.Giocatore;
+import it.polimi.ingsw.cg_45.MazzoOggetti;
 import it.polimi.ingsw.cg_45.Settore;
+import it.polimi.ingsw.cg_45.SettoreVuoto;
 import it.polimi.ingsw.cg_45.Situazione;
 import it.polimi.ingsw.cg_45.Stato;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
@@ -24,6 +26,8 @@ public class UsaLuci extends Azione {
 	
 	private Settore settore;
 	private Settore[] vicini;
+	private MazzoOggetti mazzo;
+	private CartaOggetto carta;
 	
 	/**Create the Spotlight Card action to perform, associating it to a game and to a player,
 	 * and storing the sector in which the player wants to light up.
@@ -34,7 +38,8 @@ public class UsaLuci extends Azione {
 	 */
 	public UsaLuci(StatoDiGioco partita,Giocatore giocatore,Settore settore){
 		super(giocatore,partita);
-		this.settore=settore;		
+		this.settore=settore;	
+		this.mazzo=(MazzoOggetti) partita.getMazzoOggetti();
 	}
 	
 	/**Execute the action, after checking its possibility.
@@ -49,7 +54,9 @@ public class UsaLuci extends Azione {
 	@Override
 	public RispostaController esegui(){
 		if(controlli()){
-			
+			carta=giocatore.getCarta(TipoCartaOggetto.LUCI);
+			giocatore.getCarte().remove(carta);
+			mazzo.getMazzoScarti().add(carta);
 			List<String> risposte=new ArrayList<String>();
 			vicini=model.getMappa().getMappa().get(settore.getCoordinate()).getVicini();
 			List<Settore> viciniList=new ArrayList<Settore>(Arrays.asList(vicini));
@@ -58,7 +65,7 @@ public class UsaLuci extends Azione {
 			for(Giocatore g :  model.getGiocatori()){
 				System.out.println("Giocatore "+g.getID());
 				for(Settore s : viciniList){
-					if(g.getPosizione()==s && g!=giocatore){
+					if(g.getPosizione()==s){
 						System.out.println("Settore "+s.getCoordinate().toString());
 						risposte.add(g.getNome()+" si trova nel settore "+g.getPosizione().getCoordinate().toString());
 					}	
@@ -80,10 +87,13 @@ public class UsaLuci extends Azione {
 	@Override
 	protected boolean controlli(){
 		if(giocatore.getSituazione()==Situazione.ATTIVO && giocatore.getStato()!=Stato.TURNOTERMINATO && giocatore instanceof Umano){
-			if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.LUCI))){
+			try{if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.LUCI)) && !(model.getMappa().getMappa().get(settore.getCoordinate()) instanceof SettoreVuoto)){
 				return true;
 			} 
-			return false;	
+			return false;
+			}catch(NullPointerException nu){
+				return false;
+			}
 		}
 		return false;
 	}

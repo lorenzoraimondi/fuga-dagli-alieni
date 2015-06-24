@@ -110,11 +110,8 @@ public class TraduttoreComandi {
 			giocatore=partita.getGiocatore(id);
 			return new TerminaTurno(giocatore,partita,server);
 		case "attacco":
-			s.nextToken();
-			terzaParola=s.nextToken();
-			coordinate=new Coordinate(terzaParola);
-			settore=partita.getMappa().getMappa().get(coordinate);
 			giocatore=partita.getGiocatore(id);
+			settore=partita.getMappa().getMappa().get(giocatore.getPosizione().getCoordinate());
 			return new Attacco(partita,giocatore,settore,server);
 		case "movimento":
 			s.nextToken();
@@ -145,10 +142,7 @@ public class TraduttoreComandi {
 			case "adrenalina":
 				return new UsaAdrenalina(giocatore,partita);
 			case "attacco":
-				s.nextToken();
-				quintaParola=s.nextToken().toUpperCase();
-				coordinate=new Coordinate(quintaParola);
-				settore=partita.getMappa().getMappa().get(coordinate);
+				settore=partita.getMappa().getMappa().get(giocatore.getPosizione().getCoordinate());
 				return new Attacco(partita,giocatore,settore,server);
 			case "luci":
 				s.nextToken();

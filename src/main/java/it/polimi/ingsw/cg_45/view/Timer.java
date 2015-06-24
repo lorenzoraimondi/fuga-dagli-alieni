@@ -19,18 +19,12 @@ public class Timer implements Runnable{
 	private int secondi;
 	private RispostaController risp;
 	private Server server;
-	private int flag;
 	
 	public Timer(StatoDiGioco partita, Giocatore giocatore,Server server){
 		this.giocatore=giocatore;
 		this.partita=partita;
 		this.server=server;
 		secondi=30;
-		flag=0;
-	}
-
-	public void setFlag(){
-		this.flag=1;
 	}
 
 	@Override

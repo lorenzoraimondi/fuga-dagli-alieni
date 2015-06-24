@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg_45.controller;
 
 import it.polimi.ingsw.cg_45.Giocatore;
+import it.polimi.ingsw.cg_45.Situazione;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 
 import java.io.IOException;
@@ -45,6 +46,8 @@ public class Statistiche extends Azione {
 					giocatore.getPortata()+"\nti trovi in posizione: "+
 					giocatore.getPosizione().getCoordinate()+"\nle tue carte sono: "+giocatore.getCarte()
 					+"\n\n");
+			if(giocatore.getCarte().size()>=4)
+				return new RispostaController(messaggio+"mossa obbligata:\nscartare una carta oggetto",null);
 			
 			switch(giocatore.getStato()){
 			case INIZIO :
@@ -58,7 +61,7 @@ public class Statistiche extends Azione {
 			case ATTACCATO : 
 				return new RispostaController(messaggio+"mosse valide:\nusare carta (solo se umano)\nterminare il turno",null);
 			case SILENZIO :
-				return new RispostaController(messaggio+"mossa obbligata:\nannunicare silenzio",null);
+				return new RispostaController(messaggio+"mossa obbligata:\nannunciare silenzio",null);
 			case CARTABLUFF : 
 				return new RispostaController(messaggio+"mossa obbligata:\nannuncia un settore in cui vuoi far rumore",null);
 			case CARTABLUFFOGGETTO:
@@ -66,7 +69,7 @@ public class Statistiche extends Azione {
 			case CARTARIVELA:
 				return new RispostaController(messaggio+"mossa obbligata:\nannuncia il tuo settore in cui fare rumore",null);
 			case CARTARIVELAOGGETTO:
-				return new RispostaController(messaggio+"mossa obbligata:\nannuncia il tuo settore un cui fare rumore",null);
+				return new RispostaController(messaggio+"mossa obbligata:\nannuncia il tuo settore in cui fare rumore",null);
 			case SCIALUPPA:
 				return new RispostaController(messaggio+"mosse valide:\nusare carta (solo se umano)\nterminare il turno",null);
 			case RIVELATO:
@@ -80,14 +83,14 @@ public class Statistiche extends Azione {
 			default:
 				break; 
 			}
-			return new RispostaController("comando errato",null);
-
 		}
-		return new RispostaController("Mossa non valida",null);
+		return new RispostaController("Mossa non valida, sei disconnesso",null);
 	}
 
 	@Override
 	protected boolean controlli() {
+		if(giocatore.getSituazione()==Situazione.DISCONNESSO)
+			return false;
 		return true;
 	}
 

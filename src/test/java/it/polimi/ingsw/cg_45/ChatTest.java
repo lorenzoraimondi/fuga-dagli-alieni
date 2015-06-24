@@ -16,6 +16,8 @@ public class ChatTest {
 	@Test
 	public void test() throws IOException {
 		Mappa mappa=new Fermi();
+		Azione azione;
+		RispostaController risp;
 		
 		Giocatore g1=new Umano(1,1,mappa,"g1");
 		ArrayList<Giocatore> giocatori=new ArrayList<Giocatore>();
@@ -25,10 +27,15 @@ public class ChatTest {
 		g1.setSituazione(Situazione.ATTIVO);
 		g1.setStato(Stato.INIZIO);
 						
-		Azione azione=new Chat(g1,partita,"ciao");
-		RispostaController risp=azione.esegui();
+		azione=new Chat(g1,partita,"ciao");
+		risp=azione.esegui();
 		assertEquals(Stato.INIZIO,g1.getStato());
 		assertTrue(risp.getMessaggioBroadcast().contains("ciao"));
+		
+		g1.setSituazione(Situazione.DISCONNESSO);
+		azione=new Chat(g1,partita,"ciao");
+		risp=azione.esegui();
+		assertTrue(risp.getMessaggioClient().contains("Messaggio non inviato"));
 	}
 
 }
