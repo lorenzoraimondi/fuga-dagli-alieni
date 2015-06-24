@@ -8,6 +8,7 @@ import it.polimi.ingsw.cg_45.controller.TerminaTurno;
 import it.polimi.ingsw.cg_45.netCommons.Messaggio;
 import it.polimi.ingsw.cg_45.netCommons.PacchettoAzione;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
+import it.polimi.ingsw.cg_45.netCommons.Timer;
 import it.polimi.ingsw.cg_45.netCommons.TraduttoreComandi;
 
 import java.io.IOException;
@@ -47,7 +48,7 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 		}
 	
 	public void startTimer(StatoDiGioco partita,Giocatore giocatore){
-		it.polimi.ingsw.cg_45.netCommons.Timer timerTurno=new RmiTimer(partita,giocatore,this);
+		Timer timerTurno=new RmiTimer(partita,giocatore,this);
 		//timers.put(giocatore.getID(), timerTurno);
 		Thread t=new Thread((Runnable) timerTurno);
 		timers.put(giocatore.getID(), t);

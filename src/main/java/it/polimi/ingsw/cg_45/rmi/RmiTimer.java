@@ -7,6 +7,7 @@ import it.polimi.ingsw.cg_45.controller.Disconnessione;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
 import it.polimi.ingsw.cg_45.controller.TerminaPartita;
 import it.polimi.ingsw.cg_45.netCommons.Messaggio;
+import it.polimi.ingsw.cg_45.netCommons.Timer;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -19,7 +20,7 @@ import java.rmi.RemoteException;
 *
 */
 //public class RmiTimer extends it.polimi.ingsw.cg_45.netCommons.Timer implements Runnable{
-public class RmiTimer extends it.polimi.ingsw.cg_45.netCommons.Timer implements Runnable{
+public class RmiTimer extends Timer implements Runnable{
 	//private StatoDiGioco partita;
 	//private Giocatore giocatore;
 	private Azione azione;

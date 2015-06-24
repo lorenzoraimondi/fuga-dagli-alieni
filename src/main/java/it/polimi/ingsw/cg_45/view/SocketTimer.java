@@ -7,10 +7,11 @@ import it.polimi.ingsw.cg_45.controller.Disconnessione;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
 import it.polimi.ingsw.cg_45.controller.TerminaPartita;
 import it.polimi.ingsw.cg_45.netCommons.Messaggio;
+import it.polimi.ingsw.cg_45.netCommons.Timer;
 
 import java.io.IOException;
 
-public class Timer extends it.polimi.ingsw.cg_45.netCommons.Timer implements Runnable{
+public class SocketTimer extends Timer implements Runnable{
 	//private StatoDiGioco partita;
 	//private Giocatore giocatore;
 	private Azione azione;
@@ -18,7 +19,7 @@ public class Timer extends it.polimi.ingsw.cg_45.netCommons.Timer implements Run
 	private RispostaController risp;
 	//private Server server;
 	
-	public Timer(StatoDiGioco partita, Giocatore giocatore,Server server){
+	public SocketTimer(StatoDiGioco partita, Giocatore giocatore,Server server){
 		super(partita,giocatore,server);
 		//secondi=30;
 	}

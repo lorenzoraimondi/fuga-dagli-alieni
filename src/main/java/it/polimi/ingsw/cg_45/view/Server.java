@@ -4,6 +4,7 @@ import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.netCommons.Messaggio;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
+import it.polimi.ingsw.cg_45.netCommons.Timer;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -150,7 +151,7 @@ public class Server implements ServerInterface {
 	 * @param giocatore the current player of which count turn time.
 	 */
 	public void startTimer(StatoDiGioco partita, Giocatore giocatore){
-		it.polimi.ingsw.cg_45.netCommons.Timer timerTurno=new Timer(partita,giocatore,this);
+		Timer timerTurno=new SocketTimer(partita,giocatore,this);
 		Thread t=new Thread((Runnable) timerTurno);
 		timers.put(giocatore.getID(), t);
 		t.start();
