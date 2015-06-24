@@ -124,7 +124,7 @@ public class TraduttoreComandi {
 			settore=partita.getMappa().getMappa().get(coordinate);
 			giocatore=partita.getGiocatore(id);
 			return new Movimento(partita,giocatore,settore);
-		case "pesca":
+		case "pesco":
 			giocatore=partita.getGiocatore(id);
 			s.nextToken();
 			terzaParola=s.nextToken();
@@ -138,7 +138,7 @@ public class TraduttoreComandi {
 			default: 
 			}
 			return "Comando errato";
-		case "usa":
+		case "uso":
 			giocatore=partita.getGiocatore(id);
 			s.nextToken();
 			terzaParola=s.nextToken();
