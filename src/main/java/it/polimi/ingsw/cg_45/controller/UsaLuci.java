@@ -63,10 +63,8 @@ public class UsaLuci extends Azione {
 			viciniList.add(settore);
 			
 			for(Giocatore g :  model.getGiocatori()){
-				System.out.println("Giocatore "+g.getID());
 				for(Settore s : viciniList){
 					if(g.getPosizione()==s){
-						System.out.println("Settore "+s.getCoordinate().toString());
 						risposte.add(g.getNome()+" si trova nel settore "+g.getPosizione().getCoordinate().toString());
 					}	
 				}
@@ -87,7 +85,8 @@ public class UsaLuci extends Azione {
 	@Override
 	protected boolean controlli(){
 		if(giocatore.getSituazione()==Situazione.ATTIVO && giocatore.getStato()!=Stato.TURNOTERMINATO && giocatore instanceof Umano){
-			try{if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.LUCI)) && !(model.getMappa().getMappa().get(settore.getCoordinate()) instanceof SettoreVuoto)){
+			try{
+				if(giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.LUCI)) && !(model.getMappa().getMappa().get(settore.getCoordinate()) instanceof SettoreVuoto)){
 				return true;
 			} 
 			return false;
@@ -97,16 +96,5 @@ public class UsaLuci extends Azione {
 		}
 		return false;
 	}
-	/*Per test
-	public Settore getSettore() {
-		return settore;
-	}
-	public Giocatore getGiocatore() {
-		return giocatore;
-	}
-	public StatoDiGioco getPartita() {
-		return model;
-	}
 	
-	*/
 }

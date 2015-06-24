@@ -38,28 +38,26 @@ public class AnnunciaRumore extends Azione{
 	 */
 	@Override
 	public RispostaController esegui() throws IOException {
+		final String rumore="Rumore nel settore ";
+		final String pesca="Pesca un oggetto";
+		
 		if(controlli()){
 		switch(giocatore.getStato()){
 		case SILENZIO:
 			giocatore.setStato(Stato.EFFETTOCONCLUSO);
-			System.out.println(giocatore.getStato());
 			return new RispostaController("","Silenzio nell'astronave.");
 		case CARTABLUFFOGGETTO:
 			giocatore.setStato(Stato.BLUFFATO);
-			System.out.println(giocatore.getStato());
-			return new RispostaController("Pesca un oggetto","Rumore nel settore "+coordinateSettore+".");
+			return new RispostaController(pesca,rumore+coordinateSettore+".");
 		case CARTABLUFF:
 			giocatore.setStato(Stato.EFFETTOCONCLUSO);
-			System.out.println(giocatore.getStato());
-			return new RispostaController("","Rumore nel settore "+coordinateSettore+".");
+			return new RispostaController("",rumore+coordinateSettore+".");
 		case CARTARIVELAOGGETTO:
 			giocatore.setStato(Stato.RIVELATO);
-			System.out.println(giocatore.getStato());
-			return new RispostaController("Pesca un oggetto","Rumore nel settore "+coordinateSettore+".");
+			return new RispostaController(pesca,rumore+coordinateSettore+".");
 		case CARTARIVELA:
 			giocatore.setStato(Stato.EFFETTOCONCLUSO);
-			System.out.println(giocatore.getStato());
-			return new RispostaController("","Rumore nel settore "+coordinateSettore+".");
+			return new RispostaController("",rumore+coordinateSettore+".");
 		default:
 			break;
 		

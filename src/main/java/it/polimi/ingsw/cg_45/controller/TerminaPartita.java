@@ -70,7 +70,6 @@ public class TerminaPartita extends Azione{
 			}
 			
 			for(Giocatore g : model.getGiocatori()){
-				//Forzare disconnessione utenti
 				g.setSituazione(Situazione.DISCONNESSO);
 				g.setStato(Stato.TURNOTERMINATO);
 			}

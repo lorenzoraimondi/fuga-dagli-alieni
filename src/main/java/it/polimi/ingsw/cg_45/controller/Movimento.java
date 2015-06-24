@@ -38,7 +38,6 @@ public class Movimento extends Azione{
 		
 		this.mappa=p.getMappa();
 		this.settoreArrivo=s;
-		//this.settoreArrivo=p.getMappa().getMappa().get(s.getCoordinate());
 		this.portata=g.getPortata();
 		this.settorePartenza=g.getPosizione();
 		
@@ -70,13 +69,11 @@ public class Movimento extends Azione{
 					}
 				}
 				giocatore.setStato(Stato.PERICOLO);
-				//Cambiato messaggio al giocatore
+			
 				return new RispostaController("Movimento effettuato in settore pericoloso",null);
 			} else {
 				giocatore.setStato(Stato.SCIALUPPA);
-				//SettoreScialuppa arrivo=(SettoreScialuppa) mappa.getMappa().get(settoreArrivo.getCoordinate());
-				//diventa impossibile pescare altrimenti
-				//arrivo.setScoperta();
+				
 				return new RispostaController("Movimento effettuato, pesca una carta Scialuppa",giocatore.getNome()+" è nel settore scialuppa "+settoreArrivo.getCoordinate().toString());
 				}
 		}
@@ -92,9 +89,6 @@ public class Movimento extends Azione{
 	 */
 	@Override
 	protected boolean controlli(){
-		System.out.println(settorePartenza);
-		System.out.println(settoreArrivo);
-		System.out.println(portata);
 		if(giocatore.getSituazione()!=Situazione.ATTIVO || giocatore.getStato()!=Stato.INIZIO){
 			return false;
 		} else if(mappa.mossaValida(settorePartenza, settoreArrivo, portata)){
@@ -106,18 +100,6 @@ public class Movimento extends Azione{
 		}
 		return false;
 	}
-	//Per test
-	/*
-	public Settore getSettoreArrivo() {
-		return settoreArrivo;
-	}
-	public Giocatore getGiocatore() {
-		return giocatore;
-	}
-	public StatoDiGioco getPartita() {
-		return model;
-	}
 	
-	/*/
 }
 

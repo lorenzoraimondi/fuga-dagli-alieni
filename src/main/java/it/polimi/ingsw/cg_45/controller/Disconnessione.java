@@ -26,7 +26,6 @@ public class Disconnessione extends Azione {
 	 * @param server
 	 */
 	public Disconnessione(Giocatore giocatore, StatoDiGioco partita, ServerInterface server) {
-		// TODO Auto-generated constructor stub
 		super(giocatore,partita);
 		this.server=server;
 	}
@@ -39,7 +38,6 @@ public class Disconnessione extends Azione {
 	 */
 	@Override
 	public RispostaController esegui() throws IOException {
-		// TODO Auto-generated method stub
 		giocatore.setStato(Stato.EFFETTOCONCLUSO);
 		new TerminaTurno(giocatore,model,server).esegui();
 		giocatore.setSituazione(Situazione.DISCONNESSO);
@@ -49,7 +47,6 @@ public class Disconnessione extends Azione {
 
 	@Override
 	protected boolean controlli() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

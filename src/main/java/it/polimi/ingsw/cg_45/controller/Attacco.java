@@ -55,7 +55,7 @@ public class Attacco extends Azione{
 	 */
 	@Override
 	public RispostaController esegui() throws IOException{
-		//IOEx aggiunta per terminaPartita
+
 		List<String> risposte=new ArrayList<String>();
 		
 		if(controlli()){
@@ -69,8 +69,6 @@ public class Attacco extends Azione{
 			for(Giocatore g : model.getGiocatori()){
 				if(g!=giocatore && g.getPosizione()==settore){
 					if(g instanceof Umano && (g.getCarte().contains(new CartaOggetto(TipoCartaOggetto.DIFESA)))){
-						//new UsaDifesa(g,model).esegui();
-						//risposte.add(g.getNome()+" ha usato la carta Difesa");
 						RispostaController rispostaDifesa = new UsaDifesa(g,model).esegui();
 						risposte.add(rispostaDifesa.getMessaggioBroadcast());
 					} else if(g.getSituazione()!=Situazione.MORTO){
@@ -84,20 +82,17 @@ public class Attacco extends Azione{
 							g.getCarte().removeAll(g.getCarte());							
 						}
 						risposte.add(g.getNome()+", "+g.getClass().getSimpleName()+", è morto!");
-						//return new RispostaController("Attacco riuscito!","Il giocatore "+g.getID()+","+g.getClass().getName()+", è morto!");
 					}
 					}
 			}
 			giocatore.setStato(Stato.ATTACCATO);
 			
 			if(risposte.isEmpty())
-				//da togliere hai fallito
 				return new RispostaController("Hai fallito",rispostaCarta+"Attacco in "+settore.getCoordinate().toString()+" fallito!");
 			String risposta=new String(rispostaCarta+"Attacco in "+settore.getCoordinate().toString()+"\n");
 			for(String s : risposte){
 				risposta=risposta.concat(s+"\n");
 			}
-			//Giocatore inutile, riesco a overrideare costruttore?
 			RispostaController terminaPartita=new TerminaPartita(giocatore,model,server).esegui();
 			if(terminaPartita!=null){
 				return new RispostaController("",risposta+terminaPartita.getMessaggioBroadcast());
@@ -126,30 +121,7 @@ public class Attacco extends Azione{
 					}
 				}
 				return false;
-			/*}
-			else {
-				if(stato!=Stato.INIZIO && stato!=Stato.SCIALUPPA && stato!=Stato.CARTASCIALUPPA){
-					
-					return true;
-				}
-									
-				return false;
-			}	*/	
+				
 	}
 	
-	//Per test
-	/*
-		public Settore getSettore() {
-			return settore;
-		}
-		public Giocatore getGiocatore() {
-			return giocatore;
-		}
-		public StatoDiGioco getPartita() {
-			return model;
-		}
-		
-		//
-		 
-		 */
 }

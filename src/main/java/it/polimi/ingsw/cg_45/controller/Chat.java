@@ -41,7 +41,6 @@ public class Chat extends Azione {
 		if(controlli()){
 			Date date= new Date();
 			SimpleDateFormat sdf=new SimpleDateFormat("HH:mm:ss");
-			//System.out.println(date.getTime());
 			
 			System.out.println("["+sdf.format(date)+"] "+giocatore.getNome()+" : "+messaggio);
 			return new RispostaController("Messaggio inviato","\n"+"["+sdf.format(date)+"] "+giocatore.getNome()+": "+messaggio);		

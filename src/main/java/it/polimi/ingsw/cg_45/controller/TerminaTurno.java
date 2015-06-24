@@ -54,12 +54,6 @@ public class TerminaTurno extends Azione {
 				giocatoreUmano.setSedato(false);
 				giocatoreUmano.setPortata(1);
 			}
-			//model.incrementCurrentPlayer();
-			/*	Meglio se messo in Attacco e PescaScialuppa
-			//Giocatore inutile, riesco a overrideare costruttore?
-			RispostaController terminaPartita=new TerminaPartita(giocatore,model).esegui();
-			if(terminaPartita!=null)
-				return terminaPartita;*/
 			
 			giocatorePassato=model.getGiocatori().remove(0);
 			model.getGiocatori().add(giocatorePassato);
@@ -78,12 +72,8 @@ public class TerminaTurno extends Azione {
 			giocatoreProssimo.setSituazione(Situazione.ATTIVO);
 			giocatoreProssimo.setStato(Stato.INIZIO);
 			
-			//if(giocatore.getOrdine()==1){
-			System.out.println("ordine "+giocatore.getOrdine());
-			System.out.println("somma "+giocatoriSaltati);
 			if(giocatore.getOrdine()+giocatoriSaltati>=model.getGiocatori().size()-1){
 				model.incrementTurno();
-				System.out.println("turno dopo: "+model.getTurno());
 				if(model.getTurno()==40)
 					return new TerminaPartita(giocatore,model,server).esegui();
 				return new RispostaController("Turno terminato", giocatore.getNome()+" ha passato. "
@@ -92,15 +82,7 @@ public class TerminaTurno extends Azione {
 			}
 				return new RispostaController("Turno terminato", giocatore.getNome()+" ha passato. "
 					+ "Tocca a "+giocatoreProssimo.getNome()+".");
-			//if(model.getTurno()==40)
-				//Partita.set("FINITA");
-			/*
-			if(giocatore.getID()==model.getGiocatori().size())
-				model.incrementTurno();
-			//if(model.getTurno()==40)
-				//Partita.set("FINITA");
-				 
-				 */
+			
 		}
 		return new RispostaController("Mossa non valida",null);
 	}
@@ -109,13 +91,10 @@ public class TerminaTurno extends Azione {
 	protected boolean controlli() {
 		if((giocatore.getStato()==Stato.ATTACCATO||giocatore.getStato()==Stato.CARTASCIALUPPA||giocatore.getStato()==Stato.EFFETTOCONCLUSO||giocatore.getStato()==Stato.SICURO) && giocatore.getSituazione()==Situazione.ATTIVO){
 			if(giocatore.getCarte().size()>=4){
-				System.out.println("1");
 				return false;
-			}
-				
+			}		
 			return true;
 		}
-		System.out.println("2");
 		return false;
 	}
 

@@ -58,14 +58,5 @@ public class PescaOggetto extends Azione{
 					return true;
 		return false;
 	}
-	/*/Per test
-
-		public Giocatore getGiocatore() {
-			return giocatore;
-		}
-		public StatoDiGioco getPartita() {
-			return model;
-		}
-		
-		/*/
+	
 }

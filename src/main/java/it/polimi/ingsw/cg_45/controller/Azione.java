@@ -38,8 +38,6 @@ public abstract class Azione {
 	 */
 	//public Azione(){};
 	
-	
-	//public abstract void esegui() throws IOException;
 	/**Execute the action, after checking its possibility.
 	 * <p> 
 	 * Depending on the player turn status, this method perform the action 

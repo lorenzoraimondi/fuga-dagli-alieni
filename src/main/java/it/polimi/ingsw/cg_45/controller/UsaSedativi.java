@@ -67,15 +67,5 @@ public class UsaSedativi extends Azione{
 		}
 		return false;
 	}
-	/*Per test
-		
-		public Giocatore getGiocatore() {
-			return giocatore;
-		}
-		public StatoDiGioco getPartita() {
-			return model;
-		}
-		
-		*/
 	
 }

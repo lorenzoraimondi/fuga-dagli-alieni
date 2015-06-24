@@ -41,16 +41,13 @@ public class UsaDifesa extends Azione{
 			carta=giocatore.getCarta(TipoCartaOggetto.DIFESA);
 			giocatore.getCarte().remove(carta);
 			model.getMazzoOggetti().getMazzoScarti().add(carta);
-			//return new RispostaController(null,null);
 			return new RispostaController("Hai usato la carta difesa",giocatore.getNome()+" ha usato la carta Difesa");	
 		}
 		return new RispostaController("Mossa non valida",null);
-		//return new RispostaController(null,null);
 	}
 
 	@Override
 	protected boolean controlli() {
-		//if(giocatore instanceof Umano)
 		if(giocatore instanceof Umano && (giocatore.getCarte().contains(new CartaOggetto(TipoCartaOggetto.DIFESA))))
 			return true;
 		return false;
