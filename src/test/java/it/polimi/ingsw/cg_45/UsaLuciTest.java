@@ -19,7 +19,7 @@ public class UsaLuciTest {
 		Azione azione;
 		RispostaController risp;
 		CartaOggetto carta=new CartaOggetto(TipoCartaOggetto.LUCI);
-		Settore settore=mappa.getMappa().get(new Coordinate("H01"));
+		Settore settore=mappa.getMappa().get(new Coordinate("H02"));
 		Settore settore1=mappa.getMappa().get(new Coordinate("G02"));
 		
 		Umano g1= new Umano(1,0,mappa,"g1");
