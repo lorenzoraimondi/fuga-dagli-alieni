@@ -1,6 +1,7 @@
 package it.polimi.ingsw.cg_45;
 
 import static org.junit.Assert.assertTrue;
+import it.polimi.ingsw.cg_45.controller.RispostaController;
 import it.polimi.ingsw.cg_45.controller.UsaDifesa;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class UsaDifesaTest {
 	public void test() {
 		
 		Mappa mappa=new Fermi();
+		RispostaController risp;
 		Umano u1=new Umano(2,2,mappa,"u1");
 		List<Giocatore> giocatori=new ArrayList<Giocatore>();
 		giocatori.add(u1);
@@ -29,7 +31,9 @@ public class UsaDifesaTest {
 		assertTrue(u1.getCarte().isEmpty());
 		assertTrue(partita.getMazzoOggetti().getMazzoScarti().contains(new CartaOggetto(TipoCartaOggetto.DIFESA)));
 		
+		risp=new UsaDifesa(u1,partita).esegui();
 		
+		assertTrue(risp.getMessaggioClient().contains("Mossa non valida"));
 		
 	}
 

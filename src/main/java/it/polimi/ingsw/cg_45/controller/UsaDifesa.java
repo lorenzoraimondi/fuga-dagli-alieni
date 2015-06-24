@@ -44,7 +44,7 @@ public class UsaDifesa extends Azione{
 			//return new RispostaController(null,null);
 			return new RispostaController("Hai usato la carta difesa",giocatore.getNome()+" ha usato la carta Difesa");	
 		}
-		return new RispostaController("Mossa non valda",null);
+		return new RispostaController("Mossa non valida",null);
 		//return new RispostaController(null,null);
 	}
 
