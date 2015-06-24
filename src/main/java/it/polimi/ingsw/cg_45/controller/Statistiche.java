@@ -55,7 +55,7 @@ public class Statistiche extends Azione {
 			case PERICOLO :
 				return new RispostaController(messaggio+"mosse valide:\npescare una carta settore\nattaccare (solo se alieno o umano con la carta attacco)\nusare una carta oggetto (solo se umano)",null);
 			case SICURO :
-				return new RispostaController(messaggio+"mosse valide:\nusare una carta oggetto (solo se umano)\nterminare il turno",null);
+				return new RispostaController(messaggio+"mosse valide:\nusare una carta oggetto (solo se umano)\nattaccare (solo se alieno)\nterminare il turno",null);
 			case CARTASCIALUPPA : 
 				return new RispostaController(messaggio+"mossa obbligata:\npescare una carta scialuppa",null);
 			case ATTACCATO : 

@@ -1,7 +1,6 @@
 package it.polimi.ingsw.cg_45.view;
 
 import it.polimi.ingsw.cg_45.Giocatore;
-import it.polimi.ingsw.cg_45.Situazione;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.controller.Azione;
 import it.polimi.ingsw.cg_45.controller.Disconnessione;
@@ -11,34 +10,32 @@ import it.polimi.ingsw.cg_45.netCommons.Messaggio;
 
 import java.io.IOException;
 
-public class Timer implements Runnable{
-	private StatoDiGioco partita;
-	private Giocatore giocatore;
+public class Timer extends it.polimi.ingsw.cg_45.netCommons.Timer implements Runnable{
+	//private StatoDiGioco partita;
+	//private Giocatore giocatore;
 	private Azione azione;
-	private int secondi;
+	//private int secondi;
 	private RispostaController risp;
-	private Server server;
+	//private Server server;
 	
 	public Timer(StatoDiGioco partita, Giocatore giocatore,Server server){
-		this.giocatore=giocatore;
-		this.partita=partita;
-		this.server=server;
-		secondi=30;
+		super(partita,giocatore,server);
+		//secondi=30;
 	}
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		System.out.println("timer partito");
-		try {
+		/*try {
 			int size=0;
 			for(Giocatore g:partita.getGiocatori()){
-				if(g.getSituazione()==Situazione.ATTIVO || g.getSituazione()==Situazione.INATTIVO)
+				if(g.getSituazione()==Situazione.ATTIVO || g.getSituazione()==Situazione.INATTIVO || g.getSituazione()==Situazione.MORTO)
 					size++;
 			}
 			int[] ordine=new int[size];
 			for(int i=0;i<ordine.length;i++){
-				if(partita.getGiocatori().get(i).getSituazione()==Situazione.ATTIVO ||partita.getGiocatori().get(i).getSituazione()==Situazione.INATTIVO)
+				if(partita.getGiocatori().get(i).getSituazione()==Situazione.ATTIVO ||partita.getGiocatori().get(i).getSituazione()==Situazione.INATTIVO || partita.getGiocatori().get(i).getSituazione()==Situazione.MORTO)
 				ordine[i]=partita.getGiocatori().get(i).getID();
 			}
 			int swap;
@@ -50,8 +47,10 @@ public class Timer implements Runnable{
 						ordine[i]=swap;
 						}
 				}
-			}
-			Thread.sleep((long)secondi*1000);
+			}*/
+			int ordine[]=ordinamento();
+			
+			try{Thread.sleep((long)SECONDI*1000);
 				azione=new Disconnessione(giocatore,partita,server);
 				try {
 					risp=azione.esegui();
@@ -63,15 +62,15 @@ public class Timer implements Runnable{
 					System.out.println("id "+ordine[i]);
 				}
 				
-				System.out.println(server.getIdSub());
+				System.out.println(((Server) server).getIdSub());
 				for(int i=0;i<ordine.length;i++){
 					if(ordine[i]==giocatore.getID()){
 						System.out.println("posizione da rimuovere: "+i);
-						server.getIdSub().get(giocatore.getID()).remove(i);
+						((Server) server).getIdSub().get(giocatore.getID()).remove(i);
 					}	
 				}
-				System.out.println(server.getIdSub());
-				server.publish(new Messaggio(risp.getMessaggioBroadcast()), giocatore.getID());
+				System.out.println(((Server) server).getIdSub());
+				((Server)server).publish(new Messaggio(risp.getMessaggioBroadcast()), giocatore.getID());
 				
 				Giocatore primo=partita.getGiocatori().get(0);
 				

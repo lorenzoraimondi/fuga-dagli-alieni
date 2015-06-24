@@ -4,10 +4,8 @@ import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.Situazione;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.controller.Azione;
-import it.polimi.ingsw.cg_45.controller.Disconnessione;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
 
-import java.io.IOException;
 
 /**Represents a generic timer to be used for count how many time take player's turn.
  * In fact if it lasts more than the specified number of seconds (120) the player will be
@@ -35,22 +33,21 @@ public abstract class Timer {
 		this.giocatore=giocatore;
 		this.partita=partita;
 		this.server=server;
-		//flag=0;
 	}
 	
 	/**
 	 * @throws InterruptedException
 	 */
-	public int[] utile() throws InterruptedException{
+	public int[] ordinamento() {
 		
 			int size=0;
 			for(Giocatore g:partita.getGiocatori()){
-				if(g.getSituazione()==Situazione.ATTIVO || g.getSituazione()==Situazione.INATTIVO)
+				if(g.getSituazione()==Situazione.ATTIVO || g.getSituazione()==Situazione.INATTIVO || g.getSituazione()==Situazione.MORTO)
 					size++;
 			}
 			int[] ordine=new int[size];
 			for(int i=0;i<ordine.length;i++){
-				if(partita.getGiocatori().get(i).getSituazione()==Situazione.ATTIVO ||partita.getGiocatori().get(i).getSituazione()==Situazione.INATTIVO)
+				if(partita.getGiocatori().get(i).getSituazione()==Situazione.ATTIVO ||partita.getGiocatori().get(i).getSituazione()==Situazione.INATTIVO || partita.getGiocatori().get(i).getSituazione()==Situazione.MORTO)
 				ordine[i]=partita.getGiocatori().get(i).getID();
 			}
 			int swap;
@@ -63,18 +60,22 @@ public abstract class Timer {
 						}
 				}
 			}
-			Thread.sleep((long)SECONDI*1000);
+			/*try {
+				//Thread.sleep((long)SECONDI*1000);
 				azione=new Disconnessione(giocatore,partita,server);
-				try {
-					risp=azione.esegui();
-				} catch (IOException e) {
-					System.out.println("comando non valido");
-				}
-				for(int i=0;i<ordine.length;i++){
-					System.out.println("id "+ordine[i]);
-				}
-				return ordine;
-			
-	}
-	
+				
+			//} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				//System.out.println("timer interrotto");
+			//}
+			try {
+				risp=azione.esegui();
+			} catch (IOException e) {
+				System.out.println("comando non valido");
+			}
+			for(int i=0;i<ordine.length;i++){
+				System.out.println("id "+ordine[i]);
+			}*/
+			return ordine;
+		}
 }

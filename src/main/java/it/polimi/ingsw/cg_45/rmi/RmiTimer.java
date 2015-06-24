@@ -1,7 +1,6 @@
 package it.polimi.ingsw.cg_45.rmi;
 
 import it.polimi.ingsw.cg_45.Giocatore;
-import it.polimi.ingsw.cg_45.Situazione;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.controller.Azione;
 import it.polimi.ingsw.cg_45.controller.Disconnessione;
@@ -20,13 +19,13 @@ import java.rmi.RemoteException;
 *
 */
 //public class RmiTimer extends it.polimi.ingsw.cg_45.netCommons.Timer implements Runnable{
-public class RmiTimer implements Runnable{
-	private StatoDiGioco partita;
-	private Giocatore giocatore;
+public class RmiTimer extends it.polimi.ingsw.cg_45.netCommons.Timer implements Runnable{
+	//private StatoDiGioco partita;
+	//private Giocatore giocatore;
 	private Azione azione;
-	private int secondi;
+	//private int secondi;
 	private RispostaController risp;
-	private RMIServer server;
+	//private RMIServer server;
 	
 	/**Creates a new timer and links it to the relative player, game, and server in which it's hosted.
 	 * 
@@ -38,10 +37,8 @@ public class RmiTimer implements Runnable{
 		super(partita,giocatore,server);
 	}*/
 	public RmiTimer(StatoDiGioco partita, Giocatore giocatore,RMIServer server){
-		this.giocatore=giocatore;
-		this.partita=partita;
-		this.server=server;
-		secondi=50;
+		super(partita,giocatore,server);
+		//secondi=50;
 	}
 
 	/**This method starts the timer's action, counting how many seconds does player's turn take.
@@ -55,15 +52,15 @@ public class RmiTimer implements Runnable{
 	@Override
 	public void run() {
 		System.out.println("timer RMI partito");
-		try {
+		/*try {
 			int size=0;
 			for(Giocatore g:partita.getGiocatori()){
-				if(g.getSituazione()==Situazione.ATTIVO || g.getSituazione()==Situazione.INATTIVO)
+				if(g.getSituazione()==Situazione.ATTIVO || g.getSituazione()==Situazione.INATTIVO || g.getSituazione()==Situazione.MORTO)
 					size++;
 			}
 			int[] ordine=new int[size];
 			for(int i=0;i<ordine.length;i++){
-				if(partita.getGiocatori().get(i).getSituazione()==Situazione.ATTIVO ||partita.getGiocatori().get(i).getSituazione()==Situazione.INATTIVO)
+				if(partita.getGiocatori().get(i).getSituazione()==Situazione.ATTIVO ||partita.getGiocatori().get(i).getSituazione()==Situazione.INATTIVO || partita.getGiocatori().get(i).getSituazione()==Situazione.MORTO)
 				ordine[i]=partita.getGiocatori().get(i).getID();
 			}
 			int swap;
@@ -75,8 +72,10 @@ public class RmiTimer implements Runnable{
 						ordine[i]=swap;
 						}
 				}
-			}
-			Thread.sleep(secondi*1000);
+			}*/
+			int ordine[]=ordinamento();
+
+			try{Thread.sleep(SECONDI*1000);
 				azione=new Disconnessione(giocatore,partita,server);
 				try {
 					risp=azione.esegui();
@@ -89,7 +88,6 @@ public class RmiTimer implements Runnable{
 					System.out.println("id "+ordine[i]);
 				}
 			
-				//int ordine[]=utile();
 				
 				System.out.println(((RMIServer) server).getIdSub());
 					for(int i=0;i<ordine.length;i++){

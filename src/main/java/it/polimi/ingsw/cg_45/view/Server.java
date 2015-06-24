@@ -150,8 +150,8 @@ public class Server implements ServerInterface {
 	 * @param giocatore the current player of which count turn time.
 	 */
 	public void startTimer(StatoDiGioco partita, Giocatore giocatore){
-		Timer timerTurno=new Timer(partita,giocatore,this);
-		Thread t=new Thread(timerTurno);
+		it.polimi.ingsw.cg_45.netCommons.Timer timerTurno=new Timer(partita,giocatore,this);
+		Thread t=new Thread((Runnable) timerTurno);
 		timers.put(giocatore.getID(), t);
 		t.start();
 	}

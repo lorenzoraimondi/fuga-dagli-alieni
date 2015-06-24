@@ -47,9 +47,9 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 		}
 	
 	public void startTimer(StatoDiGioco partita,Giocatore giocatore){
-		RmiTimer timerTurno=new RmiTimer(partita,giocatore,this);
+		it.polimi.ingsw.cg_45.netCommons.Timer timerTurno=new RmiTimer(partita,giocatore,this);
 		//timers.put(giocatore.getID(), timerTurno);
-		Thread t=new Thread(timerTurno);
+		Thread t=new Thread((Runnable) timerTurno);
 		timers.put(giocatore.getID(), t);
 		t.start();
 	}
