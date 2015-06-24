@@ -104,6 +104,8 @@ public class TraduttoreComandi {
 		case "rumore":
 			s.nextToken();
 			terzaParola=s.nextToken().toUpperCase();
+			if(terzaParola.length()!=3)
+				return "comando errato";
 			giocatore=partita.getGiocatore(id);
 			return new AnnunciaRumore(partita,giocatore,terzaParola);
 		case "termino":
@@ -116,6 +118,8 @@ public class TraduttoreComandi {
 		case "movimento":
 			s.nextToken();
 			terzaParola=s.nextToken().toUpperCase();
+			if(terzaParola.length()!=3)
+				return "comando errato";
 			coordinate=new Coordinate(terzaParola);
 			settore=partita.getMappa().getMappa().get(coordinate);
 			giocatore=partita.getGiocatore(id);

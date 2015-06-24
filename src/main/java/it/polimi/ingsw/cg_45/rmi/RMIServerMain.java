@@ -30,7 +30,7 @@ public class RMIServerMain {
 		
 		registry.rebind("server", stub);
 		
-		System.out.println("Server ready");
+		System.out.println("RMI Server ready");
 		
 		
 		

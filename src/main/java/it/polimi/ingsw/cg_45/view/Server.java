@@ -60,7 +60,7 @@ public class Server implements ServerInterface {
 	public void startServer() {
 		try {
             serverSocket = new ServerSocket(port);
-            System.out.println("Server ready");
+            System.out.println("Socket Server ready");
             while (isStopped()) {
             	
                 Socket socket = serverSocket.accept();
