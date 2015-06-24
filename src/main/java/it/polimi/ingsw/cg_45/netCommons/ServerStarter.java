@@ -7,6 +7,9 @@ import java.rmi.RemoteException;
 import java.util.Scanner;
 
 public class ServerStarter {
+	
+	private ServerStarter(){
+	}
 
 	public static void main(String[] args) throws RemoteException {
 		String scelta;
@@ -15,20 +18,19 @@ public class ServerStarter {
 		do{
 			System.out.println("Quale protocollo di comunicazione utilizzare? [ RMI | SOCKET | entrambi ]");
 			scelta=stdin.nextLine().toLowerCase();
-		} while (!(scelta.equals("rmi") || scelta.equals("socket") || scelta.equals("entrambi")));
-		//} while (!("rmi".equals(scelta) || "socket".equals("scelta")));
+		} while (!("rmi".equals(scelta) || "socket".equals(scelta) || "entrambi".equals(scelta)));
 		
-		if(scelta.equals("rmi")){
+		if("rmi".equals(scelta)){
 			RMIServerMain.main(null);
-		} else if(scelta.equals("socket")){
+		} else if("socket".equals(scelta)){
 			Server.main(null);
 		} else {
 			RMIServerMain.main(null);
 			Server.main(null);
 		}
-		 
 		
 		stdin.close();
+		
 	}
 
 }

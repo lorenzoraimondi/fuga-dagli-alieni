@@ -60,22 +60,7 @@ public abstract class Timer {
 						}
 				}
 			}
-			/*try {
-				//Thread.sleep((long)SECONDI*1000);
-				azione=new Disconnessione(giocatore,partita,server);
-				
-			//} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				//System.out.println("timer interrotto");
-			//}
-			try {
-				risp=azione.esegui();
-			} catch (IOException e) {
-				System.out.println("comando non valido");
-			}
-			for(int i=0;i<ordine.length;i++){
-				System.out.println("id "+ordine[i]);
-			}*/
+		
 			return ordine;
 		}
 }

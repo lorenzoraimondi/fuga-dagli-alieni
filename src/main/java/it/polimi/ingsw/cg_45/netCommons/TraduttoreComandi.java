@@ -69,7 +69,6 @@ public class TraduttoreComandi {
 		Giocatore giocatore;
 		Coordinate coordinate;
 		Settore settore;
-		String nome;
 		
 		switch(primaParola){
 		case "?":

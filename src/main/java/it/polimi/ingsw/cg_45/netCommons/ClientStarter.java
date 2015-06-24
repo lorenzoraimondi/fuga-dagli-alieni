@@ -11,8 +11,15 @@ import java.nio.file.Paths;
 import java.rmi.NotBoundException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ClientStarter {
+	
+	private static final String PATTERN = "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
+	
+	private ClientStarter(){
+	}
 
 	public static void main(String[] args) throws ClassNotFoundException, NotBoundException, IOException {
 		
@@ -28,7 +35,7 @@ public class ClientStarter {
 		do{
 			System.out.println("Inserire l'indirizzo ip del server");
 			ip[0]=stdin.nextLine();
-		} while (!(validIP(ip[0])));
+		} while (!(validate(ip[0])));
 		
 		while(!connesso){
 			connesso=true;
@@ -38,9 +45,7 @@ public class ClientStarter {
 				scelta=stdin.nextLine().toLowerCase();
 					
 			} while (!("rmi".equals(scelta) || "socket".equals(scelta)));
-			//} while (!(scelta.equals("rmi") || scelta.equals("socket")));
 			
-			//if(scelta.equals("rmi")){
 			if("rmi".equals(scelta)){
 				try{
 					RMIClientMain.main(ip);
@@ -57,59 +62,25 @@ public class ClientStarter {
 				}
 			
 			}
-			 
-			
-
+	
 		}
-				
-
 			stdin.close();
-	
-	
 	}
 	
-	
-	
-	protected static boolean validIP (String ip) {
-	    try {
-	        if (ip == null || ip.isEmpty()) {
-	            return false;
-	        }
+	protected static boolean validate(final String ip){          
 
-	        String[] parts = ip.split( "\\." );
-	        if ( parts.length != 4 ) {
-	            return false;
-	        }
-
-	        for ( String s : parts ) {
-	            int i = Integer.parseInt( s );
-	            if ( (i < 0) || (i > 255) ) {
-	                return false;
-	            }
-	        }
-	        if(ip.endsWith(".")) {
-	                return false;
-	        }
-
-	        return true;
-	    } catch (NumberFormatException nfe) {
-	        return false;
-	    }
+	      Pattern pattern = Pattern.compile(PATTERN);
+	      Matcher matcher = pattern.matcher(ip);
+	      return matcher.matches();             
 	}
-	
+		
 	protected static void stampaIntro(String percorsoFile) throws IOException{ 
 	    
-		try{
-		    List<String> lines = Files.readAllLines(Paths.get(percorsoFile), Charset.defaultCharset());
+		List<String> lines = Files.readAllLines(Paths.get(percorsoFile), Charset.defaultCharset());
 		    
-		    for(String stringa : lines){
-		    	System.out.print(stringa+"\n");
-		    }
-		} catch (Exception FileNotFoundException){
-		
-			System.out.println("File introduzione non trovato");
-		}
-		
+	    for(String stringa : lines){
+	    	System.out.print(stringa+"\n");
+	    }
 	}
 
 }
