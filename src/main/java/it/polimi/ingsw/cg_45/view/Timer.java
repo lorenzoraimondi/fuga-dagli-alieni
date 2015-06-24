@@ -3,7 +3,6 @@ package it.polimi.ingsw.cg_45.view;
 import it.polimi.ingsw.cg_45.Giocatore;
 import it.polimi.ingsw.cg_45.Situazione;
 import it.polimi.ingsw.cg_45.StatoDiGioco;
-import it.polimi.ingsw.cg_45.Umano;
 import it.polimi.ingsw.cg_45.controller.Azione;
 import it.polimi.ingsw.cg_45.controller.Disconnessione;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
