@@ -14,12 +14,12 @@ import java.util.Scanner;
 public abstract class Mappa {
 	
 	/**
-	 * @param the number of rows in every map. 
+	 * Number of rows in every map. 
 	 */
 	protected static final int ROW=14;
 	
 	/**
-	 * @param the number of columns in every map.
+	 * Number of columns in every map.
 	 */
 	protected static final int COL=23;
 	

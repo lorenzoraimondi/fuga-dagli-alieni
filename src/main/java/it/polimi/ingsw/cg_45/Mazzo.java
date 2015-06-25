@@ -10,17 +10,17 @@ import java.util.List;
 public abstract class Mazzo {
 		
 		/**
-		 * @param Initial deck's number of card 
+		 * Initial deck's number of card 
 		 */
 		protected int numCarte;
 		/**
-		 * @param Card's deck from which cards can be drawn.
+		 * Card's deck from which cards can be drawn.
 		 */
-		List<Carta> mazzoIniziale=new ArrayList<Carta>();
+		protected List<Carta> mazzoIniziale=new ArrayList<Carta>();
 		/**
-		 * @param Discarded card's deck, where are put used or discarded cards. 
+		 * Discarded card's deck, where are put used or discarded cards. 
 		 */
-		List<Carta> mazzoScarti=new ArrayList<Carta>();
+		protected List<Carta> mazzoScarti=new ArrayList<Carta>();
 		
 		/**
 		 * @return the number of cards of a new deck, from which no one has drawn yet. 

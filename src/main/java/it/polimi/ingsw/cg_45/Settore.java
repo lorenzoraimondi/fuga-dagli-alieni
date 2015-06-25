@@ -38,12 +38,12 @@ public abstract class Settore {
 	
 	/**Sets the six sectors adjacent to this one.
 	 * 
-	 * @param xu the upper sector on the {@value x} axis
-	 * @param xd the lower sector on the {@value x} axis
-	 * @param yu the upper sector on the {@value y} axis
-	 * @param yd the lower sector on the {@value y} axis
-	 * @param zu the upper sector on the {@value z} axis
-	 * @param zd the lower sector on the {@value z} axis
+	 * @param xu the upper sector on the {@code x} axis.
+	 * @param xd the lower sector on the {@code x} axis.
+	 * @param yu the upper sector on the {@code y} axis.
+	 * @param yd the lower sector on the {@code y} axis.
+	 * @param zu the upper sector on the {@code z} axis.
+	 * @param zd the lower sector on the {@code z} axis.
 	 */
 	public void setVicini(Settore xu, Settore xd, Settore yu, Settore yd, Settore zu, Settore zd){
 		this.vicini[0]=xu;

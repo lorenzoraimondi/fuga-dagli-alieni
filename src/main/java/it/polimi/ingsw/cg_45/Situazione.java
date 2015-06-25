@@ -11,23 +11,23 @@ package it.polimi.ingsw.cg_45;
  */
 public enum Situazione {
 	/**
-	 * @param if the player is the playing one. 
+	 * If the player is the playing one. 
 	 */
 	ATTIVO,
 	/**
-	 * @param if the player isn't the playing one.
+	 * If the player isn't the playing one.
 	 */
 	INATTIVO,
 	/**
-	 * @param if the player has been killed.
+	 * If the player has been killed.
 	 */
 	MORTO,
 	/**
-	 * @param if the player has disconnected from the server or if has been kicked out from it.
+	 * If the player has disconnected from the server or if has been kicked out from it.
 	 */
 	DISCONNESSO,
 	/**
-	 * @param if the player has won the game.
+	 * If the player has won the game.
 	 */
 	VINTO;
 }

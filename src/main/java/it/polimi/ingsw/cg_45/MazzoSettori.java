@@ -10,27 +10,27 @@ import java.util.Collections;
 public class MazzoSettori extends Mazzo {
 		
 		/**
-		 * @param Number of <i>Noise in your Sector</i> cards contained in the initial deck. 
+		 * Number of <i>Noise in your Sector</i> cards contained in the initial deck. 
 		 */
 		private static final int NUMRUMORESETTORE=10;
 		
 		/**
-		 * @param Number of <i>Noise in any Sector</i> cards contained in the initial deck. 
+		 * Number of <i>Noise in any Sector</i> cards contained in the initial deck. 
 		 */
 		private static final int NUMRUMOREQUALUNQUE=10;
 		
 		/**
-		 * @param Number of <i>Silence</i> cards contained in the initial deck. 
+		 * Number of <i>Silence</i> cards contained in the initial deck. 
 		 */
 		private static final int NUMSILENZIO=5;
 		
 		/**
-		 * @param Number of <i>Noise in your Sector</i> cards with Item contained in the initial deck. 
+		 * Number of <i>Noise in your Sector</i> cards with Item contained in the initial deck. 
 		 */
 		private static final int NUMSETTOGG=4;
 		
 		/**
-		 * @param Number of <i>Noise in any Sector</i> cards with Item contained in the initial deck. 
+		 * Number of <i>Noise in any Sector</i> cards with Item contained in the initial deck. 
 		 */
 		private static final int NUMQUALOGG=4;
 		

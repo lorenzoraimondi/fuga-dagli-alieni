@@ -11,17 +11,29 @@ import it.polimi.ingsw.cg_45.netCommons.Timer;
 
 import java.io.IOException;
 
+/**Represents a timer to be used for count how many time take player's turn.
+* In fact if it lasts more than the specified number of seconds (120) the player will be
+* disconnected from the game and the turn passed to the next player.
+* 
+* @author Andrea Turconi
+*
+*/
 public class SocketTimer extends Timer implements Runnable{
 	private Azione azione;
 	private RispostaController risp;
 	
+	/**Creates a new timer and links it to the relative player, game, and server in which it's hosted.
+	 * 
+	 * @param partita the {@code StatoDiGioco} game.
+	 * @param giocatore the current player to time track.
+	 * @param server the server that hosts the game.
+	 */
 	public SocketTimer(StatoDiGioco partita, Giocatore giocatore,Server server){
 		super(partita,giocatore,server);
 	}
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		
 			int ordine[]=ordinamento();
 			
@@ -30,8 +42,6 @@ public class SocketTimer extends Timer implements Runnable{
 				try {
 					risp=azione.esegui();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					System.out.println("comando non valido");
 				}
 				
 				
@@ -50,8 +60,6 @@ public class SocketTimer extends Timer implements Runnable{
 					try {
 						server.publish(new Messaggio(new TerminaPartita(giocatore, partita,server).esegui().getMessaggioBroadcast()), giocatore.getID());
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						System.out.println("comando non valido");
 					}
 				}
 		} catch (InterruptedException e) {

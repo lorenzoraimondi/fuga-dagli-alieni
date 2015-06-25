@@ -9,27 +9,27 @@ import java.util.Collections;
  */
 public class MazzoOggetti extends Mazzo {
 	/**
-	 * @param Number of Attack Cards contained in the initial deck.
+	 * Number of Attack Cards contained in the initial deck.
 	 */
 	private static final int NUMATTACCO=2;
 	/**
-	 * @param Number of Teleport Cards contained in the initial deck.
+	 * Number of Teleport Cards contained in the initial deck.
 	 */
 	private static final int NUMTELETRASPORTO=2;
 	/**
-	 * @param Number of Sedatives Cards contained in the initial deck.
+	 * Number of Sedatives Cards contained in the initial deck.
 	 */
 	private static final int NUMSEDATIVI=3;
 	/**
-	 * @param Number of Spotlight Cards contained in the initial deck.
+	 * Number of Spotlight Cards contained in the initial deck.
 	 */
 	private static final int NUMLUCI=2;
 	/**
-	 * @param Number of Defense Cards contained in the initial deck.
+	 * Number of Defense Cards contained in the initial deck.
 	 */
 	private static final int NUMDIFESA=1;
 	/**
-	 * @param Number of Adrenaline Cards contained in the deck.
+	 * Number of Adrenaline Cards contained in the deck.
 	 */
 	private static final int NUMADRENALINA=2;
 	
@@ -59,15 +59,17 @@ public class MazzoOggetti extends Mazzo {
 		Collections.shuffle(mazzoIniziale);
 	}
 
-	//LO USIAMO???
 	/**
-	 * 
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {
 		return "MazzoOggetti [MazzoIniziale=" + mazzoIniziale + "]\n";
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Carta pescaCarta() {
 		if(mazzoIniziale.isEmpty()){

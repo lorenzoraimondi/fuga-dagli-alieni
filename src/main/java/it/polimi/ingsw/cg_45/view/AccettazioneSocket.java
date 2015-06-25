@@ -15,7 +15,7 @@ public class AccettazioneSocket extends Accettazione{
 	/**Create a new subscription class for a socket-connected client, in way to store
 	 * him and his information and then use them for create a game's player. 
 	 * 
-	 * @param client the communication interface representing the client, used to communicate with him. 
+	 * @param bt the {@link BrokerThread} communication interface representing the client, used to communicate with him. 
 	 * @param id player's unique identification number.
 	 * @param nomeGiocatore player's nickname.
 	 */

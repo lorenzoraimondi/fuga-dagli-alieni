@@ -44,7 +44,8 @@ public class RegistraClient {
 	 * and returning him the confirm, containing his race and id as mentioned in {@link Client}
 	 * and notifies the newly added client to the others client connected for the same game.
 	 * 
-	 * @return
+	 * @return A {@link RispostaController} response for the client with id and race information and
+	 * a message for all the player to warn of the new connected player.
 	 * @throws IOException
 	 */
 	

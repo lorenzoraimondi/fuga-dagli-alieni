@@ -10,11 +10,11 @@ import java.util.Collections;
 public class MazzoScialuppe extends Mazzo {
 	
 		/**
-		 * @param Number of cards contained in the deck.
+		 * Number of cards contained in the deck.
 		 */
 		private static final int NUM=6;
 		/**
-		 * @param Number of Green Escape Cards contained in the deck. The green cards permit the player to escape
+		 * Number of Green Escape Cards contained in the deck. The green cards permit the player to escape
 		 * the spaceship. 
 		 */
 		private static final int NUMVERDE=3;

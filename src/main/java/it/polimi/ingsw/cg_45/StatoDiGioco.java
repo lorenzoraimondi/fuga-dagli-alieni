@@ -11,32 +11,32 @@ import java.util.List;
 public class StatoDiGioco{
 	
 	/**
-	 * @param the number of the actual turn. After 39 turns the game ends automatically.
+	 * Number of the actual turn. After 39 turns the game ends automatically.
 	 */
 	private int turno;
 	
 	/**
-	 * @param the list of players, ordered by their sequence into the game turn.
+	 * List of players, ordered by their sequence into the game turn.
 	 */
 	private List<Giocatore> giocatori;
 	
 	/**
-	 * @param the game map in which the players have decided to play.
+	 * Game map in which the players have decided to play.
 	 */
 	private Mappa mappa;
 	
 	/**
-	 * @param the Dangerous Sector Card's deck from which the players can draw cards.
+	 * Dangerous Sector Card's deck from which the players can draw cards.
 	 */
 	private MazzoSettori mazzosettori;
 	
 	/**
-	 * @param the Item Card's deck from which the players can draw cards.
+	 * Item Card's deck from which the players can draw cards.
 	 */
 	private MazzoOggetti mazzooggetti;
 	
 	/**
-	 * @param the Escape Hatch Card's deck from which the players can draw cards.
+	 * Escape Hatch Card's deck from which the players can draw cards.
 	 */
 	private MazzoScialuppe mazzoscialuppe;
 		
