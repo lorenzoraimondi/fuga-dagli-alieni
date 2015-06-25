@@ -62,23 +62,78 @@ public class TraduttoreComandi {
 	public Object traduci() throws IOException{
 		StringTokenizer s=new StringTokenizer(comando);
 		try{
-		String primaParola=s.nextToken();
-		String terzaParola;
-		String quintaParola;
-		StatoDiGioco partita=server.getPartite().get(id);
-		Giocatore giocatore;
-		Coordinate coordinate;
-		Settore settore;
+			String primaParola=s.nextToken();
+			String terzaParola;
+			StatoDiGioco partita=server.getPartite().get(id);
+			Giocatore giocatore;
+			Coordinate coordinate;
+			Settore settore;
 		
-		switch(primaParola){
-		case "?":
-			giocatore=partita.getGiocatore(id);
-			return new Statistiche(giocatore,partita);
-		case "scarto":
-			giocatore=partita.getGiocatore(id);
-			s.nextToken();
-			terzaParola=s.nextToken();
-			switch(terzaParola){
+			switch(primaParola){
+
+			case "?":
+				giocatore=partita.getGiocatore(id);
+				return new Statistiche(giocatore,partita);
+			case "scarto":
+				giocatore=partita.getGiocatore(id);
+				s.nextToken();
+				terzaParola=s.nextToken();
+				return this.scarto(giocatore,partita,terzaParola);
+			case "silenzio":
+				giocatore=partita.getGiocatore(id);
+				return new AnnunciaRumore(partita,giocatore,null);
+			case "chat":
+				giocatore=partita.getGiocatore(id);
+				return new Chat(giocatore,partita,comando.substring(5));
+			case "rumore":
+				s.nextToken();
+				terzaParola=s.nextToken().toUpperCase();
+				if(terzaParola.length()!=3)
+					return "comando errato";
+				giocatore=partita.getGiocatore(id);
+				return new AnnunciaRumore(partita,giocatore,terzaParola);
+			case "termino":
+				giocatore=partita.getGiocatore(id);
+				return new TerminaTurno(giocatore,partita,server);
+			case "attacco":
+				giocatore=partita.getGiocatore(id);
+				settore=partita.getMappa().getMappa().get(giocatore.getPosizione().getCoordinate());
+				return new Attacco(partita,giocatore,settore,server);
+			case "movimento":
+				s.nextToken();
+				terzaParola=s.nextToken().toUpperCase();
+				if(terzaParola.length()!=3)
+					return "comando errato";
+				coordinate=new Coordinate(terzaParola);
+				settore=partita.getMappa().getMappa().get(coordinate);
+				giocatore=partita.getGiocatore(id);
+				return new Movimento(partita,giocatore,settore);
+			case "pesco":
+				giocatore=partita.getGiocatore(id);
+				s.nextToken();
+				terzaParola=s.nextToken();
+				return this.pesco(giocatore, partita, terzaParola);
+			case "uso":
+				giocatore=partita.getGiocatore(id);
+				s.nextToken();
+				terzaParola=s.nextToken();
+				return this.uso(giocatore, partita, terzaParola, s);
+			case "exit":
+				giocatore=partita.getGiocatore(id);
+				return new Disconnessione(giocatore,partita,server);
+			default:
+				return "Comando errato";
+			}
+		} catch(NoSuchElementException n){
+			return "Comando errato";
+		} catch(NullPointerException e) {
+			return "Comando errato";
+		}
+		
+	}
+	
+	protected Object scarto(Giocatore giocatore, StatoDiGioco partita, String terzaParola){
+		switch(terzaParola){
 			case "adrenalina":
 				return new ScartaCarta(giocatore,partita,TipoCartaOggetto.ADRENALINA);
 			case "luci":
@@ -92,42 +147,12 @@ public class TraduttoreComandi {
 			case "attacco":
 				return new ScartaCarta(giocatore,partita,TipoCartaOggetto.ATTACCO);
 			default:
-			}
-			return "Comando errato";
-		case "silenzio":
-			giocatore=partita.getGiocatore(id);
-			return new AnnunciaRumore(partita,giocatore,null);
-		case "chat":
-			giocatore=partita.getGiocatore(id);
-			return new Chat(giocatore,partita,comando.substring(5));
-		case "rumore":
-			s.nextToken();
-			terzaParola=s.nextToken().toUpperCase();
-			if(terzaParola.length()!=3)
-				return "comando errato";
-			giocatore=partita.getGiocatore(id);
-			return new AnnunciaRumore(partita,giocatore,terzaParola);
-		case "termino":
-			giocatore=partita.getGiocatore(id);
-			return new TerminaTurno(giocatore,partita,server);
-		case "attacco":
-			giocatore=partita.getGiocatore(id);
-			settore=partita.getMappa().getMappa().get(giocatore.getPosizione().getCoordinate());
-			return new Attacco(partita,giocatore,settore,server);
-		case "movimento":
-			s.nextToken();
-			terzaParola=s.nextToken().toUpperCase();
-			if(terzaParola.length()!=3)
-				return "comando errato";
-			coordinate=new Coordinate(terzaParola);
-			settore=partita.getMappa().getMappa().get(coordinate);
-			giocatore=partita.getGiocatore(id);
-			return new Movimento(partita,giocatore,settore);
-		case "pesco":
-			giocatore=partita.getGiocatore(id);
-			s.nextToken();
-			terzaParola=s.nextToken();
-			switch(terzaParola){
+		}
+		return "Comando errato";
+	}
+	
+	protected Object pesco(Giocatore giocatore, StatoDiGioco partita, String terzaParola){
+		switch(terzaParola){
 			case "oggetto":
 				return new PescaOggetto(giocatore,partita);
 			case "scialuppa":
@@ -135,13 +160,16 @@ public class TraduttoreComandi {
 			case "settore":
 				return new PescaSettore(giocatore,partita);
 			default: 
-			}
-			return "Comando errato";
-		case "uso":
-			giocatore=partita.getGiocatore(id);
-			s.nextToken();
-			terzaParola=s.nextToken();
-			switch(terzaParola){
+		}
+		return "Comando errato";
+	}
+	
+	protected Object uso(Giocatore giocatore, StatoDiGioco partita, String terzaParola, StringTokenizer s){
+		Coordinate coordinate;
+		Settore settore;
+		String quintaParola;
+		
+		switch(terzaParola){
 			case "adrenalina":
 				return new UsaAdrenalina(giocatore,partita);
 			case "attacco":
@@ -158,19 +186,8 @@ public class TraduttoreComandi {
 			case "teletrasporto":
 				return new UsaTeletrasporto(giocatore,partita);
 			default:	
-			}
-			return "Comando errato";
-		case "exit":
-				giocatore=partita.getGiocatore(id);
-				return new Disconnessione(giocatore,partita,server);
-		default:
-			return "Comando errato";
 		}
-		} catch(NoSuchElementException n){
-			return "Comando errato";
-		} catch(NullPointerException e) {
-			return "Comando errato";
-		}
-		
+		return "Comando errato";	
 	}
+	
 }
