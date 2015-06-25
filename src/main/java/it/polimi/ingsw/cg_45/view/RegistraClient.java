@@ -7,7 +7,6 @@ import it.polimi.ingsw.cg_45.netCommons.PacchettoAzione;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-//public class RegistraClient extends Azione {
 
 /**Represents the subscribing action. This class provide the possibility to 
  * add a new client on the server, adding him to the desired waiting list, and setting
@@ -34,11 +33,11 @@ public class RegistraClient {
 	public RegistraClient(Server server, Communicator client, PacchettoAzione pacchetto){
 		this.server=server;
 		this.client=client;
-		//
+		
 		StringTokenizer s=new StringTokenizer(pacchetto.getComando());
 		this.sceltaMappa=s.nextToken();
 		this.nome=s.nextToken();
-		//
+		
 	}
 	
 	/**This method subscribe the client to the server, adding him to the waiting list 
@@ -48,7 +47,7 @@ public class RegistraClient {
 	 * @return
 	 * @throws IOException
 	 */
-	//@Override
+	
 	public RispostaController esegui() throws IOException{
 	
 		int posizione;

@@ -52,26 +52,20 @@ public class SalaSocket extends Sala{
 	protected int esegui(){
 		BrokerThread brokerThread = new BrokerThread(client);
 		brokerThread.start();
-		//
 		int posizione=0;
-		//
-		//server.getSubscribers().add(brokerThread);
-		//System.out.println("added new subscribers");
+
 		if(scelta.contentEquals("fermi")){
-			//
+			
 			AccettazioneSocket accettazione=new AccettazioneSocket(brokerThread,server.getCounter(),nomeGiocatore);
 			giocatoriFermi.add(accettazione);
-			//giocatoriFermi.add(new Accettazione(brokerThread,server.getCounter()));
-			//
+			
 			posizione=giocatoriFermi.indexOf(accettazione);
-			//
+			
 			if(giocatoriFermi.size()==2){
 				fermi=new Timer();
-				System.out.println("creo timerFermi");
 				fermi.schedule(new CreaPartitaSocket(giocatoriFermi,server,scelta,this),(long)seconds*1000);
 				}
 			if(giocatoriFermi.size()==8){
-				//Da sistemare???
 				fermi.schedule(new CreaPartitaSocket(giocatoriFermi,server,scelta,this),0);
 				
 			}
@@ -82,7 +76,6 @@ public class SalaSocket extends Sala{
 			posizione=giocatoriGalilei.indexOf(accettazione);
 			if(giocatoriGalilei.size()==2){
 				galilei=new Timer();
-				System.out.println("creo timerGalilei");
 				galilei.schedule(new CreaPartitaSocket(giocatoriGalilei,server,scelta,this),(long)seconds*1000);}
 			if(giocatoriGalilei.size()==8){
 				galilei.schedule(new CreaPartitaSocket(giocatoriGalilei,server,scelta,this),0);
@@ -94,15 +87,11 @@ public class SalaSocket extends Sala{
 			posizione=giocatoriGalvani.indexOf(accettazione);
 			if(giocatoriGalvani.size()==2){
 				galvani=new Timer();
-				System.out.println("creo timerGalvani");
 				galvani.schedule(new CreaPartitaSocket(giocatoriGalvani,server,scelta,this),(long)seconds*1000);}
 			if(giocatoriGalvani.size()==8){
 				galvani.schedule(new CreaPartitaSocket(giocatoriGalvani,server,scelta,this),0);
 			}
 		}
-		else
-			System.out.println("scelta Sbagliata");
-		
 		return posizione;
 	}
 

@@ -11,10 +11,6 @@ import java.net.Socket;
  */
 public interface Communicator {
 	
-	
-	//void send(String msg);
-	//String receive();
-	
 	/**Closes the net communication by closing the {@code Socket}. After this call
 	 * will not be possible to send or receive objects from the relative client.
 	 * 

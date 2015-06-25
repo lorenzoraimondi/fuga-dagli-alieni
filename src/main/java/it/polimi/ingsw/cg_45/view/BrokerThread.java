@@ -45,7 +45,6 @@ public class BrokerThread extends Thread {
 				try {
 					send(msg);
 				} catch (IOException e1) {
-					System.out.println("Il giocatore a cui inviare il messaggio è disconnesso");
 				}
 			else{
 				try {
@@ -53,7 +52,6 @@ public class BrokerThread extends Thread {
 						buffer.wait();
 					}
 				} catch (InterruptedException e) {
-					
 				}
 			}
 		}
@@ -71,17 +69,6 @@ public class BrokerThread extends Thread {
 		}
 	}
 	
-	
-	/*private void send(String msg){
-		out.println(msg);
-		out.flush();
-	}*/
-	
-	/*private void send(Messaggio msg) throws IOException{
-		out.writeObject(msg);
-		//out.flush();
-	}*/
-	
 	/**This method sends the message from the server to the client.
 	 * 
 	 * @param msg the message to be sent to client.
@@ -89,19 +76,7 @@ public class BrokerThread extends Thread {
 	 */
 	private void send(Messaggio msg) throws IOException{
 		client.send(msg);
-		//out.flush();
 	}
-	
-	/*public void close(){
-		try {
-			socket.close();
-		} catch (IOException e) {
-		} finally {
-			out = null;
-			socket = null;
-			System.gc();
-		}
-	}*/
 	
 	/**Closes the communicator in way to block communication between the server
 	 * and the communicator relative client. After this method call
@@ -109,13 +84,8 @@ public class BrokerThread extends Thread {
 	 * 
 	 */
 	public void close(){
-		
 			client.close();
-		
-			//out = null;
 			client = null;
-			//System.gc();
-		
 	}
 
 }

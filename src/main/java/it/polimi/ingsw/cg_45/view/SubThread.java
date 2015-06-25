@@ -34,7 +34,6 @@ public class SubThread extends Thread {
 			try {
 				receive();
 			} catch (ClassNotFoundException e1) {
-				e1.printStackTrace();
 			}
 			try {
 				Thread.sleep(5);

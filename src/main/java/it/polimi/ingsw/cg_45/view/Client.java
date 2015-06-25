@@ -33,8 +33,6 @@ public class Client {
         this.port = port;
 	}
 	
-    //e se fosse protected???
-	//public void startClient() throws ConnectException {
 	protected void startClient() throws ConnectException {
 		try {
 			
@@ -121,7 +119,6 @@ public class Client {
 	 */
 	public static void main(String[] args) throws ClassNotFoundException, ConnectException { 
 		Client client = new Client(args[0], 1337);
-		//Client client = new Client("127.0.0.1", 1337);
 		try{
 			client.startClient();	
 		} catch (ConnectException e){

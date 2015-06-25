@@ -23,7 +23,7 @@ import java.util.Map;
  */
 public class Server implements ServerInterface {
 	
-	private Map<Integer, StatoDiGioco> Partite = new HashMap<Integer, StatoDiGioco>();
+	private Map<Integer, StatoDiGioco> partite = new HashMap<Integer, StatoDiGioco>();
 	private Map<Integer, ArrayList<BrokerThread>> idSub = new HashMap<Integer, ArrayList<BrokerThread>>();
 		
 	private SalaSocket sala=new SalaSocket();
@@ -33,9 +33,6 @@ public class Server implements ServerInterface {
 	private int counter=1;
 	private int port;
 	private ServerSocket serverSocket;
-	
-	/*//Questa lista non Ã¨ inutile???
-	private List<BrokerThread> subscribers = new ArrayList<BrokerThread>();*/
 	
 	/**Create a game socket server on the specified port.
 	 * 
@@ -80,12 +77,6 @@ public class Server implements ServerInterface {
 		return true;
 	}
 
-	
-	/*INUTILE?
-	public List<BrokerThread> getSubscribers() {
-		return subscribers;
-	}*/
-
 	/**{@inheritDoc}
 	 * 
 	 */
@@ -107,7 +98,7 @@ public class Server implements ServerInterface {
 	 */
 	@Override
 	public Map<Integer, StatoDiGioco> getPartite() {
-		return Partite;
+		return partite;
 	}
 
 	/**Send a message to all the players involved in a certain game. Given the id of the player from
@@ -122,17 +113,10 @@ public class Server implements ServerInterface {
 		List<BrokerThread> subs=idSub.get(id);
 		
 		if(subs!=null){
-			System.out.println("Publishing message");
 			for (BrokerThread sub : subs) {
 				sub.dispatchMessage(msg);
 			}
-		}else{
-			
-			System.out.println("Non c'è iscritto nessuno...");
-			
-			
 		}
-	
 	}
 
 	/**The map stores a {@code Timer} for each game. It's possible to get the correct
@@ -150,6 +134,7 @@ public class Server implements ServerInterface {
 	 * @param partita the {@code StatoDiGioco} game relative to the timer.
 	 * @param giocatore the current player of which count turn time.
 	 */
+	@Override
 	public void startTimer(StatoDiGioco partita, Giocatore giocatore){
 		Timer timerTurno=new SocketTimer(partita,giocatore,this);
 		Thread t=new Thread((Runnable) timerTurno);

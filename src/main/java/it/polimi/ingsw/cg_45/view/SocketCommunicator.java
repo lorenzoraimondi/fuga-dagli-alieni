@@ -14,7 +14,6 @@ import java.net.Socket;
 public class SocketCommunicator implements Communicator {
 
 	Socket socket;
-	//Scanner in;
 	ObjectInputStream inO;
 	ObjectOutputStream out;
 	
@@ -39,16 +38,6 @@ public class SocketCommunicator implements Communicator {
 	public void send(Object msg) throws IOException{
 		out.writeObject(msg); 
 	}
-
-    /*@Override
-	public String receive(){
-		return in.nextLine();
-	}*/
-
-    /*aggiunto per ricevere numeri
-    public int receiveInt(){
-    	return in.nextInt();
-    }*/
     
     /**
      * {@inheritDoc}
@@ -62,12 +51,6 @@ public class SocketCommunicator implements Communicator {
         		socket = null;
         }
     }
-
-	/*@Override
-	public void send(String msg) {
-		// TODO Auto-generated method stub
-	
-	}*/
 
     /**
      * {@inheritDoc}
