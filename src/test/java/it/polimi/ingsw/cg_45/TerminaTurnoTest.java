@@ -15,7 +15,9 @@ import it.polimi.ingsw.cg_45.model.StatoDiGioco;
 import it.polimi.ingsw.cg_45.model.TipoCartaOggetto;
 import it.polimi.ingsw.cg_45.model.Umano;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
+import it.polimi.ingsw.cg_45.netCommons.Timer;
 import it.polimi.ingsw.cg_45.socket.SocketServer;
+import it.polimi.ingsw.cg_45.socket.SocketTimer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -72,6 +74,15 @@ public class TerminaTurnoTest {
 		for(int i=1;i<37;i++){
 			partita.incrementTurno();
 		}
+		
+		Timer timerTurno1=new SocketTimer(partita,g1,(SocketServer)server);
+		Thread t1=new Thread((Runnable) timerTurno1);
+		((SocketServer)server).getTimers().put(g1.getID(), t1);
+		
+		Timer timerTurno2=new SocketTimer(partita,g2,(SocketServer)server);
+		Thread t2=new Thread((Runnable) timerTurno2);
+		((SocketServer)server).getTimers().put(g2.getID(), t2);
+		
 		risp=new TerminaTurno(g1,partita,server).esegui();
 		assertTrue(risp.getMessaggioBroadcast().contains("Partita terminata!"));
 	}

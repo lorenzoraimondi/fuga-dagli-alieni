@@ -14,7 +14,9 @@ import it.polimi.ingsw.cg_45.model.Stato;
 import it.polimi.ingsw.cg_45.model.StatoDiGioco;
 import it.polimi.ingsw.cg_45.model.Umano;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
+import it.polimi.ingsw.cg_45.netCommons.Timer;
 import it.polimi.ingsw.cg_45.socket.SocketServer;
+import it.polimi.ingsw.cg_45.socket.SocketTimer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,6 +55,7 @@ public class TerminaPartitaTest {
 		Giocatore g11=new Umano(11,2,mappa1,"Andrea");
 		Giocatore g12=new Alieno(12,1,mappa2,"Claudio");
 		Giocatore g13=new Umano(13,2,mappa2,"Matteo");
+		
 		
 		g2.setSituazione(Situazione.MORTO);
 		g2.setStato(Stato.TURNOTERMINATO);
@@ -95,6 +98,58 @@ public class TerminaPartitaTest {
 		partita3=new StatoDiGioco(lista3,mappa3);
 		partita4=new StatoDiGioco(lista4,mappa4);
 		partita5=new StatoDiGioco(lista5,mappa5);
+		
+		Timer timerTurno1=new SocketTimer(partita1,g1,(SocketServer)server);
+		Thread t1=new Thread((Runnable) timerTurno1);
+		((SocketServer)server).getTimers().put(g1.getID(), t1);
+		
+		Timer timerTurno2=new SocketTimer(partita1,g2,(SocketServer)server);
+		Thread t2=new Thread((Runnable) timerTurno2);
+		((SocketServer)server).getTimers().put(g2.getID(), t2);
+		
+		Timer timerTurno3=new SocketTimer(partita2,g3,(SocketServer)server);
+		Thread t3=new Thread((Runnable) timerTurno3);
+		((SocketServer)server).getTimers().put(g3.getID(), t3);
+		
+		Timer timerTurno4=new SocketTimer(partita2,g4,(SocketServer)server);
+		Thread t4=new Thread((Runnable) timerTurno4);
+		((SocketServer)server).getTimers().put(g4.getID(), t4);
+		
+		Timer timerTurno5=new SocketTimer(partita3,g5,(SocketServer)server);
+		Thread t5=new Thread((Runnable) timerTurno5);
+		((SocketServer)server).getTimers().put(g5.getID(), t5);
+		
+		Timer timerTurno6=new SocketTimer(partita3,g6,(SocketServer)server);
+		Thread t6=new Thread((Runnable) timerTurno6);
+		((SocketServer)server).getTimers().put(g6.getID(), t6);
+		
+		Timer timerTurno7=new SocketTimer(partita3,g7,(SocketServer)server);
+		Thread t7=new Thread((Runnable) timerTurno7);
+		((SocketServer)server).getTimers().put(g7.getID(), t7);
+		
+		Timer timerTurno8=new SocketTimer(partita3,g8,(SocketServer)server);
+		Thread t8=new Thread((Runnable) timerTurno8);
+		((SocketServer)server).getTimers().put(g8.getID(), t8);
+		
+		Timer timerTurno9=new SocketTimer(partita3,g9,(SocketServer)server);
+		Thread t9=new Thread((Runnable) timerTurno9);
+		((SocketServer)server).getTimers().put(g9.getID(), t9);
+		
+		Timer timerTurno10=new SocketTimer(partita4,g10,(SocketServer)server);
+		Thread t10=new Thread((Runnable) timerTurno10);
+		((SocketServer)server).getTimers().put(g10.getID(), t10);
+		
+		Timer timerTurno11=new SocketTimer(partita4,g11,(SocketServer)server);
+		Thread t11=new Thread((Runnable) timerTurno11);
+		((SocketServer)server).getTimers().put(g11.getID(), t11);
+		
+		Timer timerTurno12=new SocketTimer(partita5,g12,(SocketServer)server);
+		Thread t12=new Thread((Runnable) timerTurno12);
+		((SocketServer)server).getTimers().put(g12.getID(), t12);
+		
+		Timer timerTurno13=new SocketTimer(partita5,g13,(SocketServer)server);
+		Thread t13=new Thread((Runnable) timerTurno13);
+		((SocketServer)server).getTimers().put(g13.getID(), t13);
 		
 		for(int i=0;i<39;i++){
 			partita4.incrementTurno();	
