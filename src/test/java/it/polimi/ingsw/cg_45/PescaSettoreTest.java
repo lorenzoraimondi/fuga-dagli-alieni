@@ -3,6 +3,15 @@ package it.polimi.ingsw.cg_45;
 import static org.junit.Assert.assertEquals;
 import it.polimi.ingsw.cg_45.controller.Azione;
 import it.polimi.ingsw.cg_45.controller.PescaSettore;
+import it.polimi.ingsw.cg_45.model.CartaSettore;
+import it.polimi.ingsw.cg_45.model.Galvani;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.Mappa;
+import it.polimi.ingsw.cg_45.model.Situazione;
+import it.polimi.ingsw.cg_45.model.Stato;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
+import it.polimi.ingsw.cg_45.model.TipoCartaSettore;
+import it.polimi.ingsw.cg_45.model.Umano;
 
 import java.io.IOException;
 import java.util.ArrayList;

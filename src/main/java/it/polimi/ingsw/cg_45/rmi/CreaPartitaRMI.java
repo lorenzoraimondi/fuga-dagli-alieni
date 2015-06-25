@@ -1,15 +1,15 @@
 package it.polimi.ingsw.cg_45.rmi;
 
-import it.polimi.ingsw.cg_45.Alieno;
-import it.polimi.ingsw.cg_45.Fermi;
-import it.polimi.ingsw.cg_45.Galilei;
-import it.polimi.ingsw.cg_45.Galvani;
-import it.polimi.ingsw.cg_45.Giocatore;
-import it.polimi.ingsw.cg_45.Mappa;
-import it.polimi.ingsw.cg_45.Situazione;
-import it.polimi.ingsw.cg_45.Stato;
-import it.polimi.ingsw.cg_45.StatoDiGioco;
-import it.polimi.ingsw.cg_45.Umano;
+import it.polimi.ingsw.cg_45.model.Alieno;
+import it.polimi.ingsw.cg_45.model.Fermi;
+import it.polimi.ingsw.cg_45.model.Galilei;
+import it.polimi.ingsw.cg_45.model.Galvani;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.Mappa;
+import it.polimi.ingsw.cg_45.model.Situazione;
+import it.polimi.ingsw.cg_45.model.Stato;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
+import it.polimi.ingsw.cg_45.model.Umano;
 import it.polimi.ingsw.cg_45.netCommons.Accettazione;
 import it.polimi.ingsw.cg_45.netCommons.Messaggio;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;

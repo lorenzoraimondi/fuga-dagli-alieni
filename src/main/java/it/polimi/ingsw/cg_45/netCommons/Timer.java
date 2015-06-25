@@ -1,10 +1,10 @@
 package it.polimi.ingsw.cg_45.netCommons;
 
-import it.polimi.ingsw.cg_45.Giocatore;
-import it.polimi.ingsw.cg_45.Situazione;
-import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.controller.Azione;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.Situazione;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
 
 
 /**Represents a generic timer to be used for count how many time take player's turn.

@@ -1,9 +1,9 @@
 package it.polimi.ingsw.cg_45.controller;
 
-import it.polimi.ingsw.cg_45.Coordinate;
-import it.polimi.ingsw.cg_45.Giocatore;
-import it.polimi.ingsw.cg_45.Stato;
-import it.polimi.ingsw.cg_45.StatoDiGioco;
+import it.polimi.ingsw.cg_45.model.Coordinate;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.Stato;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
 
 import java.io.IOException;
 

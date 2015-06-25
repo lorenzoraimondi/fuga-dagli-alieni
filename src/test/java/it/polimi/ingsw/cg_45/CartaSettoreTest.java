@@ -2,6 +2,8 @@ package it.polimi.ingsw.cg_45;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import it.polimi.ingsw.cg_45.model.CartaSettore;
+import it.polimi.ingsw.cg_45.model.TipoCartaSettore;
 
 import org.junit.Test;
 

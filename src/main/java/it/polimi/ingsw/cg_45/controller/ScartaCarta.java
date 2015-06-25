@@ -1,10 +1,10 @@
 package it.polimi.ingsw.cg_45.controller;
 
-import it.polimi.ingsw.cg_45.Carta;
-import it.polimi.ingsw.cg_45.Giocatore;
-import it.polimi.ingsw.cg_45.Situazione;
-import it.polimi.ingsw.cg_45.StatoDiGioco;
-import it.polimi.ingsw.cg_45.TipoCartaOggetto;
+import it.polimi.ingsw.cg_45.model.Carta;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.Situazione;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
+import it.polimi.ingsw.cg_45.model.TipoCartaOggetto;
 
 /**Represent the discard action performing, for a player that has four Item cards in his hand.
  * This class permit to verify if the player can perform the action and in case perform it, communicating

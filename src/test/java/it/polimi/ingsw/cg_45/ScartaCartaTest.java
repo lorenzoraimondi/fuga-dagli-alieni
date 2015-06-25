@@ -3,6 +3,15 @@ package it.polimi.ingsw.cg_45;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import it.polimi.ingsw.cg_45.controller.ScartaCarta;
+import it.polimi.ingsw.cg_45.model.CartaOggetto;
+import it.polimi.ingsw.cg_45.model.Fermi;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.Mappa;
+import it.polimi.ingsw.cg_45.model.Situazione;
+import it.polimi.ingsw.cg_45.model.Stato;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
+import it.polimi.ingsw.cg_45.model.TipoCartaOggetto;
+import it.polimi.ingsw.cg_45.model.Umano;
 
 import java.io.IOException;
 import java.util.ArrayList;

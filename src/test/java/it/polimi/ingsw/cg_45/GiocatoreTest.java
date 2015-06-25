@@ -2,6 +2,11 @@ package it.polimi.ingsw.cg_45;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import it.polimi.ingsw.cg_45.model.Alieno;
+import it.polimi.ingsw.cg_45.model.CartaOggetto;
+import it.polimi.ingsw.cg_45.model.Fermi;
+import it.polimi.ingsw.cg_45.model.Mappa;
+import it.polimi.ingsw.cg_45.model.TipoCartaOggetto;
 
 import org.junit.Test;
 

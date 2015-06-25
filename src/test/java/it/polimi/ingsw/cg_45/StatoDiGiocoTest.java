@@ -1,6 +1,12 @@
 package it.polimi.ingsw.cg_45;
 
 import static org.junit.Assert.assertEquals;
+import it.polimi.ingsw.cg_45.model.Alieno;
+import it.polimi.ingsw.cg_45.model.Fermi;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.Mappa;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
+import it.polimi.ingsw.cg_45.model.Umano;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +35,8 @@ public class StatoDiGiocoTest {
 		
 		assertEquals(mappa,partita.getMappa());
 		
-		assertEquals(25,partita.getMazzoSettori().numCarte);
-		assertEquals(6,partita.getMazzoScialuppe().numCarte);
+		assertEquals(25,partita.getMazzoSettori().getNumCarte());
+		assertEquals(6,partita.getMazzoScialuppe().getNumCarte());
 		
 		assertEquals(g1,partita.getGiocatore(1));
 		assertEquals(null,partita.getGiocatore(10));

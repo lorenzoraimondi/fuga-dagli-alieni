@@ -3,6 +3,13 @@ package it.polimi.ingsw.cg_45;
 import static org.junit.Assert.assertTrue;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
 import it.polimi.ingsw.cg_45.controller.UsaDifesa;
+import it.polimi.ingsw.cg_45.model.CartaOggetto;
+import it.polimi.ingsw.cg_45.model.Fermi;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.Mappa;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
+import it.polimi.ingsw.cg_45.model.TipoCartaOggetto;
+import it.polimi.ingsw.cg_45.model.Umano;
 
 import java.util.ArrayList;
 import java.util.List;

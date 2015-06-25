@@ -1,15 +1,15 @@
 package it.polimi.ingsw.cg_45.controller;
 
-import it.polimi.ingsw.cg_45.CartaOggetto;
-import it.polimi.ingsw.cg_45.Giocatore;
-import it.polimi.ingsw.cg_45.MazzoOggetti;
-import it.polimi.ingsw.cg_45.Settore;
-import it.polimi.ingsw.cg_45.SettoreVuoto;
-import it.polimi.ingsw.cg_45.Situazione;
-import it.polimi.ingsw.cg_45.Stato;
-import it.polimi.ingsw.cg_45.StatoDiGioco;
-import it.polimi.ingsw.cg_45.TipoCartaOggetto;
-import it.polimi.ingsw.cg_45.Umano;
+import it.polimi.ingsw.cg_45.model.CartaOggetto;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.MazzoOggetti;
+import it.polimi.ingsw.cg_45.model.Settore;
+import it.polimi.ingsw.cg_45.model.SettoreVuoto;
+import it.polimi.ingsw.cg_45.model.Situazione;
+import it.polimi.ingsw.cg_45.model.Stato;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
+import it.polimi.ingsw.cg_45.model.TipoCartaOggetto;
+import it.polimi.ingsw.cg_45.model.Umano;
 
 import java.util.ArrayList;
 import java.util.Arrays;

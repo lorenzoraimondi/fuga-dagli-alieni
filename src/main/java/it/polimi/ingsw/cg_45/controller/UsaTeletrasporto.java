@@ -1,14 +1,14 @@
 package it.polimi.ingsw.cg_45.controller;
 
-import it.polimi.ingsw.cg_45.CartaOggetto;
-import it.polimi.ingsw.cg_45.Giocatore;
-import it.polimi.ingsw.cg_45.Mappa;
-import it.polimi.ingsw.cg_45.MazzoOggetti;
-import it.polimi.ingsw.cg_45.Situazione;
-import it.polimi.ingsw.cg_45.Stato;
-import it.polimi.ingsw.cg_45.StatoDiGioco;
-import it.polimi.ingsw.cg_45.TipoCartaOggetto;
-import it.polimi.ingsw.cg_45.Umano;
+import it.polimi.ingsw.cg_45.model.CartaOggetto;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.Mappa;
+import it.polimi.ingsw.cg_45.model.MazzoOggetti;
+import it.polimi.ingsw.cg_45.model.Situazione;
+import it.polimi.ingsw.cg_45.model.Stato;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
+import it.polimi.ingsw.cg_45.model.TipoCartaOggetto;
+import it.polimi.ingsw.cg_45.model.Umano;
 
 /**Represent the Teleport Card action performing, for a human player that uses a Teleport card during his turn.
  * This class permit to verify if the player can perform the action and in case perform it, communicating

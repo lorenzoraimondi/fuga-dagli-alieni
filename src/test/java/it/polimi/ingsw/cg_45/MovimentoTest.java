@@ -4,6 +4,16 @@ import static org.junit.Assert.assertEquals;
 import it.polimi.ingsw.cg_45.controller.Azione;
 import it.polimi.ingsw.cg_45.controller.Movimento;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
+import it.polimi.ingsw.cg_45.model.Alieno;
+import it.polimi.ingsw.cg_45.model.Coordinate;
+import it.polimi.ingsw.cg_45.model.Galvani;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.Mappa;
+import it.polimi.ingsw.cg_45.model.Settore;
+import it.polimi.ingsw.cg_45.model.Situazione;
+import it.polimi.ingsw.cg_45.model.Stato;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
+import it.polimi.ingsw.cg_45.model.Umano;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,6 +1,8 @@
 package it.polimi.ingsw.cg_45;
 
 import static org.junit.Assert.assertTrue;
+import it.polimi.ingsw.cg_45.model.CartaScialuppa;
+import it.polimi.ingsw.cg_45.model.MazzoScialuppe;
 
 import org.junit.Test;
 

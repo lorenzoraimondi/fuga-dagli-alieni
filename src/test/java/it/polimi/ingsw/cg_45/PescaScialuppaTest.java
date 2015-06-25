@@ -3,6 +3,16 @@ package it.polimi.ingsw.cg_45;
 import static org.junit.Assert.assertEquals;
 import it.polimi.ingsw.cg_45.controller.Azione;
 import it.polimi.ingsw.cg_45.controller.PescaScialuppa;
+import it.polimi.ingsw.cg_45.model.CartaScialuppa;
+import it.polimi.ingsw.cg_45.model.Coordinate;
+import it.polimi.ingsw.cg_45.model.Galvani;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.Mappa;
+import it.polimi.ingsw.cg_45.model.Situazione;
+import it.polimi.ingsw.cg_45.model.Stato;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
+import it.polimi.ingsw.cg_45.model.TipoCartaScialuppa;
+import it.polimi.ingsw.cg_45.model.Umano;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
 
 import java.io.IOException;

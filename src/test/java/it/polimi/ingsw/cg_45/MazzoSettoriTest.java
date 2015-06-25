@@ -1,5 +1,10 @@
 package it.polimi.ingsw.cg_45;
 
+import it.polimi.ingsw.cg_45.model.Carta;
+import it.polimi.ingsw.cg_45.model.CartaSettore;
+import it.polimi.ingsw.cg_45.model.Mazzo;
+import it.polimi.ingsw.cg_45.model.MazzoSettori;
+
 import org.junit.Test;
 
 public class MazzoSettoriTest {

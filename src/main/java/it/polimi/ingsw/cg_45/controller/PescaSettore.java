@@ -1,11 +1,11 @@
 package it.polimi.ingsw.cg_45.controller;
 
-import it.polimi.ingsw.cg_45.CartaSettore;
-import it.polimi.ingsw.cg_45.Giocatore;
-import it.polimi.ingsw.cg_45.Situazione;
-import it.polimi.ingsw.cg_45.Stato;
-import it.polimi.ingsw.cg_45.StatoDiGioco;
-import it.polimi.ingsw.cg_45.TipoCartaSettore;
+import it.polimi.ingsw.cg_45.model.CartaSettore;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.Situazione;
+import it.polimi.ingsw.cg_45.model.Stato;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
+import it.polimi.ingsw.cg_45.model.TipoCartaSettore;
 
 /**Represent the Dangerous Sector card draw action performing, for a player that has moved into a Dangerous Sector.
  * This class permit to verify if the player can perform the action and in case perform it, communicating

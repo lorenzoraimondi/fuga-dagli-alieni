@@ -5,8 +5,16 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
 import it.polimi.ingsw.cg_45.controller.TerminaPartita;
+import it.polimi.ingsw.cg_45.model.Alieno;
+import it.polimi.ingsw.cg_45.model.Fermi;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.Mappa;
+import it.polimi.ingsw.cg_45.model.Situazione;
+import it.polimi.ingsw.cg_45.model.Stato;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
+import it.polimi.ingsw.cg_45.model.Umano;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
-import it.polimi.ingsw.cg_45.view.Server;
+import it.polimi.ingsw.cg_45.socket.SocketServer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,7 +26,7 @@ public class TerminaPartitaTest {
 
 	@Test
 	public void test() throws IOException {
-		ServerInterface server=new Server(1337);
+		ServerInterface server=new SocketServer(1337);
 		
 		StatoDiGioco partita1;
 		StatoDiGioco partita2;

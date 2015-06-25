@@ -1,5 +1,7 @@
 package it.polimi.ingsw.cg_45;
 
+import it.polimi.ingsw.cg_45.model.MazzoOggetti;
+
 import org.junit.Test;
 
 public class MazzoOggettiTest {

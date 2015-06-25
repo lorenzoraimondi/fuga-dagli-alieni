@@ -1,16 +1,16 @@
 package it.polimi.ingsw.cg_45.controller;
 
-import it.polimi.ingsw.cg_45.Alieno;
-import it.polimi.ingsw.cg_45.Giocatore;
-import it.polimi.ingsw.cg_45.Mappa;
-import it.polimi.ingsw.cg_45.Settore;
-import it.polimi.ingsw.cg_45.SettorePericoloso;
-import it.polimi.ingsw.cg_45.SettoreScialuppa;
-import it.polimi.ingsw.cg_45.SettoreSicuro;
-import it.polimi.ingsw.cg_45.Situazione;
-import it.polimi.ingsw.cg_45.Stato;
-import it.polimi.ingsw.cg_45.StatoDiGioco;
-import it.polimi.ingsw.cg_45.Umano;
+import it.polimi.ingsw.cg_45.model.Alieno;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.Mappa;
+import it.polimi.ingsw.cg_45.model.Settore;
+import it.polimi.ingsw.cg_45.model.SettorePericoloso;
+import it.polimi.ingsw.cg_45.model.SettoreScialuppa;
+import it.polimi.ingsw.cg_45.model.SettoreSicuro;
+import it.polimi.ingsw.cg_45.model.Situazione;
+import it.polimi.ingsw.cg_45.model.Stato;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
+import it.polimi.ingsw.cg_45.model.Umano;
 
 /**Represent the move action performing, for a player that wants to move from his current sector.
  * This class permit to verify if the player can perform the move and in case perform it, communicating

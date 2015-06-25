@@ -1,10 +1,10 @@
 package it.polimi.ingsw.cg_45.rmi;
 
-import it.polimi.ingsw.cg_45.Giocatore;
-import it.polimi.ingsw.cg_45.StatoDiGioco;
 import it.polimi.ingsw.cg_45.controller.Azione;
 import it.polimi.ingsw.cg_45.controller.RispostaController;
 import it.polimi.ingsw.cg_45.controller.TerminaTurno;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
 import it.polimi.ingsw.cg_45.netCommons.Messaggio;
 import it.polimi.ingsw.cg_45.netCommons.PacchettoAzione;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
@@ -58,7 +58,7 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 	
 	@Override
 	public void startTimer(StatoDiGioco partita,Giocatore giocatore){
-		Timer timerTurno=new RmiTimer(partita,giocatore,this);
+		Timer timerTurno=new RMITimer(partita,giocatore,this);
 		Thread t=new Thread((Runnable) timerTurno);
 		timers.put(giocatore.getID(), t);
 		t.start();

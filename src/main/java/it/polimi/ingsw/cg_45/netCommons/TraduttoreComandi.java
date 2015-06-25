@@ -1,10 +1,5 @@
 package it.polimi.ingsw.cg_45.netCommons;
 
-import it.polimi.ingsw.cg_45.Coordinate;
-import it.polimi.ingsw.cg_45.Giocatore;
-import it.polimi.ingsw.cg_45.Settore;
-import it.polimi.ingsw.cg_45.StatoDiGioco;
-import it.polimi.ingsw.cg_45.TipoCartaOggetto;
 import it.polimi.ingsw.cg_45.controller.AnnunciaRumore;
 import it.polimi.ingsw.cg_45.controller.Attacco;
 import it.polimi.ingsw.cg_45.controller.Chat;
@@ -20,6 +15,11 @@ import it.polimi.ingsw.cg_45.controller.UsaAdrenalina;
 import it.polimi.ingsw.cg_45.controller.UsaLuci;
 import it.polimi.ingsw.cg_45.controller.UsaSedativi;
 import it.polimi.ingsw.cg_45.controller.UsaTeletrasporto;
+import it.polimi.ingsw.cg_45.model.Coordinate;
+import it.polimi.ingsw.cg_45.model.Giocatore;
+import it.polimi.ingsw.cg_45.model.Settore;
+import it.polimi.ingsw.cg_45.model.StatoDiGioco;
+import it.polimi.ingsw.cg_45.model.TipoCartaOggetto;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;

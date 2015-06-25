@@ -1,5 +1,8 @@
---------------------------------------------------------------------------------
-v1.0
+________________________________________________________________________________
+
+	Andrea Turconi					Lorenzo Raimondi
+
+
        ___________  __________________     _____  __________ ___________
        \_   _____/ /   _____/\_   ___ \   /  _  \ \______   \\_   _____/
         |    __)_  \_____  \ /    \  \/  /  /_\  \ |     ___/ |    __)_ 
@@ -28,7 +31,23 @@ v1.0
               \_____  \  |     ___//  /_\  \ /    \  \/  |    __)_ 
               /        \ |    |   /    |    \\     \____ |        \
              /_________/ |____|   \____|____/ \________//_________/
-             
---------------------------------------------------------------------------------
 
+             
+________________________________________________________________________________
+
+ Comandi:
+
+  [Muovere il giocatore] - Movimento in XYZ
+  [Pescare una carta] - Pesco carta TIPO CARTA SETTORE
+  [Attaccare] - Attacco
+  [Usare una carta] - Uso carta TIPO CARTA OGGETTO
+  [Annunciare rumore in un settore] - Rumore in XYZ
+  [Annunciare silenzio] - Silenzio
+  [Scartare una carta] - Scarto carta TIPO CARTA OGGETTO
+  [Passare il turno] - Termino
+  [Inviare un messaggio in chat] - Chat MESSAGGIO DA INVIARE
+  [Aiuto] - ?
+
+ Buona partita!
+________________________________________________________________________________
 																				
