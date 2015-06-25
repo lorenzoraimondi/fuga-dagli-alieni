@@ -1,0 +1,1 @@
+Avviare ServerStarter seguito da ClientStarter nel package CLI  e seguire le istruzioni.

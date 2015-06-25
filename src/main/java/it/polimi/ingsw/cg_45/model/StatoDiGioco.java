@@ -46,7 +46,7 @@ public class StatoDiGioco{
 	 * @param mappa the map in which the players will play.
 	 */
 	public StatoDiGioco(List<Giocatore> giocatori,Mappa mappa){
-		//this.currentPlayer=1;
+		
 		this.turno=1;
 		this.giocatori=giocatori;
 		this.mappa=mappa;

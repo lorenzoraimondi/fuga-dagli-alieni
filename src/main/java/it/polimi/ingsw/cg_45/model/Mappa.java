@@ -167,9 +167,6 @@ public abstract class Mappa {
 			m.put(i, new ArrayList<Settore>());
 			for(Settore s : m.get(i-1)){
 				for(int j=0;j<6;j++){
-					//if(s.getVicini()[j]==null || s.getVicini()[j] instanceof SettorePartenzaAlieni || s.getVicini()[j] instanceof SettorePartenzaUmani){
-					//} else 
-						//if(!(s.getVicini()[j] instanceof SettoreVuoto)){
 						if(!(s.getVicini()[j] instanceof SettoreVuoto) && s.getVicini()[j]!=null){
 						if(s.getVicini()[j]==arrivo){
 							return true;

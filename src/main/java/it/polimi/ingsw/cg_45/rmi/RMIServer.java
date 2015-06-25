@@ -34,15 +34,14 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 	private SalaRMI sala=new SalaRMI();
 	
 	private int counter=1;
-	private int port;
+	
 	
 	/**Create a game RMI server on the specified port.
 	 * 
 	 * @param port the port on which open the server.
 	 */
-	public RMIServer(int port) {
-		this.port = port;
-		
+	public RMIServer() {
+	
 	}
 	
 	private Map<Integer, Thread> timers=new HashMap<Integer, Thread>();

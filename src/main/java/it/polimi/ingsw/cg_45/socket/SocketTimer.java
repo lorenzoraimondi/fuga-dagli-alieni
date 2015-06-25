@@ -37,7 +37,8 @@ public class SocketTimer extends Timer implements Runnable{
 		
 			int ordine[]=ordinamento();
 			
-			try{Thread.sleep((long)SECONDI*1000);
+			try{
+				Thread.sleep((long)SECONDI*1000);
 				azione=new Disconnessione(giocatore,partita,server);
 				try {
 					risp=azione.esegui();

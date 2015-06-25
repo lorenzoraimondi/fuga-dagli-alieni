@@ -12,6 +12,10 @@ import java.rmi.server.UnicastRemoteObject;
  *
  */
 public class RMIServerMain {
+	
+	private RMIServerMain(){
+		
+	}
 
 	/**Creates a new RMI server, and starts its service by creating a new registry and
 	 * exporting server stub on the port 29999. Once done it, the server is ready to 
@@ -22,7 +26,7 @@ public class RMIServerMain {
 	 */
 	public static void main(String[] args) throws RemoteException {
         
-        RMIServer handler=new RMIServer(29999);
+        RMIServer handler=new RMIServer();
 		
 		Registry registry = LocateRegistry.createRegistry(29999);
 		

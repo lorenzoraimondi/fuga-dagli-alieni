@@ -18,13 +18,18 @@ import java.util.Scanner;
  */
 public class RMIClientMain {
 	
+	
+	private RMIClientMain(){
+		
+	}
+	
 	/**Creates a new RMI client and starts its service by creating a new registry and
 	 * importing server stub on the port 29999. Once done it, the client ask to the player for a name 
 	 * and in which map he wants to play, in way to register to the server; making this request the 
 	 * client exports its stub to the server, so it can call client's methods. From server confirm 
 	 * the client obatin its id number, and once started the game can send commands calling server methods.
 	 * 
-	 * @param args {@code String} array which contains server's ip address in the firs slot.
+	 * @param args {@code String} array which contains server's ip address in the first slot.
 	 * 
 	 * @throws ClassNotFoundException
 	 * @throws ConnectException

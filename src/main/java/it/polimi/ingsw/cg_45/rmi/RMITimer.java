@@ -47,7 +47,7 @@ public class RMITimer extends Timer implements Runnable{
             int ordine[]=ordinamento();
  
             try{
-                Thread.sleep(SECONDI*1000);
+                Thread.sleep((long)SECONDI*1000);
                 azione=new Disconnessione(giocatore,partita,server);
                 try {
                     risp=azione.esegui();
