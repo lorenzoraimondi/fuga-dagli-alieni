@@ -7,6 +7,8 @@ import it.polimi.ingsw.cg_45.model.Stato;
 import it.polimi.ingsw.cg_45.model.StatoDiGioco;
 import it.polimi.ingsw.cg_45.model.Umano;
 import it.polimi.ingsw.cg_45.netCommons.ServerInterface;
+import it.polimi.ingsw.cg_45.rmi.RMIServer;
+import it.polimi.ingsw.cg_45.socket.SocketServer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class TerminaPartita extends Azione{
 	
 	private ServerInterface server;
 	
+	
 	/**Create the game end action to perform, associating it to a game and to the current player, and
 	 * storing the server in which the game resides. 
 	 * 
@@ -34,6 +37,7 @@ public class TerminaPartita extends Azione{
 		super(giocatore,partita);
 		this.server=server;
 	}
+	
 	
 	/**Execute the game end action, after checking its possibility.
 	 * <p> 
@@ -48,12 +52,14 @@ public class TerminaPartita extends Azione{
 			int umaniVincitori=0;
 			List<String> risposte=new ArrayList<String>();
 	
+			
 			for(Giocatore g : model.getGiocatori()){
 				if(g instanceof Umano && g.getSituazione()==Situazione.VINTO){
 					umaniVincitori++;
 					risposte.add(g.getNome()+", "+g.getClass().getSimpleName()+", ha vinto!\n");
 				}
 			}
+			
 			
 			if(umaniVincitori!=(model.getGiocatori().size()/2)){
 				for(Giocatore g : model.getGiocatori()){
@@ -65,24 +71,27 @@ public class TerminaPartita extends Azione{
 			
 			String risposta=new String("\nPartita terminata!\n");
 			
+			
 			for(String s : risposte){
 				risposta=risposta.concat(s);
 			}
+			
 			
 			for(Giocatore g : model.getGiocatori()){
 				g.setSituazione(Situazione.DISCONNESSO);
 				g.setStato(Stato.TURNOTERMINATO);
 			}
 
+			if(server instanceof RMIServer)
+				((RMIServer) server).getRmiTimers().get(model.getGiocatori().get(0).getID()).interrupt();
+			else if(server instanceof SocketServer)
+				((SocketServer) server).getTimers().get(model.getGiocatori().get(0).getID()).interrupt();
+			
+			
 			for(Giocatore g : model.getGiocatori()){
 				server.getPartite().remove(g.getID());
-				/*if(server instanceof RMIServer){
-					((RMIServer) server).getIdSub().remove(g.getID());
-					((RMIServer) server).getRmiTimers().remove(g.getID());
-				} else if(server instanceof Server){
-					((Server) server).getIdSub().remove(g.getID());
-					((Server) server).getTimers().remove(g.getID());
-				}*/
+				
+				
 			}
 			
 			

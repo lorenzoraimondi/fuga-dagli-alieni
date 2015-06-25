@@ -50,13 +50,13 @@ public class PescaScialuppa extends Azione{
 	 */
 	@Override
 	public RispostaController esegui() throws IOException{
-		//IOEx lanciata per terminaPartita
+		
 		if(this.controlli()){
 			carta=(CartaScialuppa) model.getMazzoScialuppe().pescaCarta();
 			if(carta.getTipo()!=TipoCartaScialuppa.ROSSA){
 				scialuppa.setScoperta();
 				giocatore.setSituazione(Situazione.VINTO);
-				//In questo stato può solo usare/scartare carta, che sono vietati da controlli
+				
 				giocatore.setStato(Stato.EFFETTOCONCLUSO);				
 				RispostaController terminaPartita=new TerminaPartita(giocatore,model,server).esegui();
 				if(terminaPartita!=null)

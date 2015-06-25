@@ -45,13 +45,13 @@ public abstract class Timer {
 		
 			int size=0;
 			for(Giocatore g:partita.getGiocatori()){
-				if(g.getSituazione()==Situazione.ATTIVO || g.getSituazione()==Situazione.INATTIVO || g.getSituazione()==Situazione.MORTO)
+				if(g.getSituazione()!=Situazione.DISCONNESSO)
 					size++;
 			}
 			int[] ordine=new int[size];
 			for(int i=0;i<ordine.length;i++){
-				if(partita.getGiocatori().get(i).getSituazione()==Situazione.ATTIVO ||partita.getGiocatori().get(i).getSituazione()==Situazione.INATTIVO || partita.getGiocatori().get(i).getSituazione()==Situazione.MORTO)
-				ordine[i]=partita.getGiocatori().get(i).getID();
+				if(partita.getGiocatori().get(i).getSituazione()!=Situazione.DISCONNESSO)
+					ordine[i]=partita.getGiocatori().get(i).getID();
 			}
 			int swap;
 			for(int j=0;j<ordine.length-1;j++){

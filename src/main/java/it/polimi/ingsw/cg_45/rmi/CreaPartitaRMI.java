@@ -60,7 +60,7 @@ public class CreaPartitaRMI extends TimerTask {
 	 */
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		
 		int i=0;
 		Giocatore g;
 		List<Giocatore> players=new ArrayList<Giocatore>();
@@ -103,18 +103,12 @@ public class CreaPartitaRMI extends TimerTask {
 		}
 		
 		StatoDiGioco partita=new StatoDiGioco((ArrayList<Giocatore>) players, map);
-		System.out.println("creo partita");
+		
 		for(Giocatore p: players){
 			server.getPartite().put(p.getID(), partita);
-			//
-			if(p instanceof Alieno)
-				System.out.println("alieno"+p.getID()+" "+p.getStato()+" "+p.getSituazione());
-				
-			else
-				System.out.println("umano"+p.getID()+" "+p.getStato()+" "+p.getSituazione());
-			//
+			
 		}
-		//server.addPartita(partita);
+		
 		
 		for(Accettazione a : sala.getListaAccettazione(map)){
 			threadSubs.add(((AccettazioneRMI) a).getClient());
@@ -122,18 +116,19 @@ public class CreaPartitaRMI extends TimerTask {
 		
 		for(Giocatore g2 : players){
 			
-			//server.getPartite().put(g2.getID(), partita);
 			((RMIServer) server).getIdSub().put(g2.getID(), (ArrayList<RMIClientInterface>)threadSubs);
 		}
 		
 		sala.svuotaLista(mappa);
-		System.out.println("svuoto Lista");
+		
 		sala.cancelloTimer(mappa);
+		
 		String messaggio=new String("Partita Iniziata. Parte "+players.get(0).getNome()+".");
+		
 		try {
 			server.publish(new Messaggio(messaggio),players.get(0).getID());
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+			
 		}
 		synchronized(server){
 			server.startTimer(partita, partita.getGiocatori().get(0));
