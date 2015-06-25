@@ -20,8 +20,9 @@ public class Chat extends Azione {
 	/**Create the chat message to dispatch, associating it to a player and a game, and storing
 	 * the message which the player wants to send.
 	 * 
-	 * @param m the message to send to the other players
+	 * @param messaggio the message to send to the other players
 	 * @param giocatore giocatore the player that performs the action.
+	 * @param partita the game in which the player is playing.
 	 */
 	public Chat(Giocatore giocatore, StatoDiGioco partita, String messaggio){
 		super(giocatore,partita);

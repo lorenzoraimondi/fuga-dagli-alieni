@@ -31,13 +31,6 @@ public abstract class Azione {
 		this.stato=giocatore.getStato();
 	}
 	
-	//HO IDEA CHE NON SERVA...
-	/**Create the action to perform with no need of parameters;
-	 * this constructor should be used on player-independent actions.
-	 *  
-	 */
-	//public Azione(){};
-	
 	/**Execute the action, after checking its possibility.
 	 * <p> 
 	 * Depending on the player turn status, this method perform the action 

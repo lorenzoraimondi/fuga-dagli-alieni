@@ -18,7 +18,7 @@ public class Statistiche extends Azione {
 	/**Create the information request to perform, associating it to a game and to a player.
 	 * 
 	 * @param giocatore the player that performs the action.
-	 * @param model the game in which the player is playing.
+	 * @param partita the game in which the player is playing.
 	 */
 	public Statistiche(Giocatore giocatore, StatoDiGioco partita){
 		super(giocatore,partita);

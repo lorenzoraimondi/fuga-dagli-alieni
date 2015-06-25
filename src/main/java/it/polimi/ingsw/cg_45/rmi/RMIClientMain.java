@@ -32,8 +32,7 @@ public class RMIClientMain {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws ClassNotFoundException, ConnectException,NotBoundException, IOException { 
-	    
-		
+	   
 		RMIServerInterface server;
 		RMIClient client;
 		Registry registry;
@@ -41,10 +40,8 @@ public class RMIClientMain {
         String nome = "";
         String ip = "";
         ip = args[0];
-        //ip="127.0.0.1";
         
         client = new RMIClient();
-	   	//client = new RMIClient(ip, 29999);
 	   	registry = LocateRegistry.getRegistry(29999);
 	   	server = (RMIServerInterface) registry.lookup("server");	
 	   

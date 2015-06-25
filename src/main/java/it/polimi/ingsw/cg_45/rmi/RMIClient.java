@@ -13,10 +13,6 @@ public class RMIClient implements RMIClientInterface {
 
 	private int id=0;
 	
-	/*public RMIClient(String string, int i) {
-		// TODO Auto-generated constructor stub
-	}*/
-	
 	/**Creates a new RMI Client so it can be exported to the server and get's its class remote methods used.
 	 * 
 	 */

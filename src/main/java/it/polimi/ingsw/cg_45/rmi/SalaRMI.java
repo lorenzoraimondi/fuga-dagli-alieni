@@ -51,26 +51,21 @@ public class SalaRMI extends Sala {
 	@Override
 	protected int esegui(){
 		
-		//
 		int posizione=0;
-		//
-		//server.getSubscribers().add(brokerThread);
-		//System.out.println("added new subscribers");
+
 		if(scelta.contentEquals("fermi")){
-			//
+		
 			AccettazioneRMI accettazione=new AccettazioneRMI(client,server.getCounter(),nomeGiocatore);
 			giocatoriFermi.add(accettazione);
-			//giocatoriFermi.add(new Accettazione(brokerThread,server.getCounter()));
-			//
+			
 			posizione=giocatoriFermi.indexOf(accettazione);
-			//
+			
 			if(giocatoriFermi.size()==2){
 				fermi=new Timer();
-				System.out.println("creo timerFermi");
 				fermi.schedule(new CreaPartitaRMI(giocatoriFermi,server,scelta,this),(long)seconds*1000);
 				}
 			if(giocatoriFermi.size()==8){
-				//Da sistemare???
+	
 				fermi.schedule(new CreaPartitaRMI(giocatoriFermi,server,scelta,this),0);
 				
 			}
@@ -81,7 +76,6 @@ public class SalaRMI extends Sala {
 			posizione=giocatoriGalilei.indexOf(accettazione);
 			if(giocatoriGalilei.size()==2){
 				galilei=new Timer();
-				System.out.println("creo timerGalilei");
 				galilei.schedule(new CreaPartitaRMI(giocatoriGalilei,server,scelta,this),(long)seconds*1000);}
 			if(giocatoriGalilei.size()==8){
 				galilei.schedule(new CreaPartitaRMI(giocatoriGalilei,server,scelta,this),0);
@@ -93,14 +87,11 @@ public class SalaRMI extends Sala {
 			posizione=giocatoriGalvani.indexOf(accettazione);
 			if(giocatoriGalvani.size()==2){
 				galvani=new Timer();
-				System.out.println("creo timerGalvani");
 				galvani.schedule(new CreaPartitaRMI(giocatoriGalvani,server,scelta,this),(long)seconds*1000);}
 			if(giocatoriGalvani.size()==8){
 				galvani.schedule(new CreaPartitaRMI(giocatoriGalvani,server,scelta,this),0);
 			}
 		}
-		else
-			System.out.println("scelta Sbagliata");
 		
 		return posizione;
 	}
@@ -138,10 +129,6 @@ public class SalaRMI extends Sala {
 			}
 		}
 		
-		System.out.println(threadSubsFermi);
-		System.out.println(threadSubsGalvani);
-		System.out.println(threadSubsGalilei);
-		
 		for(Accettazione a : giocatoriGalilei){
 				threadSubsGalilei.add(((AccettazioneRMI) a).getClient());
 		}
@@ -160,9 +147,6 @@ public class SalaRMI extends Sala {
 				sub.inviaMessaggio(msg.getMessaggio());
 			}
 			
-		}
-
-
-	
+		}	
 	
 }

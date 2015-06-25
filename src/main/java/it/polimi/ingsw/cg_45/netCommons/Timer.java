@@ -35,7 +35,10 @@ public abstract class Timer {
 		this.server=server;
 	}
 	
-	/**
+	/**This method sort the connected players' id (so only the actived, inactived and death ones) in a crescent
+	 * order.
+	 * 
+	 * @return the id-ordered integers' array of the players. 
 	 * @throws InterruptedException
 	 */
 	public int[] ordinamento() {

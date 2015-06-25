@@ -14,6 +14,12 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**It's the game client starter class. This class starts a game console from which the player
+ * can connect to an RMI or Socket Server and join a game.
+ * 
+ * @author Lorenzo Raimondi
+ *
+ */
 public class ClientStarter {
 	
 	private static final String PATTERN = "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
@@ -21,6 +27,15 @@ public class ClientStarter {
 	private ClientStarter(){
 	}
 
+	/**Starts game console for the player. At the beginning is viewed an introduction file
+	 * {@link intro.txt} where are specified instructions for the commands. Then the user is
+	 * guided to insert server's IP address and type. Once connected he can begin to play.
+	 * If the server is unavailable he can try to connect to another type of server.
+	 *
+	 * @throws ClassNotFoundException
+	 * @throws NotBoundException
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws ClassNotFoundException, NotBoundException, IOException {
 		
 		stampaIntro("rsc"+File.separatorChar+"intro.txt");

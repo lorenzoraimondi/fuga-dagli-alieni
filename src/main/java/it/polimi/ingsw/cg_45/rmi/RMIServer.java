@@ -28,13 +28,22 @@ import java.util.Map;
 public class RMIServer implements RMIServerInterface,ServerInterface {
 
 
-	private Map<Integer, StatoDiGioco> Partite = new HashMap<Integer, StatoDiGioco>();
+	private Map<Integer, StatoDiGioco> partite = new HashMap<Integer, StatoDiGioco>();
 	private Map<Integer, ArrayList<RMIClientInterface>> idSub = new HashMap<Integer, ArrayList<RMIClientInterface>>();
 	
 	private SalaRMI sala=new SalaRMI();
 	
 	private int counter=1;
 	private int port;
+	
+	/**Create a game RMI server on the specified port.
+	 * 
+	 * @param port the port on which open the server.
+	 */
+	public RMIServer(int port) {
+		this.port = port;
+		
+	}
 	
 	private Map<Integer, Thread> timers=new HashMap<Integer, Thread>();
 		
@@ -47,22 +56,12 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 			return timers;
 		}
 	
+	@Override
 	public void startTimer(StatoDiGioco partita,Giocatore giocatore){
 		Timer timerTurno=new RmiTimer(partita,giocatore,this);
-		//timers.put(giocatore.getID(), timerTurno);
 		Thread t=new Thread((Runnable) timerTurno);
 		timers.put(giocatore.getID(), t);
 		t.start();
-	}
-		
-		
-	/**Create a game RMI server on the specified port.
-	 * 
-	 * @param port the port on which open the server.
-	 */
-	public RMIServer(int port) {
-		this.port = port;
-		
 	}
 	
 	/**
@@ -86,7 +85,7 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 	 */
 	@Override
 	public Map<Integer, StatoDiGioco> getPartite() {
-		return Partite;
+		return partite;
 	}
 	
 	/**
@@ -134,8 +133,6 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 				}
 				
 			}
-		}else{
-			System.out.println("Non c'è iscritto nessuno...");
 		}
 		
 	}
@@ -145,13 +142,11 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 	 */
 	@Override
 	public synchronized String registrazione(RMIClientInterface client, String command) throws RemoteException {
-		System.out.println("Mi è arrivata un iscrizione per "+command);
 		
 		int posizione=sala.aggiungiGiocatore(command.split("-")[0], client, this, command.split("-")[1]);
 		
 		int id=counter;
 		this.incCounter();
-		//subscribers.add(client);
 		
 		String razza;
 		if(posizione%2==0){
