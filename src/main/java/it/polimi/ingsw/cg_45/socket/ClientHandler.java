@@ -92,7 +92,8 @@ public class ClientHandler extends Thread {
 					if(azione instanceof TerminaTurno ){
 						synchronized(server){
 							server.getTimers().get(idClient).interrupt();
-							server.startTimer(server.getPartite().get(idClient), server.getPartite().get(idClient).getGiocatori().get(0));	
+							if(server.getPartite().containsKey(idClient))
+								server.startTimer(server.getPartite().get(idClient), server.getPartite().get(idClient).getGiocatori().get(0));	
 						}	
 					}
 		        } catch (ClassCastException e){

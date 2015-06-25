@@ -130,6 +130,12 @@ public class StatisticheTest {
 		azione=new Statistiche(g1,partita);
 		risp=azione.esegui();
 		assertTrue(risp.getMessaggioClient().contains("scartare una carta oggetto"));
+		
+		g1.getCarte().remove(0);
+		g1.setSituazione(Situazione.MORTO);
+		azione=new Statistiche(g1,partita);
+		risp=azione.esegui();
+		assertTrue(risp.getMessaggioClient().contains("sei morto!"));
 	}
 
 }

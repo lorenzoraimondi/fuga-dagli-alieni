@@ -108,7 +108,8 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 			
 			if(a instanceof TerminaTurno){
 				this.getRmiTimers().get(id).interrupt();
-				this.startTimer(this.getPartite().get(id), this.getPartite().get(id).getGiocatori().get(0));
+				if(this.getPartite().containsKey(id))
+					this.startTimer(this.getPartite().get(id), this.getPartite().get(id).getGiocatori().get(0));
 			}
 			return risp.getMessaggioClient();
 		} catch (ClassCastException e) {
@@ -126,7 +127,6 @@ public class RMIServer implements RMIServerInterface,ServerInterface {
 		List<RMIClientInterface> subscribers=idSub.get(id);
 		
 		if(subscribers!=null){
-			System.out.println("Publishing message");
 			for (RMIClientInterface sub : subscribers) {
 				synchronized(this){
 					sub.inviaMessaggio(msg.getMessaggio());	

@@ -48,6 +48,8 @@ public class Statistiche extends Azione {
 					+"\n\n");
 			if(giocatore.getCarte().size()>=4)
 				return new RispostaController(messaggio+"mossa obbligata:\nscartare una carta oggetto",null);
+			if(giocatore.getSituazione()==Situazione.MORTO)
+				return new RispostaController("sei morto!",null);
 			
 			switch(giocatore.getStato()){
 			case INIZIO :
