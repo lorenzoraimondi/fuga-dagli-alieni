@@ -19,7 +19,7 @@ public abstract class Timer {
 	protected StatoDiGioco partita;
 	protected Giocatore giocatore;
 	protected Azione azione;
-	protected static final int SECONDI=40;
+	protected static final int SECONDI=180;
 	protected RispostaController risp;
 	protected ServerInterface server;
 

@@ -29,7 +29,7 @@ public class RMIClientMain {
 	 * client exports its stub to the server, so it can call client's methods. From server confirm 
 	 * the client obatin its id number, and once started the game can send commands calling server methods.
 	 * 
-	 * @param args {@code String} array which contains server's ip address in the first slot.
+	 * @param args {@code String} array which contains server's IP address in the first slot.
 	 * 
 	 * @throws ClassNotFoundException
 	 * @throws ConnectException
@@ -47,7 +47,7 @@ public class RMIClientMain {
         ip = args[0];
         
         client = new RMIClient();
-	   	registry = LocateRegistry.getRegistry(29999);
+	   	registry = LocateRegistry.getRegistry(ip,29999);
 	   	server = (RMIServerInterface) registry.lookup("server");	
 	   
 	   	Scanner stdin=new Scanner(System.in);

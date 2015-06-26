@@ -22,7 +22,7 @@ public abstract class Sala {
 	//
 	protected String nomeGiocatore;
 	//
-	protected int seconds=60;
+	protected int seconds=120;
 	
 	protected List<Accettazione> giocatoriFermi;
 	protected List<Accettazione> giocatoriGalilei;

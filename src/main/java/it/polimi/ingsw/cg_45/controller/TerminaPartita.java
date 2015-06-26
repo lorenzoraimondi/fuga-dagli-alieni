@@ -82,10 +82,20 @@ public class TerminaPartita extends Azione{
 				g.setStato(Stato.TURNOTERMINATO);
 			}
 
-			if(server instanceof RMIServer)
+			if(server instanceof RMIServer && 
+						(((RMIServer) server).getRmiTimers().get(model.getGiocatori().get(0).getID())!=null)){
+				
 				((RMIServer) server).getRmiTimers().get(model.getGiocatori().get(0).getID()).interrupt();
-			else if(server instanceof SocketServer)
+				
+				}
+			else if(server instanceof SocketServer &&
+						(((SocketServer) server).getTimers().get(model.getGiocatori().get(0).getID())!=null)){
+				
 				((SocketServer) server).getTimers().get(model.getGiocatori().get(0).getID()).interrupt();
+				
+			}
+				
+				
 			
 			
 			for(Giocatore g : model.getGiocatori()){
